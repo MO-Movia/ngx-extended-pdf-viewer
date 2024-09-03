@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PageViewModeType, ScrollModeType } from '../../options/pdf-viewer';
 import { ResponsiveVisibility } from '../../responsive-visibility';
 
@@ -7,7 +7,7 @@ import { ResponsiveVisibility } from '../../responsive-visibility';
   templateUrl: './pdf-book-mode.component.html',
   styleUrls: ['./pdf-book-mode.component.css'],
 })
-export class PdfBookModeComponent implements OnDestroy {
+export class PdfBookModeComponent {
   @Input()
   public show: ResponsiveVisibility = true;
 
@@ -20,7 +20,7 @@ export class PdfBookModeComponent implements OnDestroy {
   @Output()
   public pageViewModeChange = new EventEmitter<PageViewModeType>();
 
-  public onClick?: () => void;
+  public onClick: () => void;
 
   constructor() {
     const emitter = this.pageViewModeChange;
@@ -29,9 +29,5 @@ export class PdfBookModeComponent implements OnDestroy {
         emitter.emit('book');
       });
     };
-  }
-
-  public ngOnDestroy(): void {
-    this.onClick = undefined;
   }
 }

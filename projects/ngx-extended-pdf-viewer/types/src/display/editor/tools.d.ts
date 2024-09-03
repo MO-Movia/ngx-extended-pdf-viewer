@@ -12,8 +12,7 @@ export class AnnotationEditorUIManager {
     static TRANSLATE_SMALL: number;
     static TRANSLATE_BIG: number;
     static get _keyboardManager(): any;
-    constructor(container: any, viewer: any, altTextManager: any, eventBus: any, pdfDocument: any, pageColors: any, highlightColors: any, enableHighlightFloatingButton: any, enableUpdatedAddImage: any, mlManager: any);
-    _signal: AbortSignal;
+    constructor(container: any, viewer: any, altTextManager: any, eventBus: any, pdfDocument: any, pageColors: any, highlightColors: any, enableHighlightFloatingButton: any, mlManager: any);
     _eventBus: any;
     viewParameters: {
         realScale: number;
@@ -22,16 +21,13 @@ export class AnnotationEditorUIManager {
     isShiftKeyDown: boolean;
     destroy(): void;
     mlGuess(data: any): Promise<any>;
-    isMLEnabledFor(name: any): Promise<boolean>;
-    get useNewAltTextFlow(): boolean;
+    get hasMLManager(): boolean;
     get hcmFilter(): any;
     get direction(): any;
     get highlightColors(): any;
     get highlightColorNames(): any;
     setMainHighlightColorPicker(colorPicker: any): void;
     editAltText(editor: any): void;
-    switchToMode(mode: any, callback: any): void;
-    setPreference(name: any, value: any): void;
     onPageChanging({ pageNumber }: {
         pageNumber: any;
     }): void;
@@ -56,12 +52,6 @@ export class AnnotationEditorUIManager {
     focus(): void;
     addEditListeners(): void;
     removeEditListeners(): void;
-    dragOver(event: any): void;
-    /**
-     * Drop callback.
-     * @param {DragEvent} event
-     */
-    drop(event: DragEvent): void;
     /**
      * Copy callback.
      * @param {ClipboardEvent} event
@@ -271,7 +261,7 @@ export class AnnotationEditorUIManager {
      * @param {AnnotationEditor} editor
      * @returns
      */
-    isActive(editor: AnnotationEditor): editor is never;
+    isActive(editor: AnnotationEditor): boolean;
     /**
      * Get the current active editor.
      * @returns {AnnotationEditor|null}
@@ -290,14 +280,6 @@ export class AnnotationEditorUIManager {
         width: number;
         height: number;
     }[] | null;
-    addChangedExistingAnnotation({ annotationElementId, id }: {
-        annotationElementId: any;
-        id: any;
-    }): void;
-    removeChangedExistingAnnotation({ annotationElementId }: {
-        annotationElementId: any;
-    }): void;
-    renderAnnotationElement(annotation: any): void;
     #private;
 }
 export function bindEvents(obj: any, element: any, names: any): void;

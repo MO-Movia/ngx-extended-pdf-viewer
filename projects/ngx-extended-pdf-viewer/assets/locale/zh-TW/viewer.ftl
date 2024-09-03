@@ -51,6 +51,12 @@ pdfjs-download-button-label = 下載
 pdfjs-bookmark-button =
     .title = 目前頁面（含目前檢視頁面的網址）
 pdfjs-bookmark-button-label = 目前頁面
+# Used in Firefox for Android.
+pdfjs-open-in-app-button =
+    .title = 在應用程式中開啟
+# Used in Firefox for Android.
+# Length of the translation matters since we are in a mobile context, with limited screen estate.
+pdfjs-open-in-app-button-label = 用程式開啟
 
 ##  Secondary toolbar and context menu
 
@@ -76,8 +82,8 @@ pdfjs-cursor-hand-tool-button =
     .title = 開啟頁面移動工具
 pdfjs-cursor-hand-tool-button-label = 頁面移動工具
 pdfjs-scroll-page-button =
-    .title = 使用單頁捲動版面
-pdfjs-scroll-page-button-label = 單頁捲動
+    .title = 使用頁面捲動功能
+pdfjs-scroll-page-button-label = 頁面捲動功能
 pdfjs-scroll-vertical-button =
     .title = 使用垂直捲動版面
 pdfjs-scroll-vertical-button-label = 垂直捲動
@@ -102,8 +108,8 @@ pdfjs-spread-even-button-label = 偶數跨頁
 pdfjs-document-properties-button =
     .title = 文件內容…
 pdfjs-document-properties-button-label = 文件內容…
-pdfjs-document-properties-file-name = 檔案名稱：
-pdfjs-document-properties-file-size = 檔案大小：
+pdfjs-document-properties-file-name = 檔案名稱:
+pdfjs-document-properties-file-size = 檔案大小:
 # Variables:
 #   $size_kb (Number) - the PDF file size in kilobytes
 #   $size_b (Number) - the PDF file size in bytes
@@ -112,21 +118,21 @@ pdfjs-document-properties-kb = { $size_kb } KB（{ $size_b } 位元組）
 #   $size_mb (Number) - the PDF file size in megabytes
 #   $size_b (Number) - the PDF file size in bytes
 pdfjs-document-properties-mb = { $size_mb } MB（{ $size_b } 位元組）
-pdfjs-document-properties-title = 標題：
-pdfjs-document-properties-author = 作者：
-pdfjs-document-properties-subject = 主旨：
-pdfjs-document-properties-keywords = 關鍵字：
-pdfjs-document-properties-creation-date = 建立日期：
-pdfjs-document-properties-modification-date = 修改日期：
+pdfjs-document-properties-title = 標題:
+pdfjs-document-properties-author = 作者:
+pdfjs-document-properties-subject = 主旨:
+pdfjs-document-properties-keywords = 關鍵字:
+pdfjs-document-properties-creation-date = 建立日期:
+pdfjs-document-properties-modification-date = 修改日期:
 # Variables:
 #   $date (Date) - the creation/modification date of the PDF file
 #   $time (Time) - the creation/modification time of the PDF file
 pdfjs-document-properties-date-string = { $date } { $time }
-pdfjs-document-properties-creator = 建立者：
-pdfjs-document-properties-producer = PDF 產生器：
-pdfjs-document-properties-version = PDF 版本：
-pdfjs-document-properties-page-count = 頁數：
-pdfjs-document-properties-page-size = 頁面大小：
+pdfjs-document-properties-creator = 建立者:
+pdfjs-document-properties-producer = PDF 產生器:
+pdfjs-document-properties-version = PDF 版本:
+pdfjs-document-properties-page-count = 頁數:
+pdfjs-document-properties-page-size = 頁面大小:
 pdfjs-document-properties-page-size-unit-inches = in
 pdfjs-document-properties-page-size-unit-millimeters = mm
 pdfjs-document-properties-page-size-orientation-portrait = 垂直
@@ -150,7 +156,7 @@ pdfjs-document-properties-page-size-dimension-name-string = { $width } × { $hei
 
 # The linearization status of the document; usually called "Fast Web View" in
 # English locales of Adobe software.
-pdfjs-document-properties-linearized = 快速 Web 檢視：
+pdfjs-document-properties-linearized = 快速 Web 檢視:
 pdfjs-document-properties-linearized-yes = 是
 pdfjs-document-properties-linearized-no = 否
 pdfjs-document-properties-close-button = 關閉
@@ -290,6 +296,8 @@ pdfjs-editor-stamp-button-label = 新增或編輯圖片
 pdfjs-editor-highlight-button =
     .title = 強調
 pdfjs-editor-highlight-button-label = 強調
+pdfjs-highlight-floating-button =
+    .title = 強調
 pdfjs-highlight-floating-button1 =
     .title = 強調
     .aria-label = 強調
@@ -323,7 +331,7 @@ pdfjs-editor-free-highlight-thickness-title =
     .title = 更改強調文字以外的項目時的線條粗細
 pdfjs-free-text =
     .aria-label = 文本編輯器
-pdfjs-free-text-default-content = 在此打字…
+pdfjs-free-text-default-content = 開始打字…
 pdfjs-ink =
     .aria-label = 圖形編輯器
 pdfjs-ink-canvas =
@@ -385,61 +393,5 @@ pdfjs-editor-highlight-show-all-button-label = 顯示全部
 pdfjs-editor-highlight-show-all-button =
     .title = 顯示全部
 
-pdfjs-editor-new-alt-text-dialog-edit-label = 編輯替代文字（圖片描述）
-pdfjs-editor-new-alt-text-dialog-add-label = 新增替代文字（圖片描述）
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = 在此寫下您的描述文字…
-pdfjs-editor-new-alt-text-description = 為看不到圖片的讀者，或圖片無法載入時顯示的簡短描述。
-pdfjs-editor-new-alt-text-disclaimer1 = 此替代文字是自動產生的，可能不夠精確。
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = 更多資訊
-pdfjs-editor-new-alt-text-create-automatically-button-label = 自動產生替代文字
-pdfjs-editor-new-alt-text-not-now-button = 暫時不要
-pdfjs-editor-new-alt-text-error-title = 無法自動產生替代文字
-pdfjs-editor-new-alt-text-error-description = 請自行填寫替代文字，或稍後再試一次。
-pdfjs-editor-new-alt-text-error-close-button = 關閉
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = 正在下載替代文字 AI 模型（{ $downloadedSize } / { $totalSize } MB）
-    .aria-valuetext = 正在下載替代文字 AI 模型（{ $downloadedSize } / { $totalSize } MB）
-pdfjs-editor-new-alt-text-added-button-label = 已新增替代文字
-pdfjs-editor-new-alt-text-missing-button-label = 缺少替代文字
-pdfjs-editor-new-alt-text-to-review-button-label = 確認替代文字
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = 自動產生：{ $generatedAltText }
-pdfjs-image-alt-text-settings-button =
-    .title = 圖片替代文字設定
-pdfjs-image-alt-text-settings-button-label = 圖片替代文字設定
-pdfjs-editor-alt-text-settings-dialog-label = 圖片替代文字設定
-pdfjs-editor-alt-text-settings-automatic-title = 自動化替代文字
-pdfjs-editor-alt-text-settings-create-model-button-label = 自動產生替代文字
-pdfjs-editor-alt-text-settings-create-model-description = 為您建議圖片描述，幫助看不到圖片的讀者，或於圖片無法載入時顯示。
-pdfjs-editor-alt-text-settings-download-model-label = 替代文字 AI 模型（{ $totalSize } MB）
-pdfjs-editor-alt-text-settings-ai-model-description = 在您的本機裝置上運作，以確保您的資料隱私。必須下載此模型才可以自動產生替代文字。
-pdfjs-editor-alt-text-settings-delete-model-button = 刪除
-pdfjs-editor-alt-text-settings-download-model-button = 下載
-pdfjs-editor-alt-text-settings-downloading-model-button = 下載中…
-pdfjs-editor-alt-text-settings-editor-title = 替代文字編輯器
-pdfjs-editor-alt-text-settings-show-dialog-button-label = 新增圖片後立即顯示替代文字編輯器
-pdfjs-editor-alt-text-settings-show-dialog-description = 幫助您確保所有圖片都有替代文字。
-pdfjs-editor-alt-text-settings-close-button = 關閉
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression

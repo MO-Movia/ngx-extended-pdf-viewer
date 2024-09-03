@@ -58,14 +58,14 @@ export type PDFViewerOptions = {
     /**
      * - Controls if the annotation layer is
      * created, and if interactive form elements or `AnnotationStorage`-data are
-     * being rendered. The constants from {@link AnnotationMode} should be used;
-     * see also {@link RenderParameters} and {@link GetOperatorListParameters}.
+     * being rendered. The constants from {@link AnnotationMode } should be used;
+     * see also {@link RenderParameters } and {@link GetOperatorListParameters }.
      * The default value is `AnnotationMode.ENABLE_FORMS`.
      */
     annotationMode?: number | undefined;
     /**
      * - Enables the creation and editing
-     * of new Annotations. The constants from {@link AnnotationEditorType} should
+     * of new Annotations. The constants from {@link AnnotationEditorType } should
      * be used. The default value is `AnnotationEditorType.NONE`.
      */
     annotationEditorMode?: number | undefined;
@@ -105,11 +105,6 @@ export type PDFViewerOptions = {
      * mode.
      */
     pageColors?: Object | undefined;
-    /**
-     * - Enables hardware acceleration for
-     * rendering. The default value is `false`.
-     */
-    enableHWA?: boolean | undefined;
 };
 export namespace PagesCountLimit {
     let FORCE_SCROLL_MODE_PAGE: number;
@@ -157,8 +152,6 @@ export namespace PagesCountLimit {
  * @property {Object} [pageColors] - Overwrites background and foreground colors
  *   with user defined ones in order to improve readability in high contrast
  *   mode.
- * @property {boolean} [enableHWA] - Enables hardware acceleration for
- *   rendering. The default value is `false`.
  */
 export class PDFPageViewBuffer {
     constructor(size: any);
@@ -187,19 +180,16 @@ export class PDFViewer {
     viewer: Element | null;
     set pageViewMode(viewMode: string);
     get pageViewMode(): string;
-    /** end of modification */
-    defaultCacheSize: any;
     eventBus: import("./event_utils").EventBus;
     linkService: import("./interfaces").IPDFLinkService | SimpleLinkService;
     downloadManager: import("./interfaces").IDownloadManager | null;
     findController: import("./pdf_find_controller").PDFFindController | null;
-    customFindController: any;
     _scriptingManager: import("./pdf_scripting_manager").PDFScriptingManager | null;
     imageResourcesPath: string;
     enablePrintAutoRotate: boolean;
     removePageBorders: boolean | undefined;
     maxCanvasPixels: number | undefined;
-    l10n: import("./interfaces").IL10n | GenericL10n | undefined;
+    l10n: any;
     pageColors: Object | null;
     defaultRenderingQueue: boolean;
     renderingQueue: PDFRenderingQueue | undefined;
@@ -211,11 +201,8 @@ export class PDFViewer {
         _eventHandler: (evt: any) => void;
     };
     presentationModeState: number;
-    set maxZoom(value: number);
-    get maxZoom(): number;
-    set minZoom(value: number);
-    get minZoom(): number;
-    setTextLayerMode(mode: any): void;
+    _onBeforeDraw: ((evt: any) => void) | null;
+    _onAfterDraw: any;
     get pagesCount(): number;
     getPageView(index: any): any;
     getCachedPageViews(): Set<any>;
@@ -261,7 +248,7 @@ export class PDFViewer {
     /**
      * @param {string} val - The page label.
      */
-    set currentPageLabel(val: string);
+    set currentPageLabel(val: string | null);
     /**
      * @type {string|null} Returns the current page label, or `null` if no page
      *   labels exist.
@@ -292,9 +279,9 @@ export class PDFViewer {
      */
     get pagesRotation(): number;
     _pagesRotation: any;
-    get firstPagePromise(): any;
-    get onePageRendered(): any;
-    get pagesPromise(): any;
+    get firstPagePromise(): Promise<any> | null;
+    get onePageRendered(): Promise<any> | null;
+    get pagesPromise(): Promise<any> | null;
     get _layerProperties(): any;
     getAllText(): Promise<string | null>;
     /**
@@ -321,9 +308,9 @@ export class PDFViewer {
         rotation: any;
         pdfOpenParams: string;
     } | null | undefined;
-    _firstPageCapability: any;
-    _onePageRenderedCapability: any;
-    _pagesCapability: any;
+    _firstPageCapability: PromiseWithResolvers<any> | undefined;
+    _onePageRenderedCapability: PromiseWithResolvers<any> | undefined;
+    _pagesCapability: PromiseWithResolvers<any> | undefined;
     _previousScrollMode: any;
     _spreadMode: any;
     _scrollUpdate(): void;
@@ -399,7 +386,7 @@ export class PDFViewer {
      * @param {Promise<OptionalContentConfig>} promise - A promise that is
      *   resolved with an {@link OptionalContentConfig} instance.
      */
-    set optionalContentConfigPromise(promise: Promise<import("../src/display/optional_content_config").OptionalContentConfig>);
+    set optionalContentConfigPromise(promise: Promise<import("../src/display/optional_content_config").OptionalContentConfig | null>);
     /**
      * @type {Promise<OptionalContentConfig | null>}
      */
@@ -445,50 +432,24 @@ export class PDFViewer {
      * @property {number} [drawingDelay]
      * @property {number} [scaleFactor]
      * @property {number} [steps]
-     * @property {Array} [origin] x and y coordinates of the scale
-     *                            transformation origin.
      */
-    /**
-     * Changes the current zoom level by the specified amount.
-     * @param {ChangeScaleOptions} [options]
-     */
-    updateScale({ drawingDelay, scaleFactor, steps, origin }?: {
-        drawingDelay?: number | undefined;
-        scaleFactor?: number | undefined;
-        steps?: number | undefined;
-        /**
-         * x and y coordinates of the scale
-         *  transformation origin.
-         */
-        origin?: any[] | undefined;
-    } | undefined): void;
     /**
      * Increase the current zoom level one, or more, times.
      * @param {ChangeScaleOptions} [options]
      */
-    increaseScale(options?: {
+    increaseScale({ drawingDelay, scaleFactor, steps }?: {
         drawingDelay?: number | undefined;
         scaleFactor?: number | undefined;
         steps?: number | undefined;
-        /**
-         * x and y coordinates of the scale
-         *  transformation origin.
-         */
-        origin?: any[] | undefined;
     } | undefined): void;
     /**
      * Decrease the current zoom level one, or more, times.
      * @param {ChangeScaleOptions} [options]
      */
-    decreaseScale(options?: {
+    decreaseScale({ drawingDelay, scaleFactor, steps }?: {
         drawingDelay?: number | undefined;
         scaleFactor?: number | undefined;
         steps?: number | undefined;
-        /**
-         * x and y coordinates of the scale
-         *  transformation origin.
-         */
-        origin?: any[] | undefined;
     } | undefined): void;
     get containerTopLeft(): number[];
     /**
@@ -520,21 +481,11 @@ export class PDFViewer {
         /**
          * - The editor mode (none, FreeText, ink, ...).
          */
-        /**
-         * - The editor mode (none, FreeText, ink, ...).
-         */
         mode: number;
         /**
          * - ID of the existing annotation to edit.
          */
-        /**
-         * - ID of the existing annotation to edit.
-         */
         editId?: string | null | undefined;
-        /**
-         * - True if the mode change is due to a
-         * keyboard action.
-         */
         /**
          * - True if the mode change is due to a
          * keyboard action.
@@ -552,5 +503,4 @@ export class PDFViewer {
 }
 import { PDFRenderingQueue } from "./pdf_rendering_queue.js";
 import { SimpleLinkService } from "./pdf_link_service.js";
-import { GenericL10n } from "./genericl10n";
 import { PageFlip } from "./page-flip.module.js";

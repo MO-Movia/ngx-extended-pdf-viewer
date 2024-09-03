@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+@import "../common/text-layer-builder.scss";
 
 ngx-extended-pdf-viewer {
   * {
@@ -65,11 +66,14 @@ ngx-extended-pdf-viewer {
     height: 1056px;
     margin: 1px auto -8px auto;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     border: 9px solid transparent;
     background-clip: content-box;
+    -o-border-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAQAAADYWf5HAAAA6UlEQVR4Xl2Pi2rEMAwE16fm1f7/r14v7w4rI0IzLAF7hLxNevBSEMEF5+OilNCsRd8ZMyn+a4NmsOT8WJw1lFbSYgGFzF2bLFoLjTClWjKKGRWpDYAGXUnZ4uhbBUzF3Oe/GG/ue2fn4GgsyXhNgysV2JnrhKEMg4fEZcALmiKbNhBBRFpSyDOj1G4QOVly6O1FV54ZZq8OVygrciDt6JazRgi1ljTPH0gbrPmHPXAbCiDd4GawIjip1TPh9tt2sz24qaCjr/jAb/GBFTbq9KZ7Ke/Cqt8nayUikZKsWZK7Fe6bg5dOUt8fZHWG2BHc+6EAAAAASUVORK5CYII=') 9 9 repeat;
     border-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAQAAADYWf5HAAAA6UlEQVR4Xl2Pi2rEMAwE16fm1f7/r14v7w4rI0IzLAF7hLxNevBSEMEF5+OilNCsRd8ZMyn+a4NmsOT8WJw1lFbSYgGFzF2bLFoLjTClWjKKGRWpDYAGXUnZ4uhbBUzF3Oe/GG/ue2fn4GgsyXhNgysV2JnrhKEMg4fEZcALmiKbNhBBRFpSyDOj1G4QOVly6O1FV54ZZq8OVygrciDt6JazRgi1ljTPH0gbrPmHPXAbCiDd4GawIjip1TPh9tt2sz24qaCjr/jAb/GBFTbq9KZ7Ke/Cqt8nayUikZKsWZK7Fe6bg5dOUt8fZHWG2BHc+6EAAAAASUVORK5CYII=') 9 9 repeat;
     background-color: $page-background;
+    filter: opacity(1);
+    -webkit-filter: opacity(1);
   }
 
   .pdfViewer.removePageBorders .page {
@@ -523,10 +527,6 @@ ngx-extended-pdf-viewer {
 ngx-extended-pdf-viewer {
   #toolbarViewer {
     min-height: 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
   }
 
   #loadingBar {
@@ -833,27 +833,33 @@ ngx-extended-pdf-viewer {
     display: none;
   }
 
-  #toolbarViewerMiddleContainer {
-    /* Prevents the text from wrapping and ensures it stays in one line: */
-    white-space: nowrap;
-  }
-
-  #toolbarViewerLeft,
-  #toolbarViewerRight,
-  #toolbarViewerMiddleContainer {
-    /* Allows the column to shrink and grow as needed: */
-    flex: 0 1 auto;
+  #toolbarViewerMiddle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
 html[dir='ltr'] ngx-extended-pdf-viewer #toolbarViewerLeft,
 html[dir='rtl'] ngx-extended-pdf-viewer #toolbarViewerRight {
+  float: left;
   margin-left: 4px;
+}
+
+html[dir="ltr"] #toolbarSidebarLeft,
+html[dir="rtl"] #toolbarSidebarRight {
+  float: left;
 }
 
 html[dir='ltr'] ngx-extended-pdf-viewer #toolbarViewerRight,
 html[dir='rtl'] ngx-extended-pdf-viewer #toolbarViewerLeft {
+  float: right;
   margin-right: 4px;
+}
+
+html[dir="ltr"] #toolbarSidebarRight,
+html[dir="rtl"] #toolbarSidebarLeft {
+  float: right;
 }
 
 html[dir='ltr'] ngx-extended-pdf-viewer #toolbarViewerLeft>*,

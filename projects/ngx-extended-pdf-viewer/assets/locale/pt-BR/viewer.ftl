@@ -51,6 +51,12 @@ pdfjs-download-button-label = Baixar
 pdfjs-bookmark-button =
     .title = Página atual (ver URL da página atual)
 pdfjs-bookmark-button-label = Pagina atual
+# Used in Firefox for Android.
+pdfjs-open-in-app-button =
+    .title = Abrir em um aplicativo
+# Used in Firefox for Android.
+# Length of the translation matters since we are in a mobile context, with limited screen estate.
+pdfjs-open-in-app-button-label = Abrir em um aplicativo
 
 ##  Secondary toolbar and context menu
 
@@ -345,11 +351,11 @@ pdfjs-ink-canvas =
 pdfjs-editor-alt-text-button-label = Texto alternativo
 pdfjs-editor-alt-text-edit-button-label = Editar texto alternativo
 pdfjs-editor-alt-text-dialog-label = Escolha uma opção
-pdfjs-editor-alt-text-dialog-description = O texto alternativo ajuda quando uma imagem não aparece ou não é carregada.
-pdfjs-editor-alt-text-add-description-label = Adicionar uma descrição
-pdfjs-editor-alt-text-add-description-description = Procure usar uma ou duas frases que descrevam o assunto, cenário ou ação.
+pdfjs-editor-alt-text-dialog-description = O texto alternativo ajuda quando uma imagem não aparece ou não for carregada.
+pdfjs-editor-alt-text-add-description-label = Adicione uma descrição
+pdfjs-editor-alt-text-add-description-description = Procure usar uma ou duas frases que descrevam o assunto, o cenário ou as ações.
 pdfjs-editor-alt-text-mark-decorative-label = Marcar como decorativa
-pdfjs-editor-alt-text-mark-decorative-description = Isto é usado em imagens ornamentais, como bordas ou marcas d'água.
+pdfjs-editor-alt-text-mark-decorative-description = Isto é usado para imagens ornamentais, como bordas ou marcas d'água.
 pdfjs-editor-alt-text-cancel-button = Cancelar
 pdfjs-editor-alt-text-save-button = Salvar
 pdfjs-editor-alt-text-decorative-tooltip = Marcado como decorativa
@@ -391,68 +397,12 @@ pdfjs-editor-colorpicker-red =
 ## Show all highlights
 ## This is a toggle button to show/hide all the highlights.
 
-pdfjs-editor-highlight-show-all-button-label = Mostrar todos
+pdfjs-editor-highlight-show-all-button-label = Mostrar tudo
 pdfjs-editor-highlight-show-all-button =
-    .title = Mostrar todos
+    .title = Mostrar tudo
 
-pdfjs-editor-new-alt-text-dialog-edit-label = Editar texto alternativo (descrição da imagem)
-pdfjs-editor-new-alt-text-dialog-add-label = Adicionar texto alternativo (descrição da imagem)
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = Escreva sua descrição aqui…
-pdfjs-editor-new-alt-text-description = Descrição curta para pessoas que não conseguem ver a imagem ou quando a imagem não é carregada.
-pdfjs-editor-new-alt-text-disclaimer1 = Este texto alternativo foi criado automaticamente, pode não estar correto.
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = Saiba mais
-pdfjs-editor-new-alt-text-create-automatically-button-label = Criar texto alternativo automaticamente
-pdfjs-editor-new-alt-text-not-now-button = Agora não
-pdfjs-editor-new-alt-text-error-title = Não foi possível criar texto alternativo automaticamente
-pdfjs-editor-new-alt-text-error-description = Escreva seu próprio texto alternativo ou tente novamente mais tarde.
-pdfjs-editor-new-alt-text-error-close-button = Fechar
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = Baixando modelo de inteligência artificial de texto alternativo ({ $downloadedSize } de { $totalSize } MB)
-    .aria-valuetext = Baixando modelo de inteligência artificial de texto alternativo ({ $downloadedSize } de { $totalSize } MB)
-pdfjs-editor-new-alt-text-added-button-label = Texto alternativo adicionado
-pdfjs-editor-new-alt-text-missing-button-label = Falta texto alternativo
-pdfjs-editor-new-alt-text-to-review-button-label = Revisar texto alternativo
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = Criado automaticamente: { $generatedAltText }
-pdfjs-image-alt-text-settings-button =
-    .title = Configurações de texto alternativo de imagens
-pdfjs-image-alt-text-settings-button-label = Configurações de texto alternativo de imagens
-pdfjs-editor-alt-text-settings-dialog-label = Configurações de texto alternativo de imagens
-pdfjs-editor-alt-text-settings-automatic-title = Texto alternativo automático
-pdfjs-editor-alt-text-settings-create-model-button-label = Criar texto alternativo automaticamente
-pdfjs-editor-alt-text-settings-create-model-description = Sugere uma descrição para ajudar pessoas que não conseguem ver a imagem ou quando a imagem não é carregada.
-pdfjs-editor-alt-text-settings-download-model-label = Modelo de inteligência artificial de texto alternativo ({ $totalSize } MB)
-pdfjs-editor-alt-text-settings-ai-model-description = Funciona localmente no seu dispositivo para que seus dados permaneçam privativos. Necessário para texto alternativo automático.
-pdfjs-editor-alt-text-settings-delete-model-button = Excluir
-pdfjs-editor-alt-text-settings-download-model-button = Baixar
-pdfjs-editor-alt-text-settings-downloading-model-button = Baixando…
-pdfjs-editor-alt-text-settings-editor-title = Editor de texto alternativo
-pdfjs-editor-alt-text-settings-show-dialog-button-label = Mostrar o editor de texto alternativo imediatamente ao adicionar uma imagem
-pdfjs-editor-alt-text-settings-show-dialog-description = Ajuda a assegurar que todas as suas imagens tenham texto alternativo.
-pdfjs-editor-alt-text-settings-close-button = Fechar
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression
 
 # Translations for ngx-extended-pdf-viewer additions
 

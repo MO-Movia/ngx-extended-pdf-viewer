@@ -11,6 +11,8 @@ export type TextHighlighterOptions = {
      */
     pageIndex: number;
 };
+/** @typedef {import("./event_utils").EventBus} EventBus */
+/** @typedef {import("./pdf_find_controller").PDFFindController} PDFFindController */
 /**
  * @typedef {Object} TextHighlighterOptions
  * @property {PDFFindController} findController
@@ -25,12 +27,12 @@ export class TextHighlighter {
     /**
      * @param {TextHighlighterOptions} options
      */
-    constructor({ findController, customFindController, eventBus, pageIndex }: TextHighlighterOptions);
+    constructor({ findController, eventBus, pageIndex }: TextHighlighterOptions);
     findController: import("./pdf_find_controller").PDFFindController;
-    customFindController: any;
     matches: any[];
     eventBus: import("./event_utils").EventBus;
     pageIdx: number;
+    _onUpdateTextLayerMatches: ((evt: any) => void) | null;
     textDivs: Node[] | null;
     textContentItemsStr: string[] | null;
     enabled: boolean;
@@ -50,16 +52,12 @@ export class TextHighlighter {
      */
     enable(): void;
     disable(): void;
-    _convertMatches(matches: any, matchesLength: any, cssClass?: string, highlightAll?: boolean, isPageWithSelection?: boolean, selectedMatchIdx?: number): {
+    _convertMatches(matches: any, matchesLength: any): {
         begin: {
             divIdx: number;
             offset: number;
         };
-        cssClass: string;
-        highlightAll: boolean;
-        selected: boolean;
     }[];
-    _renderMatches(matches: any, findController: any): void;
+    _renderMatches(matches: any): void;
     _updateMatches(reset?: boolean): void;
-    #private;
 }

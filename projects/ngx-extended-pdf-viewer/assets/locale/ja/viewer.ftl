@@ -51,6 +51,12 @@ pdfjs-download-button-label = ダウンロード
 pdfjs-bookmark-button =
     .title = 現在のページの URL です (現在のページを表示する URL)
 pdfjs-bookmark-button-label = 現在のページ
+# Used in Firefox for Android.
+pdfjs-open-in-app-button =
+    .title = アプリで開く
+# Used in Firefox for Android.
+# Length of the translation matters since we are in a mobile context, with limited screen estate.
+pdfjs-open-in-app-button-label = アプリで開く
 
 ##  Secondary toolbar and context menu
 
@@ -279,7 +285,7 @@ pdfjs-text-annotation-type =
 ## Password
 
 pdfjs-password-label = この PDF ファイルを開くためのパスワードを入力してください。
-pdfjs-password-invalid = パスワードが正しくありません。もう一度試してください。
+pdfjs-password-invalid = 無効なパスワードです。もう一度やり直してください。
 pdfjs-password-ok-button = OK
 pdfjs-password-cancel-button = キャンセル
 pdfjs-web-fonts-disabled = ウェブフォントが無効になっています: 埋め込まれた PDF のフォントを使用できません。
@@ -298,10 +304,8 @@ pdfjs-editor-stamp-button-label = 画像を追加または編集
 pdfjs-editor-highlight-button =
     .title = 強調します
 pdfjs-editor-highlight-button-label = 強調
-pdfjs-highlight-floating-button1 =
+pdfjs-highlight-floating-button =
     .title = 強調
-    .aria-label = 強調します
-pdfjs-highlight-floating-button-label = 強調
 
 ## Remove button for the various kind of editor.
 
@@ -393,62 +397,9 @@ pdfjs-editor-highlight-show-all-button-label = すべて表示
 pdfjs-editor-highlight-show-all-button =
     .title = 強調の表示を切り替えます
 
-pdfjs-editor-new-alt-text-dialog-edit-label = 代替テキストを編集 (画像の説明)
-pdfjs-editor-new-alt-text-dialog-add-label = 代替テキストを追加 (画像の説明)
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = ここに説明を記入してください...
-pdfjs-editor-new-alt-text-description = 画像が読み込まれない場合や見えない人のための短い説明です。
-pdfjs-editor-new-alt-text-disclaimer = この代替テキストは自動的に生成されました。
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = 詳細情報
-pdfjs-editor-new-alt-text-create-automatically-button-label = 代替テキストを自動生成
-pdfjs-editor-new-alt-text-not-now-button = 後で
-pdfjs-editor-new-alt-text-error-title = 代替テキストを自動生成できませんでした
-pdfjs-editor-new-alt-text-error-description = ご自分で代替テキストを書くか後でもう一度試してください。
-pdfjs-editor-new-alt-text-error-close-button = 閉じる
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = 代替テキスト AI モデルをダウンロードしています ({ $downloadedSize } / { $totalSize } MB)
-    .aria-valuetext = 代替テキスト AI モデルをダウンロードしています ({ $downloadedSize } / { $totalSize } MB)
-pdfjs-editor-new-alt-text-added-button-label = 代替テキストを追加しました
-pdfjs-editor-new-alt-text-missing-button-label = 代替テキストがありません
-pdfjs-editor-new-alt-text-to-review-button-label = 代替テキストをレビュー
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = 自動生成されました: { $generatedAltText }
-pdfjs-image-alt-text-settings-button =
-    .title = 画像の代替テキスト設定
-pdfjs-image-alt-text-settings-button-label = 画像の代替テキスト設定
-pdfjs-editor-alt-text-settings-dialog-label = 画像の代替テキスト設定
-pdfjs-editor-alt-text-settings-automatic-title = 自動代替テキスト
-pdfjs-editor-alt-text-settings-create-model-button-label = 代替テキストを自動生成
-pdfjs-editor-alt-text-settings-create-model-description = 画像が読み込まれない場合や見えない人のために説明を提案します。
-pdfjs-editor-alt-text-settings-download-model-label = 代替テキスト AI モデル ({ $totalSize } MB)
-pdfjs-editor-alt-text-settings-ai-model-description = ローカルの端末上で実行されるためデータは非公開になります。代替テキストの自動生成に必要です。
-pdfjs-editor-alt-text-settings-delete-model-button = 削除
-pdfjs-editor-alt-text-settings-download-model-button = ダウンロード
-pdfjs-editor-alt-text-settings-downloading-model-button = ダウンロード中...
-pdfjs-editor-alt-text-settings-editor-title = 代替テキストエディター
-pdfjs-editor-alt-text-settings-show-dialog-button-label = 画像の追加時に代替テキストエディターを表示する
-pdfjs-editor-alt-text-settings-show-dialog-description = すべての画像に代替テキストを追加する助けになります。
-pdfjs-editor-alt-text-settings-close-button = 閉じる
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
-pdfjs-editor-new-alt-text-disclaimer1 = This alt text was created automatically and may be inaccurate.
+pdfjs-highlight-floating-button1 =
+    .title = 強調
+    .aria-label = 強調します
+pdfjs-highlight-floating-button-label = 強調
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression

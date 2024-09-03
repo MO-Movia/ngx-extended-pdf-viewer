@@ -40,12 +40,6 @@ export class PdfToolbarComponent implements AfterViewInit {
   public showHandToolButton: ResponsiveVisibility = true;
 
   @Input()
-  public showZoomDropdown: ResponsiveVisibility = true;
-
-  @Input()
-  public handTool = false;
-
-  @Input()
   public showOpenFileButton: ResponsiveVisibility = true;
 
   @Input()
@@ -53,18 +47,6 @@ export class PdfToolbarComponent implements AfterViewInit {
 
   @Input()
   public showPagingButtons: ResponsiveVisibility = true;
-
-  @Input()
-  public showFirstAndLastPageButtons: ResponsiveVisibility = true;
-
-  @Input()
-  public showPreviousAndNextPageButtons: ResponsiveVisibility = true;
-
-  @Input()
-  public showPageNumber: ResponsiveVisibility = true;
-
-  @Input()
-  public showPageLabel: ResponsiveVisibility = true;
 
   @Input()
   public showPresentationModeButton: ResponsiveVisibility = false;

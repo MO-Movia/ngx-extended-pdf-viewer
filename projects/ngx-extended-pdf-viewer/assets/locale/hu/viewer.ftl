@@ -51,6 +51,12 @@ pdfjs-download-button-label = Letöltés
 pdfjs-bookmark-button =
     .title = Jelenlegi oldal (webcím megtekintése a jelenlegi oldalról)
 pdfjs-bookmark-button-label = Jelenlegi oldal
+# Used in Firefox for Android.
+pdfjs-open-in-app-button =
+    .title = Megnyitás alkalmazásban
+# Used in Firefox for Android.
+# Length of the translation matters since we are in a mobile context, with limited screen estate.
+pdfjs-open-in-app-button-label = Megnyitás alkalmazásban
 
 ##  Secondary toolbar and context menu
 
@@ -300,10 +306,6 @@ pdfjs-editor-highlight-button =
 pdfjs-editor-highlight-button-label = Kiemelés
 pdfjs-highlight-floating-button =
     .title = Kiemelés
-pdfjs-highlight-floating-button1 =
-    .title = Kiemelés
-    .aria-label = Kiemelés
-pdfjs-highlight-floating-button-label = Kiemelés
 
 ## Remove button for the various kind of editor.
 
@@ -395,61 +397,9 @@ pdfjs-editor-highlight-show-all-button-label = Összes megjelenítése
 pdfjs-editor-highlight-show-all-button =
     .title = Összes megjelenítése
 
-pdfjs-editor-new-alt-text-dialog-edit-label = Alternatív szöveg szerkesztése (képleírás)
-pdfjs-editor-new-alt-text-dialog-add-label = Alternatív szöveg hozzáadása (képleírás)
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = Írja ide a leírását…
-pdfjs-editor-new-alt-text-description = Rövid leírás azoknak, akik nem látják a képet, vagy arra az esetre, ha a kép nem tölt be.
-pdfjs-editor-new-alt-text-disclaimer1 = Ez az alternatív szöveg automatikusan lett létrehozva, és pontatlan lehet.
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = További tudnivalók
-pdfjs-editor-new-alt-text-create-automatically-button-label = Alternatív szöveg automatikus létrehozása
-pdfjs-editor-new-alt-text-not-now-button = Most nem
-pdfjs-editor-new-alt-text-error-title = Az alternatív szöveg automatikus létrehozása nem sikerült
-pdfjs-editor-new-alt-text-error-description = Írja meg a saját alternatív szövegét, vagy próbálja újra később.
-pdfjs-editor-new-alt-text-error-close-button = Bezárás
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = Alternatív szöveg MI modell letöltése ({ $downloadedSize } / { $totalSize } MB)
-    .aria-valuetext = Alternatív szöveg MI modell letöltése ({ $downloadedSize } / { $totalSize } MB)
-pdfjs-editor-new-alt-text-added-button-label = Alternatív szöveg hozzáadva
-pdfjs-editor-new-alt-text-missing-button-label = Hiányzó alternatív szöveg
-pdfjs-editor-new-alt-text-to-review-button-label = Alternatív szöveg szerkesztése
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = Automatikusan létrehozva: { $generatedAltText }
-pdfjs-image-alt-text-settings-button =
-    .title = Kép alternatív szövegének beállításai
-pdfjs-image-alt-text-settings-button-label = Kép alternatív szövegének beállításai
-pdfjs-editor-alt-text-settings-dialog-label = Kép alternatív szövegének beállításai
-pdfjs-editor-alt-text-settings-automatic-title = Automatikus alternatív szöveg
-pdfjs-editor-alt-text-settings-create-model-button-label = Alternatív szöveg automatikus létrehozása
-pdfjs-editor-alt-text-settings-create-model-description = Leírásokat javasol, hogy segítsen azoknak, akik nem látják a képet, vagy arra az esetre, ha a kép nem tölt be.
-pdfjs-editor-alt-text-settings-download-model-label = Alternatív szöveg MI modellje ({ $totalSize } MB)
-pdfjs-editor-alt-text-settings-ai-model-description = Helyben fut az eszközén, így az adatai privátok maradnak. Az automatikus alternatív szövegekhez szükséges.
-pdfjs-editor-alt-text-settings-delete-model-button = Törlés
-pdfjs-editor-alt-text-settings-download-model-button = Letöltés
-pdfjs-editor-alt-text-settings-downloading-model-button = Letöltés…
-pdfjs-editor-alt-text-settings-editor-title = Alternatív szöveg szerkesztője
-pdfjs-editor-alt-text-settings-show-dialog-button-label = Az alternatív szöveg szerkesztőjének azonnali megjelenítése egy kép hozzáadásakor
-pdfjs-editor-alt-text-settings-show-dialog-description = Segít elérni, hogy az összes képén legyen alternatív szöveg.
-pdfjs-editor-alt-text-settings-close-button = Bezárás
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
+pdfjs-highlight-floating-button1 =
+    .title = Kiemelés
+    .aria-label = Kiemelés
+pdfjs-highlight-floating-button-label = Kiemelés
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression

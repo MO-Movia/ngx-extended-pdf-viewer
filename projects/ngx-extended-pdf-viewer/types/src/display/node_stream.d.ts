@@ -39,9 +39,9 @@ declare class BaseFullReader {
     _isStreamingSupported: boolean;
     _isRangeSupported: boolean;
     _readableStream: any;
-    _readCapability: any;
-    _headersCapability: any;
-    get headersReady(): any;
+    _readCapability: PromiseWithResolvers<any>;
+    _headersCapability: PromiseWithResolvers<any>;
+    get headersReady(): Promise<any>;
     get filename(): any;
     get contentLength(): any;
     get isRangeSupported(): boolean;
@@ -59,7 +59,7 @@ declare class BaseRangeReader {
     onProgress: any;
     _loaded: number;
     _readableStream: any;
-    _readCapability: any;
+    _readCapability: PromiseWithResolvers<any>;
     _isStreamingSupported: boolean;
     get isStreamingSupported(): boolean;
     read(): any;

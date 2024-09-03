@@ -1,11 +1,9 @@
-import { AnnotationMode } from './editor-annotations';
-
-const _isIE11 = typeof window === 'undefined' ? false : !!(<any>globalThis).MSInputMethodContext && !!(<any>document).documentMode;
+const _isIE11 = typeof window === 'undefined' ? false : !!(<any>window).MSInputMethodContext && !!(<any>document).documentMode;
 const isEdge = typeof navigator === 'undefined' || /Edge\/\d./i.test(navigator.userAgent);
 const needsES5 = typeof ReadableStream === 'undefined' || typeof Promise['allSettled'] === 'undefined';
 
-export const pdfjsVersion = '4.5.732';
-export const pdfjsBleedingEdgeVersion = '4.6.670';
+export const pdfjsVersion = '4.1.889';
+export const pdfjsBleedingEdgeVersion = '4.2.552';
 export function getVersionSuffix(folder: string): string {
   if (folder?.includes('bleeding-edge')) {
     return pdfjsBleedingEdgeVersion;
@@ -27,15 +25,15 @@ function getDefaultLanguage(): string {
   }
   return 'en-US';
 }
-// sonar ignore next line
-export const pdfDefaultOptions = {
+
+export let pdfDefaultOptions = {
   needsES5: _isIE11 || isEdge || needsES5,
   annotationEditorMode: 0,
-  annotationMode: AnnotationMode.ENABLE_FORMS,
+  annotationMode: 2,
   defaultZoomDelay: 400, // milliseconds
   cursorToolOnLoad: 0,
   defaultUrl: '',
-  defaultZoomValue: '',
+  defaultZoomValue: undefined,
   disableHistory: false,
   disablePageLabels: false,
   enablePermissions: false,
@@ -43,11 +41,10 @@ export const pdfDefaultOptions = {
   enablePrintAutoRotate: true,
   externalLinkRel: 'noopener noreferrer nofollow',
   externalLinkTarget: 0,
-  findController: undefined, // must extend PDFFindController
   historyUpdateUrl: false,
   ignoreDestinationZoom: false,
   imageResourcesPath: './images/',
-  maxCanvasPixels: -1, // ngx-extended-pdf-viewer calculates this value automatically
+  maxCanvasPixels: 16777216,
   forcePageColors: false,
   pageColorsBackground: 'Canvas',
   pageColorsForeground: 'CanvasText',
@@ -55,18 +52,19 @@ export const pdfDefaultOptions = {
   printResolution: 150,
   rangeChunkSize: 65536,
   removePageBorders: false,
+  renderer: 'canvas',
+  renderForms: true,
   enableXfa: true,
   fontExtraProperties: false,
   sidebarViewOnLoad: -1,
   scrollModeOnLoad: -1,
   spreadModeOnLoad: -1,
   textLayerMode: 1,
-  // viewerCssTheme: 0, // not supported by ngx-extended-pdf-viewer, use [theme] instead
+  useOnlyCssZoom: false,
+  // viewerCssTheme: 0, // not supported by ngx-extended-pdf-viewer
   viewOnLoad: 0,
   cMapPacked: true,
-  cMapUrl: function () {
-    return `${assetsUrl(pdfDefaultOptions.assetsFolder, '/..')}/cmaps/`;
-  },
+  cMapUrl: () => `${assetsUrl(pdfDefaultOptions.assetsFolder, '/..')}/cmaps/`,
   disableAutoFetch: false,
   disableFontFace: false,
   disableRange: false,
@@ -75,22 +73,19 @@ export const pdfDefaultOptions = {
   isOffscreenCanvasSupported: true,
   maxImageSize: -1,
   pdfBug: false,
+  postMessageTransfers: true,
   verbosity: 1,
   workerPort: null,
   assetsFolder: 'assets',
   _internalFilenameSuffix: '.min', // don't modify this - it's an internal field
-  sandboxBundleSrc: function () {
-    return pdfDefaultOptions.needsES5
-      ? `./pdf.sandbox-${getVersionSuffix(assetsUrl(pdfDefaultOptions.assetsFolder))}-es5.mjs`
-      : `./pdf.sandbox-${getVersionSuffix(assetsUrl(pdfDefaultOptions.assetsFolder))}${pdfDefaultOptions._internalFilenameSuffix}.mjs`;
-  },
-  workerSrc: function () {
-    return pdfDefaultOptions.needsES5
+  sandboxBundleSrc: () =>
+    pdfDefaultOptions.needsES5
+      ? `./pdf.sandbox-${getVersionSuffix(assetsUrl(pdfDefaultOptions.assetsFolder))}-es5${pdfDefaultOptions._internalFilenameSuffix}.mjs`
+      : `./pdf.sandbox-${getVersionSuffix(assetsUrl(pdfDefaultOptions.assetsFolder))}${pdfDefaultOptions._internalFilenameSuffix}.mjs`,
+  workerSrc: () =>
+    pdfDefaultOptions.needsES5
       ? `${assetsUrl(pdfDefaultOptions.assetsFolder)}/pdf.worker-${getVersionSuffix(assetsUrl(pdfDefaultOptions.assetsFolder))}-es5.mjs`
-      : `${assetsUrl(pdfDefaultOptions.assetsFolder)}/pdf.worker-${getVersionSuffix(assetsUrl(pdfDefaultOptions.assetsFolder))}${
-          pdfDefaultOptions._internalFilenameSuffix
-        }.mjs`;
-  },
+      : `${assetsUrl(pdfDefaultOptions.assetsFolder)}/pdf.worker-${getVersionSuffix(assetsUrl(pdfDefaultOptions.assetsFolder))}.mjs`,
   standardFontDataUrl: () => `${assetsUrl(pdfDefaultOptions.assetsFolder, '/..')}/standard_fonts/`,
 
   // options specific to ngx-extended-pdf-viewer (as opposed to being used by pdf.js)
@@ -101,5 +96,14 @@ export const pdfDefaultOptions = {
   enableScripting: true,
   defaultCacheSize: 50,
   passwordPrompt: undefined,
-  enableHWA: true, // enable hardware acceleration. Active since pdf.js 4.4.
+  locale: getDefaultLanguage(),
+  activateWillReadFrequentlyFlag: false,
 };
+
+if (typeof window !== 'undefined') {
+  if ((<any>window).pdfDefaultOptions) {
+    pdfDefaultOptions = (<any>window).pdfDefaultOptions;
+  } else {
+    (<any>window).pdfDefaultOptions = pdfDefaultOptions;
+  }
+}

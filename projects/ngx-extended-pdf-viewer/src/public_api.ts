@@ -28,7 +28,6 @@ export * from './lib/events/xfa-layer-rendered-event';
 export * from './lib/ngx-extended-pdf-viewer.component';
 export * from './lib/ngx-extended-pdf-viewer.module';
 export * from './lib/ngx-extended-pdf-viewer.service';
-export * from './lib/ngx-keyboard-manager.service';
 export * from './lib/options/annotation-layer-builder';
 export * from './lib/options/editor-annotations';
 export * from './lib/options/link-target';
@@ -42,7 +41,6 @@ export * from './lib/options/pdf-viewer';
 export * from './lib/options/pdf-viewer-app-config';
 export * from './lib/options/pdf-viewer-application';
 export * from './lib/options/pdf_page_view';
-export * from './lib/options/rendered-textlayer-highlights';
 export * from './lib/options/text-layer-builder';
 export * from './lib/options/verbosity-level';
 export * from './lib/pdf-dialog/pdf-alt-text-dialog/pdf-alt-text-dialog.component';
@@ -52,7 +50,6 @@ export * from './lib/pdf-dialog/pdf-password-dialog/pdf-password-dialog.componen
 export * from './lib/pdf-dialog/pdf-prepare-printing-dialog/pdf-prepare-printing-dialog.component';
 export * from './lib/pdf-document-properties-extractor';
 export * from './lib/pdf-notification-service';
-export * from './lib/pdf-script-loader.service';
 export * from './lib/responsive-visibility';
 export * from './lib/secondary-toolbar/pdf-secondary-toolbar/pdf-secondary-toolbar.component';
 export * from './lib/sidebar/pdf-sidebar/pdf-sidebar-content/pdf-sidebar-content.component';
@@ -74,8 +71,6 @@ export * from './lib/toolbar/pdf-findbar/pdf-find-previous/pdf-find-previous.com
 export * from './lib/toolbar/pdf-findbar/pdf-findbar-message-container/pdf-findbar-message-container.component';
 export * from './lib/toolbar/pdf-findbar/pdf-findbar-options-one-container/pdf-find-highlight-all/pdf-find-highlight-all.component';
 export * from './lib/toolbar/pdf-findbar/pdf-findbar-options-one-container/pdf-find-match-case/pdf-find-match-case.component';
-export * from './lib/toolbar/pdf-findbar/pdf-findbar-options-one-container/pdf-find-multiple/pdf-find-multiple.component';
-export * from './lib/toolbar/pdf-findbar/pdf-findbar-options-one-container/pdf-find-regexp/pdf-find-regexp.component';
 export * from './lib/toolbar/pdf-findbar/pdf-findbar-options-three-container/pdf-find-results-count/pdf-find-results-count.component';
 export * from './lib/toolbar/pdf-findbar/pdf-findbar-options-two-container/pdf-find-entire-word/pdf-find-entire-word.component';
 export * from './lib/toolbar/pdf-findbar/pdf-findbar-options-two-container/pdf-match-diacritics/pdf-match-diacritics.component';
@@ -111,3 +106,4 @@ export * from './lib/toolbar/pdf-zoom-toolbar/pdf-zoom-dropdown/pdf-zoom-dropdow
 export * from './lib/toolbar/pdf-zoom-toolbar/pdf-zoom-in/pdf-zoom-in.component';
 export * from './lib/toolbar/pdf-zoom-toolbar/pdf-zoom-out/pdf-zoom-out.component';
 export * from './lib/toolbar/pdf-zoom-toolbar/pdf-zoom-toolbar.component';
+

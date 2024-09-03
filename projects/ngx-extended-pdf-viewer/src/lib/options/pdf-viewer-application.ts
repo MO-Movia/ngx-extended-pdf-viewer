@@ -1,13 +1,10 @@
-import { INgxConsole } from './ngx-console';
 import { OptionalContentConfig } from './optional_content_config';
 import { PasswordPrompt } from './password-prompt';
 import { AnnotationStorage, PrintAnnotationStorage } from './pdf-annotation-storage';
 import { IEventBus } from './pdf-event-bus';
 import { PageViewport } from './pdf-page-view-port';
-import { PDFPrintService } from './pdf-print-service';
-import { IPDFViewer } from './pdf-viewer';
+import { IPDFViewer, PageViewModeType } from './pdf-viewer';
 import { IPDFViewerAppConfig } from './pdf-viewer-app-config';
-import { ServiceWorkerOptionsType } from './service-worker-options';
 
 export interface IWebL10n {
   translate(element: HTMLElement | null): Promise<void>;
@@ -30,109 +27,12 @@ export type TextContent = {
   items: Array<TextItem | TextMarkedContent>;
 };
 
-export interface PDFFindParameters {
-  caseSensitive?: boolean;
-  entireWord?: boolean;
-  findPrevious: boolean;
-  highlightAll?: boolean;
-  matchDiacritics?: boolean;
-  findMultiple?: boolean;
-  matchRegExp?: boolean;
-  query: string | string[] | RegExp;
-  source: any;
-  type: 'highlightallchange' | 'find' | 'again' | 'findagain'; //  | 'findbarhighlight' | 'scroll',
-  dontScrollIntoView?: boolean;
-}
-
-export interface PDFFindController {
-  /**
-   * @param {PDFFindControllerOptions} options
-   */
-  _linkService: any; // import("./interfaces").IPDFLinkService;
-  _eventBus: any; // import("./event_utils").EventBus;
-  _pageViewMode: any;
-  /**
-   * Callback used to check if a `pageNumber` is currently visible.
-   * @type {function}
-   */
-  onIsPageVisible: Function;
-  get highlightMatches(): boolean | undefined;
-  get pageMatches(): any[] | undefined;
-  get pageMatchesLength(): any[] | undefined;
-  get selected():
-    | {
-        pageIdx: number;
-        matchIdx: number;
-      }
-    | undefined;
-  get state(): PDFFindParameters | undefined;
-  /**
-   * Set a reference to the PDF document in order to search it.
-   * Note that searching is not possible if this method is not called.
-   *
-   * @param {PDFDocumentProxy} pdfDocument - The PDF document to search.
-   */
-  setDocument(pdfDocument: PDFDocumentProxy): void;
-  _pdfDocument: PDFDocumentProxy | null | undefined;
-  _dirtyMatch: boolean | undefined;
-  _findTimeout: any;
-  _highlightMatches: boolean | undefined;
-  /**
-   * @typedef {Object} PDFFindControllerScrollMatchIntoViewParams
-   * @property {HTMLElement} element
-   * @property {number} selectedLeft
-   * @property {number} pageIndex
-   * @property {number} matchIndex
-   */
-  /**
-   * Scroll the current match into view.
-   * @param {PDFFindControllerScrollMatchIntoViewParams}
-   */
-  scrollMatchIntoView({
-    element,
-    selectedLeft,
-    pageIndex,
-    matchIndex,
-  }: {
-    element: HTMLElement;
-    selectedLeft: number;
-    pageIndex: number;
-    matchIndex: number;
-  }): void;
-  _scrollMatches: boolean | undefined;
-  _pageMatches: any[] | undefined;
-  _pageMatchesLength: any[] | undefined;
-  _selected:
-    | {
-        pageIdx: number;
-        matchIdx: number;
-      }
-    | undefined;
-  _offset:
-    | {
-        pageIdx: null;
-        matchIdx: null;
-        wrapped: boolean;
-      }
-    | undefined;
-  _extractTextPromises: any[] | undefined;
-  _pageContents: any[] | undefined;
-  _pageDiffs: any[] | undefined;
-  _hasDiacritics: any[] | undefined;
-  _matchesCountTotal: number | undefined;
-  _pagesToSearch: number | null | undefined;
-  _pendingFindMatches: Set<any> | undefined;
-  _resumePageIdx: any;
-  _firstPageCapability: any;
-  _rawQuery: any;
-  _calculateRegExpMatch(query: any, entireWord: any, pageIndex: any, pageContent: any): void;
-  _convertToRegExpString(query: any, hasDiacritics: any): any[];
-  _calculateMatch(pageIndex: any): void;
-
-  ngxFind(PDFFindParameters: PDFFindParameters): Array<Promise<any>>;
-
-  ngxFindNext(): void;
-  ngxFindPrevious(): void;
+export interface FindController {
+  state: any;
+  _pageMatches: Array<any>;
+  _pageMatchesColor: Array<number>;
+  _pageMatchesLength: Array<number>;
+  pageViewMode: PageViewModeType;
 }
 
 export interface Metadata {
@@ -625,7 +525,7 @@ export type RenderParameters = {
    * - Rendering intent, can be 'display', 'print',
    * or 'any'. The default value is 'display'.
    */
-  intent?: string;
+  intent: string | undefined;
   /**
    * Controls which annotations are rendered
    * onto the canvas, for annotations with appearance-data; the values from
@@ -640,17 +540,17 @@ export type RenderParameters = {
    * from the {@link AnnotationStorage }-instance; useful e.g. for printing.
    * The default value is `AnnotationMode.ENABLE`.
    */
-  annotationMode?: number;
+  annotationMode: number | undefined;
   /**
    * - Additional transform, applied just
    * before viewport transform.
    */
-  transform?: any[];
+  transform: any[] | undefined;
   /**
    * - The factory instance that will be used
    * when creating canvases. The default value is {new DOMCanvasFactory()}.
    */
-  canvasFactory?: Object;
+  canvasFactory: Object | undefined;
   /**
    * - Background to use for the canvas.
    * Any valid `canvas.fillStyle` can be used: a `DOMString` parsed as CSS
@@ -661,22 +561,22 @@ export type RenderParameters = {
    * NOTE: This option may be partially, or completely, ignored when the
    * `pageColors`-option is used.
    */
-  background?: string | Object;
+  background: string | Object | undefined;
   /**
    * - Overwrites background and foreground colors
    * with user defined ones in order to improve readability in high contrast
    * mode.
    */
-  pageColors?: Object;
+  pageColors: Object | undefined;
   /**
    * - Map some
    * annotation ids with canvases used to render them.
    */
-  annotationCanvasMap?: Map<string, HTMLCanvasElement>;
-  printAnnotationStorage?: PrintAnnotationStorage;
+  annotationCanvasMap: Map<string, HTMLCanvasElement> | undefined;
+  printAnnotationStorage: PrintAnnotationStorage | undefined;
 
-  backgroundColorToReplace?: string; // added by ngx-extended-pdf-viewer
-  optionalContentConfigPromise?: Promise<unknown>; // added by ngx-extended-pdf-viewer?
+  backgroundColorToReplace: string | undefined; // added by ngx-extended-pdf-viewer
+  optionalContentConfigPromise: Promise<unknown> | undefined; // added by ngx-extended-pdf-viewer?
 };
 
 /**
@@ -1151,7 +1051,6 @@ export interface PDFDocumentProxy {
 }
 
 export interface IPDFViewerApplication {
-  ngxConsole?: INgxConsole;
   pdfThumbnailViewer: any;
   pdfDocumentProperties: any;
   appConfig: IPDFViewerAppConfig;
@@ -1159,10 +1058,7 @@ export interface IPDFViewerApplication {
   enablePrint: boolean;
   eventBus: IEventBus;
   findBar: any;
-  findController: PDFFindController;
-
-  customFindController: PDFFindController;
-
+  findController: FindController;
   isViewerEmbedded: boolean;
   l10n: IWebL10n;
   onError: (error: Error) => void;
@@ -1171,16 +1067,12 @@ export interface IPDFViewerApplication {
   passwordPrompt: PasswordPrompt;
   pdfDocument: PDFDocumentProxy;
   pdfLinkService: any /* PDFLinkService;*/;
-  printService: PDFPrintService;
-  PDFPrintServiceFactory: any;
   pdfSidebar: any;
   pdfViewer: IPDFViewer;
   printKeyDownListener: undefined | ((this: Window, ev: KeyboardEvent) => any);
   sidebarViewOnLoad: 0 | 1;
   spreadModeOnLoad: 0 | 1 | 2;
   secondaryToolbar: any;
-
-  serviceWorkerOptions: ServiceWorkerOptionsType;
   store: ViewHistory;
   toolbar: any;
   viewer: HTMLDivElement;
@@ -1191,6 +1083,4 @@ export interface IPDFViewerApplication {
   unbindEvents(): void;
   unbindWindowEvents(): void;
   export(): Promise<Blob>;
-  printPdf(): void;
-  ngxKeyboardManager: any;
 }

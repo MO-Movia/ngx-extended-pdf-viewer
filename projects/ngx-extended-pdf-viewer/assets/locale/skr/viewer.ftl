@@ -51,6 +51,12 @@ pdfjs-download-button-label = ڈاؤن لوڈ
 pdfjs-bookmark-button =
     .title = موجودہ ورقہ (موجودہ ورقے کنوں یوآرایل ݙیکھو)
 pdfjs-bookmark-button-label = موجودہ ورقہ
+# Used in Firefox for Android.
+pdfjs-open-in-app-button =
+    .title = ایپ وچ کھولو
+# Used in Firefox for Android.
+# Length of the translation matters since we are in a mobile context, with limited screen estate.
+pdfjs-open-in-app-button-label = ایپ وچ کھولو
 
 ##  Secondary toolbar and context menu
 
@@ -220,21 +226,6 @@ pdfjs-find-match-diacritics-checkbox-label = ڈائیکرٹکس مشابہ کر�
 pdfjs-find-entire-word-checkbox-label = تمام الفاظ
 pdfjs-find-reached-top = ورقے دے شروع تے پُج ڳیا، تلوں جاری کیتا ڳیا
 pdfjs-find-reached-bottom = ورقے دے پاند تے پُڄ ڳیا، اُتوں شروع کیتا ڳیا
-# Variables:
-#   $current (Number) - the index of the currently active find result
-#   $total (Number) - the total number of matches in the document
-pdfjs-find-match-count =
-    { $total ->
-        [one] { $total } وِچوں { $current } مشابہ
-       *[other] { $total } وِچوں { $current } مشابے
-    }
-# Variables:
-#   $limit (Number) - the maximum number of matches
-pdfjs-find-match-count-limit =
-    { $limit ->
-        [one] { $limit } توں ودھ مماثلت۔
-       *[other] { $limit } توں ودھ مماثلتاں۔
-    }
 pdfjs-find-not-found = فقرہ نئیں ملیا
 
 ## Predefined zoom values
@@ -292,29 +283,9 @@ pdfjs-editor-free-text-button-label = متن
 pdfjs-editor-ink-button =
     .title = چھکو
 pdfjs-editor-ink-button-label = چھکو
-pdfjs-editor-stamp-button =
-    .title = تصویراں کوں شامل کرو یا ترمیم کرو
-pdfjs-editor-stamp-button-label = تصویراں کوں شامل کرو یا ترمیم کرو
-pdfjs-editor-highlight-button =
-    .title = نمایاں کرو
-pdfjs-editor-highlight-button-label = نمایاں کرو
-pdfjs-highlight-floating-button =
-    .title = نمایاں کرو
-pdfjs-highlight-floating-button1 =
-    .title = نمایاں کرو
-    .aria-label = نمایاں کرو
-pdfjs-highlight-floating-button-label = نمایاں کرو
 
 ## Remove button for the various kind of editor.
 
-pdfjs-editor-remove-ink-button =
-    .title = ڈرائینگ ہٹاؤ
-pdfjs-editor-remove-freetext-button =
-    .title = متن ہٹاؤ
-pdfjs-editor-remove-stamp-button =
-    .title = تصویر ہٹاؤ
-pdfjs-editor-remove-highlight-button =
-    .title = نمایاں ہٹاؤ
 
 ##
 
@@ -327,10 +298,6 @@ pdfjs-editor-ink-opacity-input = دھندلاپن
 pdfjs-editor-stamp-add-image-button =
     .title = تصویر شامل کرو
 pdfjs-editor-stamp-add-image-button-label = تصویر شامل کرو
-# This refers to the thickness of the line used for free highlighting (not bound to text)
-pdfjs-editor-free-highlight-thickness-input = مُٹاݨ
-pdfjs-editor-free-highlight-thickness-title =
-    .title = متن توں ان٘ج ٻئے شئیں کوں نمایاں کرݨ ویلے مُٹاݨ کوں بدلو
 pdfjs-free-text =
     .aria-label = ٹیکسٹ ایڈیٹر
 pdfjs-free-text-default-content = ٹائپنگ شروع کرو …
@@ -341,42 +308,13 @@ pdfjs-ink-canvas =
 
 ## Alt-text dialog
 
-# Alternative text (alt text) helps when people can't see the image.
-pdfjs-editor-alt-text-button-label = Alt متن
-pdfjs-editor-alt-text-edit-button-label = alt متن وِچ ترمیم کرو
-pdfjs-editor-alt-text-dialog-label = ہِک اختیار چُݨو
-pdfjs-editor-alt-text-dialog-description = Alt متن (متبادل متن) اِیں ویلے مَدَت کرین٘دا ہِے جہڑیلے لوک تصویر کوں نِھیں ݙیکھ سڳدے یا جہڑیلے اِیہ لوڈ کائنی تِھین٘دا۔
-pdfjs-editor-alt-text-add-description-label = تفصیل شامل کرو
-pdfjs-editor-alt-text-add-description-description = 1-2 جملیاں دا مقصد جہڑے موضوع، ترتیب، یا اعمال کوں بیان کرین٘دے ہِن۔
-pdfjs-editor-alt-text-mark-decorative-label = آرائشی طور تے نشان زد کرو
-pdfjs-editor-alt-text-mark-decorative-description = اِیہ آرائشی تصویراں کِیتے استعمال تِھین٘دا ہِے، جیویں بارڈر یا واٹر مارکس۔
-pdfjs-editor-alt-text-cancel-button = منسوخ
-pdfjs-editor-alt-text-save-button = محفوظ
-pdfjs-editor-alt-text-decorative-tooltip = آرائشی دے طور تے نشان زد تِھی ڳِیا
-# .placeholder: This is a placeholder for the alt text input area
-pdfjs-editor-alt-text-textarea =
-    .placeholder = مثال دے طور تے، "ہِک جؤان کھاݨاں کھاوݨ کِیتے میز اُتّے ٻیٹھا ہِے"
 
 ## Editor resizers
 ## This is used in an aria label to help to understand the role of the resizer.
 
-pdfjs-editor-resizer-label-top-left = اُتلی کَھٻّی نُکّڑ — سائز بدلو
-pdfjs-editor-resizer-label-top-middle = اُتلا وِچلا — سائز بدلو
-pdfjs-editor-resizer-label-top-right = اُتلی سَڄّی نُکَّڑ — سائز بدلو
-pdfjs-editor-resizer-label-middle-right = وِچلا سڄّا — سائز بدلو
-pdfjs-editor-resizer-label-bottom-right = تلوِیں سَڄّی نُکَّڑ — سائز بدلو
-pdfjs-editor-resizer-label-bottom-middle = تلواں وِچلا — سائز بدلو
-pdfjs-editor-resizer-label-bottom-left = تلوِیں کَھٻّی نُکّڑ — سائز بدلو
-pdfjs-editor-resizer-label-middle-left = وِچلا کَھٻّا — سائز بدلو
 
 ## Color picker
 
-# This means "Color used to highlight text"
-pdfjs-editor-highlight-colorpicker-label = نشابر رنگ
-pdfjs-editor-colorpicker-button =
-    .title = رنگ بدلو
-pdfjs-editor-colorpicker-dropdown =
-    .aria-label = رنگ اختیارات
 pdfjs-editor-colorpicker-yellow =
     .title = پیلا
 pdfjs-editor-colorpicker-green =
@@ -388,68 +326,65 @@ pdfjs-editor-colorpicker-pink =
 pdfjs-editor-colorpicker-red =
     .title = لال
 
-## Show all highlights
-## This is a toggle button to show/hide all the highlights.
-
+pdfjs-find-match-count =
+    { $total ->
+        [one] { $total } وِچوں { $current } مشابہ
+       *[other] { $total } وِچوں { $current } مشابے
+    }
+pdfjs-find-match-count-limit =
+    { $limit ->
+        [one] { $limit } توں ودھ مماثلت۔
+       *[other] { $limit } توں ودھ مماثلتاں۔
+    }
+pdfjs-editor-stamp-button =
+    .title = تصویراں کوں شامل کرو یا ترمیم کرو
+pdfjs-editor-stamp-button-label = تصویراں کوں شامل کرو یا ترمیم کرو
+pdfjs-editor-highlight-button =
+    .title = نمایاں کرو
+pdfjs-editor-highlight-button-label = نمایاں کرو
+pdfjs-highlight-floating-button =
+    .title = نمایاں کرو
+pdfjs-highlight-floating-button1 =
+    .title = نمایاں کرو
+    .aria-label = نمایاں کرو
+pdfjs-highlight-floating-button-label = نمایاں کرو
+pdfjs-editor-remove-ink-button =
+    .title = ڈرائینگ ہٹاؤ
+pdfjs-editor-remove-freetext-button =
+    .title = متن ہٹاؤ
+pdfjs-editor-remove-stamp-button =
+    .title = تصویر ہٹاؤ
+pdfjs-editor-remove-highlight-button =
+    .title = نمایاں ہٹاؤ
+pdfjs-editor-free-highlight-thickness-input = مُٹاݨ
+pdfjs-editor-free-highlight-thickness-title =
+    .title = متن توں ان٘ج ٻئے شئیں کوں نمایاں کرݨ ویلے مُٹاݨ کوں بدلو
+pdfjs-editor-alt-text-button-label = Alt متن
+pdfjs-editor-alt-text-edit-button-label = alt متن وِچ ترمیم کرو
+pdfjs-editor-alt-text-dialog-label = ہِک اختیار چُݨو
+pdfjs-editor-alt-text-dialog-description = Alt متن (متبادل متن) اِیں ویلے مَدَت کرین٘دا ہِے جہڑیلے لوک تصویر کوں نِھیں ݙیکھ سڳدے یا جہڑیلے اِیہ لوڈ کائنی تِھین٘دا۔
+pdfjs-editor-alt-text-add-description-label = تفصیل شامل کرو
+pdfjs-editor-alt-text-add-description-description = 1-2 جملیاں دا مقصد جہڑے موضوع، ترتیب، یا اعمال کوں بیان کرین٘دے ہِن۔
+pdfjs-editor-alt-text-mark-decorative-label = آرائشی طور تے نشان زد کرو
+pdfjs-editor-alt-text-mark-decorative-description = اِیہ آرائشی تصویراں کِیتے استعمال تِھین٘دا ہِے، جیویں بارڈر یا واٹر مارکس۔
+pdfjs-editor-alt-text-cancel-button = منسوخ
+pdfjs-editor-alt-text-save-button = محفوظ
+pdfjs-editor-alt-text-decorative-tooltip = آرائشی دے طور تے نشان زد تِھی ڳِیا
+pdfjs-editor-alt-text-textarea =
+    .placeholder = مثال دے طور تے، "ہِک جؤان کھاݨاں کھاوݨ کِیتے میز اُتّے ٻیٹھا ہِے"
+pdfjs-editor-resizer-label-top-left = اُتلی کَھٻّی نُکّڑ — سائز بدلو
+pdfjs-editor-resizer-label-top-middle = اُتلا وِچلا — سائز بدلو
+pdfjs-editor-resizer-label-top-right = اُتلی سَڄّی نُکَّڑ — سائز بدلو
+pdfjs-editor-resizer-label-middle-right = وِچلا سڄّا — سائز بدلو
+pdfjs-editor-resizer-label-bottom-right = تلوِیں سَڄّی نُکَّڑ — سائز بدلو
+pdfjs-editor-resizer-label-bottom-middle = تلواں وِچلا — سائز بدلو
+pdfjs-editor-resizer-label-bottom-left = تلوِیں کَھٻّی نُکّڑ — سائز بدلو
+pdfjs-editor-resizer-label-middle-left = وِچلا کَھٻّا — سائز بدلو
+pdfjs-editor-highlight-colorpicker-label = نشابر رنگ
+pdfjs-editor-colorpicker-button =
+    .title = رنگ بدلو
+pdfjs-editor-colorpicker-dropdown =
+    .aria-label = رنگ اختیارات
 pdfjs-editor-highlight-show-all-button-label = سارے ݙکھاؤ
-pdfjs-editor-highlight-show-all-button =
-    .title = سارے ݙکھاؤ
-
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = ٻیا سِکھو
-pdfjs-editor-new-alt-text-not-now-button = ہݨ کائناں
-pdfjs-editor-new-alt-text-error-close-button = بند کرو
-pdfjs-image-alt-text-settings-button =
-    .title = تصویر آلٹ عبارت ترتیباں
-pdfjs-image-alt-text-settings-button-label = تصویر آلٹ عبارت ترتیباں
-pdfjs-editor-alt-text-settings-dialog-label = تصویر آلٹ عبارت ترتیباں
-pdfjs-editor-alt-text-settings-automatic-title = خودکار آلٹ عبارت
-pdfjs-editor-alt-text-settings-delete-model-button = مٹاؤ
-pdfjs-editor-alt-text-settings-download-model-button = ڈاؤن لوڈ
-pdfjs-editor-alt-text-settings-downloading-model-button = ڈاؤن لوڈ تھیندا پئے …
-pdfjs-editor-alt-text-settings-close-button = بند کرو
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
-pdfjs-editor-new-alt-text-dialog-edit-label = Edit alt text (image description)
-pdfjs-editor-new-alt-text-dialog-add-label = Add alt text (image description)
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = Write your description here…
-pdfjs-editor-new-alt-text-description = Short description for people who can’t see the image or when the image doesn’t load.
-pdfjs-editor-new-alt-text-disclaimer1 = This alt text was created automatically and may be inaccurate.
-pdfjs-editor-new-alt-text-create-automatically-button-label = Create alt text automatically
-pdfjs-editor-new-alt-text-error-title = Couldn’t create alt text automatically
-pdfjs-editor-new-alt-text-error-description = Please write your own alt text or try again later.
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = Downloading alt text AI model ({ $downloadedSize } of { $totalSize } MB)
-    .aria-valuetext = Downloading alt text AI model ({ $downloadedSize } of { $totalSize } MB)
-pdfjs-editor-new-alt-text-added-button-label = Alt text added
-pdfjs-editor-new-alt-text-missing-button-label = Missing alt text
-pdfjs-editor-new-alt-text-to-review-button-label = Review alt text
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = Created automatically: { $generatedAltText }
-pdfjs-editor-alt-text-settings-create-model-button-label = Create alt text automatically
-pdfjs-editor-alt-text-settings-create-model-description = Suggests descriptions to help people who can’t see the image or when the image doesn’t load.
-pdfjs-editor-alt-text-settings-download-model-label = Alt text AI model ({ $totalSize } MB)
-pdfjs-editor-alt-text-settings-ai-model-description = Runs locally on your device so your data stays private. Required for automatic alt text.
-pdfjs-editor-alt-text-settings-editor-title = Alt text editor
-pdfjs-editor-alt-text-settings-show-dialog-button-label = Show alt text editor right away when adding an image
-pdfjs-editor-alt-text-settings-show-dialog-description = Helps you make sure all your images have alt text.
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression

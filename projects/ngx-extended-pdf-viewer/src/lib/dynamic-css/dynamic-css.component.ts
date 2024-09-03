@@ -1,17 +1,14 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { CSP_NONCE, Component, Inject, Input, OnDestroy, Optional, PLATFORM_ID, Renderer2 } from '@angular/core';
-import { NgxHasHeight } from '../ngx-has-height';
-import { VerbosityLevel } from '../options/verbosity-level';
+import { CSP_NONCE, Component, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { PdfCspPolicyService } from '../pdf-csp-policy.service';
 import { PdfBreakpoints } from '../responsive-visibility';
-import { UnitToPx } from '../unit-to-px';
 
 @Component({
   selector: 'pdf-dynamic-css',
   templateUrl: './dynamic-css.component.html',
   styleUrls: ['./dynamic-css.component.css'],
 })
-export class DynamicCssComponent implements OnDestroy {
+export class DynamicCssComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
   public zoom = 1.0;
 
@@ -58,6 +55,16 @@ export class DynamicCssComponent implements OnDestroy {
 
 .pdf-margin-top--2px {
   margin-top: -2px;
+}
+
+@media all and (max-width: ${this.xl}px) {
+  #toolbarViewerMiddle {
+    display: table;
+    margin: auto;
+    left: auto;
+    position: inherit;
+    transform: none;
+  }
 }
 
 @media all and (max-width: ${this.xxl}) {
@@ -122,6 +129,12 @@ export class DynamicCssComponent implements OnDestroy {
   }
 }
 
+@media all and (max-width: ${this.sm}px) {
+  #scaleSelectContainer {
+    display: none;
+  }
+}
+
 #outerContainer .visibleXLView,
 #outerContainer .visibleXXLView,
 #outerContainer .visibleTinyView {
@@ -140,6 +153,15 @@ export class DynamicCssComponent implements OnDestroy {
   #outerContainer .visibleXLView {
     display: inherit;
   }
+
+  #toolbarViewerMiddle {
+    -webkit-transform: translateX(-36%);
+    transform: translateX(-36%);
+    display: unset;
+    margin: unset;
+    left: 50%;
+    position: absolute;
+  }
 }
 
 @media all and (max-width: ${this.xxl}px) {
@@ -148,6 +170,13 @@ export class DynamicCssComponent implements OnDestroy {
   }
   #outerContainer  #mainContainer .visibleXXLView {
     display: inherit;
+  }
+}
+
+@media all and (max-width: ${this.md}px) {
+  #toolbarViewerMiddle {
+    -webkit-transform: translateX(-26%);
+    transform: translateX(-26%);
   }
 }
 
@@ -185,15 +214,13 @@ export class DynamicCssComponent implements OnDestroy {
     }
   }
 
-  public updateToolbarWidth() {
-    const container = document.getElementById('toolbarViewer') ?? document.getElementById('outerContainer');
-    if (!container) {
-      return;
-    }
-    const toolbarWidthInPixels = container.clientWidth;
+  public ngOnInit() {
+    this.injectStyle();
+  }
 
+  public ngOnChanges() {
     const fullWith = this.document.body.clientWidth;
-    const partialViewScale = fullWith / toolbarWidthInPixels;
+    const partialViewScale = fullWith / this.width;
     const scaleFactor = partialViewScale * (this.zoom ? this.zoom : 1);
 
     this.xs = scaleFactor * PdfBreakpoints.xs;
@@ -219,123 +246,10 @@ export class DynamicCssComponent implements OnDestroy {
     }
   }
 
-  public removeScrollbarInInfiniteScrollMode(
-    restoreHeight: boolean,
-    pageViewMode: string,
-    primaryMenuVisible: boolean,
-    ngxExtendedPdfViewer: NgxHasHeight,
-    logLevel: VerbosityLevel
-  ): void {
-    if (pageViewMode === 'infinite-scroll' || restoreHeight) {
-      const viewer = document.getElementById('viewer');
-      const zoom = document.getElementsByClassName('zoom')[0];
-      if (viewer) {
-        setTimeout(() => {
-          if (pageViewMode === 'infinite-scroll') {
-            const height = viewer.clientHeight + 17;
-            if (primaryMenuVisible) {
-              ngxExtendedPdfViewer.height = height + 35 + 'px';
-            } else if (height > 17) {
-              ngxExtendedPdfViewer.height = height + 'px';
-            } else if (ngxExtendedPdfViewer.height === undefined) {
-              ngxExtendedPdfViewer.height = '100%';
-            }
-            if (zoom) {
-              (<HTMLElement>zoom).style.height = ngxExtendedPdfViewer.height;
-            }
-          } else if (restoreHeight) {
-            ngxExtendedPdfViewer.autoHeight = true;
-            ngxExtendedPdfViewer.height = undefined;
-            this.checkHeight(ngxExtendedPdfViewer, logLevel);
-          }
-        });
-      }
+  private injectStyle() {
+    if (this.width === 3.14159265359) {
+      setTimeout(() => this.ngOnChanges(), 1);
     }
-  }
-
-  public checkHeight(ngxExtendedPdfViewer: NgxHasHeight, logLevel: VerbosityLevel): void {
-    if (this.isHeightDefinedWithUnits(ngxExtendedPdfViewer.height)) return;
-    if (this.isPrinting()) return;
-
-    const container = this.getContainer();
-    if (!container) return;
-
-    if (this.isContainerHeightZero(container, ngxExtendedPdfViewer, logLevel)) {
-      ngxExtendedPdfViewer.autoHeight = true;
-    }
-
-    if (ngxExtendedPdfViewer.autoHeight) {
-      this.adjustHeight(container, ngxExtendedPdfViewer);
-    }
-  }
-
-  /**
-   * The height is defined with one of the units vh, vw, em, rem, etc.
-   * So the height check isn't necessary.
-   * @param height the height of the container
-   */
-  private isHeightDefinedWithUnits(height: string | undefined): boolean {
-    return height ? isNaN(Number(height.replace('%', ''))) : false;
-  }
-
-  /**
-   * #1702 workaround to a Firefox bug: when printing, container.clientHeight is temporarily 0,
-   * causing ngx-extended-pdf-viewer to default to 100 pixels height. So it's better to do nothing.
-   * @returns true if data-pdfjsprinting is set
-   */
-  private isPrinting(): boolean {
-    if (!this.isBrowser()) {
-      return false;
-    }
-    return !!document.querySelector('[data-pdfjsprinting]');
-  }
-
-  /**
-   * Checks if the code is running in a browser environment.
-   */
-  private isBrowser(): boolean {
-    return typeof window !== 'undefined' && typeof document !== 'undefined';
-  }
-
-  private getContainer(): HTMLElement | null {
-    return typeof document !== 'undefined' ? (document.getElementsByClassName('zoom')[0] as HTMLElement) : null;
-  }
-
-  private isContainerHeightZero(container: HTMLElement, ngxExtendedPdfViewer: NgxHasHeight, logLevel: VerbosityLevel): boolean {
-    if (container.clientHeight === 0) {
-      if (logLevel >= VerbosityLevel.WARNINGS && !ngxExtendedPdfViewer.autoHeight) {
-        console.warn(
-          "The height of the PDF viewer widget is zero pixels. Please check the height attribute. Is there a syntax error? Or are you using a percentage with a CSS framework that doesn't support this? The height is adjusted automatedly."
-        );
-      }
-      return true;
-    }
-    return false;
-  }
-
-  private adjustHeight(container: HTMLElement, ngxExtendedPdfViewer: NgxHasHeight): void {
-    const available = window.innerHeight;
-    const rect = container.getBoundingClientRect();
-    const top = rect.top;
-    let maximumHeight = available - top;
-    const padding = this.calculateBorderMargin(container);
-    maximumHeight -= padding;
-    ngxExtendedPdfViewer.minHeight = maximumHeight > 100 ? `${maximumHeight}px` : '100px';
-    ngxExtendedPdfViewer.markForCheck();
-  }
-
-  private calculateBorderMargin(container: HTMLElement | null): number {
-    if (container) {
-      const computedStyle = window.getComputedStyle(container);
-
-      const padding = UnitToPx.toPx(computedStyle.paddingBottom);
-      const margin = UnitToPx.toPx(computedStyle.marginBottom);
-      if (container.style.zIndex) {
-        return padding + margin;
-      }
-      return padding + margin + this.calculateBorderMargin(container.parentElement);
-    }
-    return 0;
   }
 
   public ngOnDestroy() {

@@ -304,12 +304,6 @@ pdfjs-editor-stamp-button-label = Tilføj eller rediger billeder
 pdfjs-editor-highlight-button =
     .title = Fremhæv
 pdfjs-editor-highlight-button-label = Fremhæv
-pdfjs-highlight-floating-button =
-    .title = Fremhæv
-pdfjs-highlight-floating-button1 =
-    .title = Fremhæv
-    .aria-label = Fremhæv
-pdfjs-highlight-floating-button-label = Fremhæv
 
 ## Remove button for the various kind of editor.
 
@@ -394,68 +388,12 @@ pdfjs-editor-colorpicker-pink =
 pdfjs-editor-colorpicker-red =
     .title = Rød
 
-## Show all highlights
-## This is a toggle button to show/hide all the highlights.
-
+pdfjs-highlight-floating-button =
+    .title = Fremhæv
+pdfjs-highlight-floating-button1 =
+    .title = Fremhæv
+    .aria-label = Fremhæv
+pdfjs-highlight-floating-button-label = Fremhæv
 pdfjs-editor-highlight-show-all-button-label = Vis alle
-pdfjs-editor-highlight-show-all-button =
-    .title = Vis alle
-
-pdfjs-editor-new-alt-text-dialog-edit-label = Rediger alternativ tekst (billedbeskrivelse)
-pdfjs-editor-new-alt-text-dialog-add-label = Tilføj alternativ tekst (billedbeskrivelse)
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = Skriv din beskrivelse her...
-pdfjs-editor-new-alt-text-description = Kort beskrivelse til personer, der ikke kan se billedet, eller når billedet ikke indlæses.
-pdfjs-editor-new-alt-text-disclaimer1 = Denne alternative tekst blev oprettet automatisk og kan være upræcis.
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = Læs mere
-pdfjs-editor-new-alt-text-create-automatically-button-label = Opret alternativ tekst automatisk
-pdfjs-editor-new-alt-text-not-now-button = Ikke nu
-pdfjs-editor-new-alt-text-error-title = Kunne ikke oprette alternativ tekst automatisk
-pdfjs-editor-new-alt-text-error-description = Skriv din egen alternative tekst, eller prøv igen senere.
-pdfjs-editor-new-alt-text-error-close-button = Luk
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = Henter alternativ tekst AI-model ({ $downloadedSize } af { $totalSize } MB)
-    .aria-valuetext = Henter alternativ tekst AI-model ({ $downloadedSize } af { $totalSize } MB)
-pdfjs-editor-new-alt-text-added-button-label = Alternativ tekst tilføjet
-pdfjs-editor-new-alt-text-missing-button-label = Mangler alternativ tekst
-pdfjs-editor-new-alt-text-to-review-button-label = Gennemgå alternativ tekst
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = Oprettet automatisk: { $generatedAltText }
-pdfjs-image-alt-text-settings-button =
-    .title = Indstillinger for alternativ tekst til billeder
-pdfjs-image-alt-text-settings-button-label = Indstillinger for alternativ tekst til billeder
-pdfjs-editor-alt-text-settings-dialog-label = Indstillinger for alternativ tekst til billeder
-pdfjs-editor-alt-text-settings-automatic-title = Automatisk alternativ tekst
-pdfjs-editor-alt-text-settings-create-model-button-label = Opret alternativ tekst automatisk
-pdfjs-editor-alt-text-settings-create-model-description = Foreslår beskrivelser for at hjælpe folk, der ikke kan se billedet, eller når billedet ikke indlæses.
-pdfjs-editor-alt-text-settings-download-model-label = AI-model til at oprette alternative tekster ({ $totalSize } MB)
-pdfjs-editor-alt-text-settings-ai-model-description = Kører lokalt på din enhed, så dine data forbliver private. Påkrævet for at anvende automatisk alternativ tekst.
-pdfjs-editor-alt-text-settings-delete-model-button = Slet
-pdfjs-editor-alt-text-settings-download-model-button = Hent
-pdfjs-editor-alt-text-settings-downloading-model-button = Henter…
-pdfjs-editor-alt-text-settings-editor-title = Redigering af alternativ tekst
-pdfjs-editor-alt-text-settings-show-dialog-button-label = Vis redigering af alternativ tekst med det samme, når et billede tilføjes
-pdfjs-editor-alt-text-settings-show-dialog-description = Hjælper dig med at sikre, at alle dine billeder har alternativ tekst.
-pdfjs-editor-alt-text-settings-close-button = Luk
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression

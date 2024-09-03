@@ -19,16 +19,13 @@ export class NgxFormSupport {
 
   private ngZone: NgZone;
 
-  private PDFViewerApplication: IPDFViewerApplication | undefined;
-
   public reset() {
     this.formData = {};
     this.formIdToFullFieldName = {};
   }
 
-  public registerFormSupportWithPdfjs(ngZone: NgZone, PDFViewerApplication: IPDFViewerApplication): void {
+  public registerFormSupportWithPdfjs(ngZone: NgZone): void {
     this.ngZone = ngZone;
-    this.PDFViewerApplication = PDFViewerApplication;
     (globalThis as any).getFormValueFromAngular = (key: string) => this.getFormValueFromAngular(key);
     (globalThis as any).updateAngularFormValue = (key: string | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement, value: { value: string }) =>
       this.updateAngularFormValueCalledByPdfjs(key, value);
@@ -58,10 +55,10 @@ export class NgxFormSupport {
       const groupName = fieldName;
       this.formIdToFullFieldName[id] = groupName;
       if (value) {
-        this.formData[groupName] = radioButtonValueName;
+        this.formData[groupName] = radioButtonValueName as string;
         this.initialFormDataStoredInThePDF[groupName] = initialFormValueFromPDF;
       }
-      element.setAttribute('exportValue', radioButtonValueName);
+      element.setAttribute('exportValue', radioButtonValueName as string);
       if (!this.radioButtons[groupName]) {
         this.radioButtons[groupName] = [];
       }
@@ -70,9 +67,7 @@ export class NgxFormSupport {
       this.formData[fieldName] = this.getValueOfASelectField(element);
       this.initialFormDataStoredInThePDF[fieldName] = initialFormValueFromPDF;
     } else {
-      if (value !== undefined) {
-        this.formData[fieldName] = value;
-      }
+      this.formData[fieldName] = value;
       this.initialFormDataStoredInThePDF[fieldName] = initialFormValueFromPDF;
     }
   }
@@ -254,7 +249,9 @@ export class NgxFormSupport {
   }
 
   public updateFormFieldsInPdfCalledByNgOnChanges(previousFormData: Object) {
-    if (!this.PDFViewerApplication?.pdfDocument?.annotationStorage) {
+    const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
+
+    if (!PDFViewerApplication?.pdfDocument?.annotationStorage) {
       // ngOnChanges calls this method too early - so just ignore it
       return;
     }

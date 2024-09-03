@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, effect } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { UpdateUIStateEvent } from '../../../events/update-ui-state-event';
 import { IPDFViewerApplication } from '../../../options/pdf-viewer-application';
 import { ResponsiveVisibility } from '../../../responsive-visibility';
@@ -15,23 +15,21 @@ export class PdfFirstPageComponent {
 
   public disableFirstPage = true;
 
-  private PDFViewerApplication: IPDFViewerApplication | undefined;
-
-  constructor(notificationService: PDFNotificationService, private changeDetectorRef: ChangeDetectorRef) {
-    effect(() => {
-      this.PDFViewerApplication = notificationService.onPDFJSInitSignal();
-      if (this.PDFViewerApplication) {
-        this.onPdfJsInit();
-      }
+  constructor(private notificationService: PDFNotificationService, private changeDetectorRef: ChangeDetectorRef) {
+    const subscription = this.notificationService.onPDFJSInit.subscribe(() => {
+      this.onPdfJsInit();
+      subscription.unsubscribe();
     });
   }
 
   public firstPage(): void {
-    this.PDFViewerApplication?.eventBus.dispatch('firstpage');
+    const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
+    PDFViewerApplication.eventBus.dispatch('firstpage');
   }
 
   public onPdfJsInit(): void {
-    this.PDFViewerApplication?.eventBus.on('updateuistate', (event) => this.updateUIState(event));
+    const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
+    PDFViewerApplication.eventBus.on('updateuistate', (event) => this.updateUIState(event));
   }
 
   public updateUIState(event: UpdateUIStateEvent): void {

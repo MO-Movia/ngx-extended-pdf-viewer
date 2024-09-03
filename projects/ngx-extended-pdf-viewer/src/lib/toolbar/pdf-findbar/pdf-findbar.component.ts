@@ -36,20 +36,26 @@ export class PdfFindbarComponent {
   public showFindMatchCase = true;
 
   @Input()
+  public showFindCurrentPageOnly = true;
+
+  @Input()
+  public showFindPageRange = true;
+
+  @Input()
   public showFindEntireWord = true;
 
   @Input()
+  public showFindEntirePhrase = true;
+
+  @Input()
   public showFindMatchDiacritics = true;
+
+  @Input()
+  public showFindFuzzySearch = true;
 
   @Input()
   public showFindResultsCount = true;
 
   @Input()
   public showFindMessages = true;
-
-  @Input()
-  public showFindMultiple: boolean = true;
-
-  @Input()
-  public showFindRegexp: boolean = true;
 }

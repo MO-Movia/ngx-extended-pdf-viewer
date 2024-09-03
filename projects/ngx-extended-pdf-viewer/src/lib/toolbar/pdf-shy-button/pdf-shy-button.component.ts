@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, Renderer2, ViewChild, effect } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { IPDFViewerApplication } from '../../options/pdf-viewer-application';
-import { PDFNotificationService } from '../../pdf-notification-service';
 import { ResponsiveCSSClass } from '../../responsive-visibility';
 import { PdfShyButtonService } from './pdf-shy-button-service';
 
@@ -48,8 +47,6 @@ export class PdfShyButtonComponent implements OnInit, OnChanges, AfterViewInit {
 
   @Input()
   public onlySecondaryMenu: boolean = false;
-
-  private PDFViewerApplication: IPDFViewerApplication | undefined;
 
   @ViewChild('buttonRef', { static: false }) buttonRef: ElementRef;
 
@@ -130,7 +127,7 @@ export class PdfShyButtonComponent implements OnInit, OnChanges, AfterViewInit {
       'unknown',
       'use',
       'video',
-      'view',
+      'view'
     ];
 
     // only <svg> and SVG tags are allowed
@@ -142,16 +139,7 @@ export class PdfShyButtonComponent implements OnInit, OnChanges, AfterViewInit {
     this._imageHtml = this.sanitizeHtml(value);
   }
 
-  constructor(
-    private pdfShyButtonServiceService: PdfShyButtonService,
-    private sanitizer: DomSanitizer,
-    private renderer: Renderer2,
-    notificationService: PDFNotificationService
-  ) {
-    effect(() => {
-      this.PDFViewerApplication = notificationService.onPDFJSInitSignal();
-    });
-  }
+  constructor(private pdfShyButtonServiceService: PdfShyButtonService, private sanitizer: DomSanitizer, private renderer: Renderer2) {}
 
   public ngAfterViewInit(): void {
     this.updateButtonImage();
@@ -174,7 +162,8 @@ export class PdfShyButtonComponent implements OnInit, OnChanges, AfterViewInit {
       this.action(htmlEvent, false);
       htmlEvent.preventDefault();
     } else if (this.eventBusName) {
-      this.PDFViewerApplication?.eventBus.dispatch(this.eventBusName);
+      const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
+      PDFViewerApplication.eventBus.dispatch(this.eventBusName);
       htmlEvent.preventDefault();
     }
   }

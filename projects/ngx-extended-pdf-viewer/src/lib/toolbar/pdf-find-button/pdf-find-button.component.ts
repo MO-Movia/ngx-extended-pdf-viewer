@@ -1,6 +1,4 @@
-import { Component, effect, Input } from '@angular/core';
-import { IPDFViewerApplication } from '../../options/pdf-viewer-application';
-import { PDFNotificationService } from '../../pdf-notification-service';
+import { Component, Input } from '@angular/core';
 import { ResponsiveVisibility } from '../../responsive-visibility';
 
 @Component({
@@ -17,16 +15,9 @@ export class PdfFindButtonComponent {
 
   @Input()
   public findbarVisible = false;
-  private PDFViewerApplication!: IPDFViewerApplication | undefined;
-
-  constructor(public notificationService: PDFNotificationService) {
-    effect(() => {
-      this.PDFViewerApplication = notificationService.onPDFJSInitSignal();
-    });
-  }
 
   public onClick() {
-    const PDFViewerApplication: any = this.PDFViewerApplication;
+    const PDFViewerApplication: any = (window as any).PDFViewerApplication;
     if (PDFViewerApplication.findBar.opened) {
       PDFViewerApplication.findBar.close();
     } else {

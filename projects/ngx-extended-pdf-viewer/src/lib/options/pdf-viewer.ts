@@ -26,13 +26,9 @@ export interface IPDFRenderingQueue {
 }
 
 export interface IPDFViewer {
-  maxZoom: number;
-  minZoom: number;
-  setTextLayerMode(textLayerMode: number): unknown;
   annotationEditorMode: any;
   currentPageLabel: string | undefined;
   currentPageNumber: number;
-  enablePrintAutoRotate: boolean;
   currentScaleValue: string | number;
   pagesRotation: 0 | 90 | 180 | 270;
   removePageBorders: boolean;

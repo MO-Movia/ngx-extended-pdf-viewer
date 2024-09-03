@@ -51,6 +51,12 @@ pdfjs-download-button-label = ਡਾਊਨਲੋਡ
 pdfjs-bookmark-button =
     .title = ਮੌਜੂਦਾ ਸਫ਼਼ਾ (ਮੌਜੂਦਾ ਸਫ਼ੇ ਤੋਂ URL ਵੇਖੋ)
 pdfjs-bookmark-button-label = ਮੌਜੂਦਾ ਸਫ਼਼ਾ
+# Used in Firefox for Android.
+pdfjs-open-in-app-button =
+    .title = ਐਪ ਵਿੱਚ ਖੋਲ੍ਹੋ
+# Used in Firefox for Android.
+# Length of the translation matters since we are in a mobile context, with limited screen estate.
+pdfjs-open-in-app-button-label = ਐਪ ਵਿੱਚ ਖੋਲ੍ਹੋ
 
 ##  Secondary toolbar and context menu
 
@@ -298,12 +304,6 @@ pdfjs-editor-stamp-button-label = ਚਿੱਤਰ ਜੋੜੋ ਜਾਂ ਸੋ�
 pdfjs-editor-highlight-button =
     .title = ਹਾਈਲਾਈਟ
 pdfjs-editor-highlight-button-label = ਹਾਈਲਾਈਟ
-pdfjs-highlight-floating-button =
-    .title = ਹਾਈਲਾਈਟ
-pdfjs-highlight-floating-button1 =
-    .title = ਹਾਈਲਾਈਟ
-    .aria-label = ਹਾਈਲਾਈਟ
-pdfjs-highlight-floating-button-label = ਹਾਈਲਾਈਟ
 
 ## Remove button for the various kind of editor.
 
@@ -388,68 +388,10 @@ pdfjs-editor-colorpicker-pink =
 pdfjs-editor-colorpicker-red =
     .title = ਲਾਲ
 
-## Show all highlights
-## This is a toggle button to show/hide all the highlights.
-
-pdfjs-editor-highlight-show-all-button-label = ਸਭ ਵੇਖੋ
-pdfjs-editor-highlight-show-all-button =
-    .title = ਸਭ ਵੇਖੋ
-
-pdfjs-editor-new-alt-text-dialog-edit-label = ਬਦਲਵੀਂ ਲਿਖਤ (ਚਿੱਤਰ ਦਾ ਵਰਣਨ) ਨੂੰ ਸੋਧੋ
-pdfjs-editor-new-alt-text-dialog-add-label = ਬਦਲਵੀਂ ਲਿਖਤ (ਚਿੱਤਰ ਦਾ ਵਰਣਨ) ਨੂੰ ਜੋੜੋ
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = …ਆਪਣਾ ਵਰਣਨਾ ਇੱਥੇ ਲਿਖੋ
-pdfjs-editor-new-alt-text-description = ਲੋਕ, ਜੋ ਕਿ ਚਿੱਤਰ ਨਹੀਂ ਵੇਖ ਸਕਦੇ ਜਾਂ ਜਦ ਵੀ ਚਿੱਤਰਾਂ ਨੂੰ ਲੋਡ ਨਹੀਂ ਜਾ ਸਕਦਾ, ਉਸ ਲਈ ਛੋਟਾ ਵੇਰਵਾ ਦਿਓ।
-pdfjs-editor-new-alt-text-disclaimer1 = ਇਹ ਬਦਲਵੀਂ ਲਿਖਤ ਆਪਣੇ-ਆਪ ਤਿਆਰ ਕੀਤੀ ਗਈ ਸੀ ਅਤੇ ਗਲਤ ਵੀ ਹੋ ਸਕਦੀ ਹੈ।
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = ਹੋਰ ਜਾਣੋ
-pdfjs-editor-new-alt-text-create-automatically-button-label = ਬਲਦਵੀਂ ਲਿਖਤ ਆਪਣੇ-ਆਪ ਬਣਾਓ
-pdfjs-editor-new-alt-text-not-now-button = ਹੁਣੇ ਨਹੀਂ
-pdfjs-editor-new-alt-text-error-title = ਬਦਲਵੀਂ ਲਿਖਤ ਆਪਣੇ-ਆਪ ਬਣਾਈ ਨਹੀਂ ਜਾ ਸਕੀ
-pdfjs-editor-new-alt-text-error-description = ਆਪਣਾ ਖੁਦ ਦੀ ਬਦਲਵੀਂ ਲਿਖਤ ਲਿਖੋ ਜਾਂ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।
-pdfjs-editor-new-alt-text-error-close-button = ਬੰਦ ਕਰੋ
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = ਬਦਲਵਾਂ ਲਿਖਤ AI ਮਾਡਲ ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ ({ $totalSize } MB ਵਿੱਚੋਂ { $downloadedSize })
-    .aria-valuetext = ਬਦਲਵਾਂ ਲਿਖਤ AI ਮਾਡਲ ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ ({ $totalSize } MB ਵਿੱਚੋਂ { $downloadedSize })
-pdfjs-editor-new-alt-text-added-button-label = ਬਦਲਵੀਂ ਲਿਖਤ ਜੋੜੀ
-pdfjs-editor-new-alt-text-missing-button-label = ਬਦਲਵਾਂ ਲਿਖਤ ਗੁੰਮ ਹੈ
-pdfjs-editor-new-alt-text-to-review-button-label = ਬਦਲਵੀਂ ਲਿਖਤ ਦਾ ਰੀਵਿਊ ਕਰੋ
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = ਆਪਣੇ-ਆਪ ਬਣਾਇਆ: { $generatedAltText }
-pdfjs-image-alt-text-settings-button =
-    .title = ਚਿੱਤਰ ਬਦਲਵੀਂ ਲਿਖਤ ਦੀਆਂ ਸੈਟਿੰਗਾਂ
-pdfjs-image-alt-text-settings-button-label = ਚਿੱਤਰ ਬਦਲਵੀਂ ਲਿਖਤ ਦੀਆਂ ਸੈਟਿੰਗਾਂ
-pdfjs-editor-alt-text-settings-dialog-label = ਚਿੱਤਰ ਬਦਲਵੀਂ ਲਿਖਤ ਦੀਆਂ ਸੈਟਿੰਗਾਂ
-pdfjs-editor-alt-text-settings-automatic-title = ਆਟੋਮਮੈਟਿਕ ਬਦਲਵੀਂ ਲਿਖਤ
-pdfjs-editor-alt-text-settings-create-model-button-label = ਬਲਦਵੀਂ ਲਿਖਤ ਆਪਣੇ-ਆਪ ਬਣਾਓ
-pdfjs-editor-alt-text-settings-create-model-description = ਚਿੱਤਰ ਨਾ ਵੇਖ ਸਕਣ ਵਾਲੇ ਲੋਕਾਂ ਦੀ ਮਦਦ ਜਾਂ ਜਦ ਵੀ ਚਿੱਤਰਾਂ ਨੂੰ ਲੋਡ ਨਹੀਂ ਜਾ ਸਕਦਾ, ਉਸ ਲਈ ਛੋਟਾ ਵੇਰਵਾ ਦਿਓ।
-pdfjs-editor-alt-text-settings-download-model-label = ਬਦਲਵੀ ਲਿਖਤ ਲਈ AI ਮਾਡਲ ({ $totalSize } MB)
-pdfjs-editor-alt-text-settings-ai-model-description = ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਉੱਤੇ ਲੋਕਲ ਹੀ ਚੱਲਦਾ ਹੋਣ ਕਰਕੇ ਤੁਹਾਡਾ ਡਾਟਾ ਪ੍ਰਾਈਵੇਟ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਆਟੋਮੈਟਿਕ ਬਦਲਵੀਂ ਲਿਖਤ ਲਈ ਚਾਹੀਦਾ ਹੈ।
-pdfjs-editor-alt-text-settings-delete-model-button = ਹਟਾਓ
-pdfjs-editor-alt-text-settings-download-model-button = ਡਾਊਨਲੋਡ
-pdfjs-editor-alt-text-settings-downloading-model-button = …ਨੂੰ ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ
-pdfjs-editor-alt-text-settings-editor-title = ਬਦਲਵੀਂ ਲਿਖਤ ਐਡੀਟਰ
-pdfjs-editor-alt-text-settings-show-dialog-button-label = ਜਦੋਂ ਵਿੱਚ ਚਿੱਤਰ ਜੋੜਿਆ ਜਾਵੇ ਤਾਂ ਫ਼ੌਰਨ ਬਦਲਵੀ ਲਿਖਤ ਸੰਪਾਦਕ ਵੇਖਾਓ
-pdfjs-editor-alt-text-settings-show-dialog-description = ਤੁਹਾਡੀ ਮਦਦ ਕਰਦਾ ਹੈ ਕਿ ਤੁਹਾਡੇ ਸਾਰੇ ਚਿੱਤਰਾਂ ਲਈ ਬਦਲਵੀਂ ਲਿਖਤ ਮੌਜੂਦ ਹੋਵੇ।
-pdfjs-editor-alt-text-settings-close-button = ਬੰਦ ਕਰੋ
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
+pdfjs-highlight-floating-button1 =
+    .title = Highlight
+    .aria-label = Highlight
+pdfjs-highlight-floating-button-label = Highlight
+pdfjs-editor-highlight-show-all-button-label = Show all
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression

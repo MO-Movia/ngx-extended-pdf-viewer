@@ -6,6 +6,12 @@ export type RenderingStates = any;
  */
 export class IDownloadManager {
     /**
+     * @param {string} url
+     * @param {string} filename
+     * @param {Object} [options]
+     */
+    downloadUrl(url: string, filename: string, options?: Object | undefined): void;
+    /**
      * @param {Uint8Array} data
      * @param {string} filename
      * @param {string} [contentType]
@@ -19,12 +25,12 @@ export class IDownloadManager {
      */
     openOrDownloadData(data: Uint8Array, filename: string, dest?: string | null | undefined): boolean;
     /**
-     * @param {Uint8Array} data
+     * @param {Blob} blob
      * @param {string} url
      * @param {string} filename
      * @param {Object} [options]
      */
-    download(data: Uint8Array, url: string, filename: string, options?: Object | undefined): void;
+    download(blob: Blob, url: string, filename: string, options?: Object | undefined): void;
 }
 /**
  * @interface
@@ -138,6 +144,11 @@ export class IPDFLinkService {
      * @param {Object} action
      */
     executeSetOCGState(action: Object): void;
+    /**
+     * @param {number} pageNum - page number.
+     * @param {Object} pageRef - reference to the page.
+     */
+    cachePageRef(pageNum: number, pageRef: Object): void;
 }
 /**
  * @interface

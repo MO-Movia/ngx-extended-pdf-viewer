@@ -38,7 +38,7 @@ export class PDFFindController {
     /**
      * @param {PDFFindControllerOptions} options
      */
-    constructor({ linkService, eventBus, updateMatchesCountOnProgress, pageViewMode, listenToEventBus, }: PDFFindControllerOptions);
+    constructor({ linkService, eventBus, updateMatchesCountOnProgress, pageViewMode }: PDFFindControllerOptions);
     _linkService: import("./interfaces").IPDFLinkService;
     _eventBus: import("./event_utils").EventBus;
     _pageViewMode: any;
@@ -63,10 +63,6 @@ export class PDFFindController {
      */
     setDocument(pdfDocument: PDFDocumentProxy): void;
     _pdfDocument: import("../src/display/api").PDFDocumentProxy | null | undefined;
-    ngxFind(pdfFindParameters: any): any[];
-    _findResultResolvers: any[] | undefined;
-    ngxFindNext(): void;
-    ngxFindPrevious(): void;
     _dirtyMatch: boolean | undefined;
     _findTimeout: any;
     _highlightMatches: boolean | undefined;
@@ -107,10 +103,7 @@ export class PDFFindController {
     _pagesToSearch: number | null | undefined;
     _pendingFindMatches: Set<any> | undefined;
     _resumePageIdx: any;
-    _firstPageCapability: any;
+    _firstPageCapability: PromiseWithResolvers<any> | undefined;
     _rawQuery: any;
-    _calculateRegExpMatch(query: any, entireWord: any, pageIndex: any, pageContent: any): void;
-    _convertToRegExpString(query: any, hasDiacritics: any): any[];
-    _calculateMatch(pageIndex: any): void;
     #private;
 }

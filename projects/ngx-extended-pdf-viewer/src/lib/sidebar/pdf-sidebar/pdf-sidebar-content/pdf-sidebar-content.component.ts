@@ -1,7 +1,5 @@
-import { Component, effect, EventEmitter, Input, OnDestroy, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output, TemplateRef, ViewChild } from '@angular/core';
 import { PdfThumbnailDrawnEvent } from '../../../events/pdf-thumbnail-drawn-event';
-import { IPDFViewerApplication } from '../../../options/pdf-viewer-application';
-import { PDFNotificationService } from '../../../pdf-notification-service';
 declare class PDFThumbnailView {
   anchor: HTMLAnchorElement;
   div: HTMLElement;
@@ -10,19 +8,13 @@ declare class PDFThumbnailView {
   canvasHeight: number;
 }
 
-interface RenderCustomThumbnailEvent {
-  pdfThumbnailView: PDFThumbnailView;
-  linkService: PDFLinkService;
-  id: number;
-  container: HTMLDivElement;
-  thumbPageTitlePromiseOrPageL10nArgs: string;
-}
-
 declare class PDFLinkService {
   public page: number;
   public pagesCount: number;
   public getAnchorUrl(targetUrl: string): string;
 }
+
+const THUMBNAIL_CANVAS_BORDER_WIDTH = 1; // one pixel
 
 @Component({
   selector: 'pdf-sidebar-content',
@@ -47,10 +39,6 @@ export class PdfSidebarContentComponent implements OnDestroy {
   @Output()
   public thumbnailDrawn = new EventEmitter<PdfThumbnailDrawnEvent>();
 
-  private PDFViewerApplication!: IPDFViewerApplication | undefined;
-
-  private thumbnailListener: any;
-
   public get top(): string {
     let top = 0;
     if (!this.hideSidebarToolbar) {
@@ -62,32 +50,38 @@ export class PdfSidebarContentComponent implements OnDestroy {
     return `${top}px`;
   }
 
-  constructor(public notificationService: PDFNotificationService) {
+  constructor() {
     if (typeof window !== 'undefined') {
-      effect(() => {
-        this.PDFViewerApplication = notificationService.onPDFJSInitSignal();
-        if (this.PDFViewerApplication) {
-          this.thumbnailListener = this.createThumbnail.bind(this);
-          this.PDFViewerApplication.eventBus.on('rendercustomthumbnail', this.thumbnailListener);
-        }
-      });
+      (window as any).pdfThumbnailGeneratorReady = () => this.pdfThumbnailGeneratorReady();
+      (window as any).pdfThumbnailGenerator = (
+        pdfThumbnailView: PDFThumbnailView,
+        linkService: any,
+        id: number,
+        container: HTMLDivElement,
+        thumbPageTitlePromiseOrPageL10nArgs: string
+      ) => this.createThumbnail(pdfThumbnailView, linkService, id, container, thumbPageTitlePromiseOrPageL10nArgs);
     }
   }
 
   public ngOnDestroy(): void {
     this.linkService = undefined;
-    if (this.thumbnailListener) {
-      this.PDFViewerApplication?.eventBus.off('rendercustomthumbnail', this.thumbnailListener);
-    }
   }
 
-  private createThumbnail({
-    pdfThumbnailView,
-    linkService,
-    id,
-    container,
-    thumbPageTitlePromiseOrPageL10nArgs,
-  }: RenderCustomThumbnailEvent): HTMLImageElement | undefined {
+  public pdfThumbnailGeneratorReady(): boolean {
+    if (!this.defaultThumbnail) {
+      return false;
+    }
+    const t = this.defaultThumbnail.elementRef.nativeElement as HTMLElement;
+    return !!t && !!t.innerHTML && t.innerHTML.length > 0;
+  }
+
+  private createThumbnail(
+    pdfThumbnailView: PDFThumbnailView,
+    linkService: PDFLinkService,
+    id: number,
+    container: HTMLDivElement,
+    thumbPageTitlePromiseOrPageL10nArgs: string
+  ): HTMLImageElement | undefined {
     this.linkService = linkService;
     const template = this.customThumbnail ?? this.defaultThumbnail;
     const view = template.createEmbeddedView(null);
@@ -96,12 +90,11 @@ export class PdfSidebarContentComponent implements OnDestroy {
 
     const anchor = newElement as HTMLAnchorElement;
     anchor.href = linkService.getAnchorUrl(`#page=${id}`);
-    anchor.className = `thumbnail${id}`;
 
     anchor.setAttribute('data-l10n-id', 'pdfjs-thumb-page-title');
     anchor.setAttribute('data-l10n-args', thumbPageTitlePromiseOrPageL10nArgs);
 
-    this.replacePageNumberEverywhere(newElement, id.toString());
+    this.replacePageNuberEverywhere(newElement, id.toString());
 
     anchor.onclick = () => {
       linkService.page = id;
@@ -145,7 +138,7 @@ export class PdfSidebarContentComponent implements OnDestroy {
     }
   }
 
-  private replacePageNumberEverywhere(element: Element, pageNumber: string): void {
+  private replacePageNuberEverywhere(element: Element, pageNumber: string): void {
     if (element.attributes) {
       Array.from(element.attributes).forEach((attr) => {
         if (attr.value.includes('PAGE_NUMBER')) {
@@ -156,7 +149,7 @@ export class PdfSidebarContentComponent implements OnDestroy {
 
     element.childNodes.forEach((child) => {
       if (child.nodeType === Node.ELEMENT_NODE) {
-        this.replacePageNumberEverywhere(child as Element, pageNumber);
+        this.replacePageNuberEverywhere(child as Element, pageNumber);
       } else if (child.nodeType === Node.TEXT_NODE) {
         if (child.nodeValue?.includes('PAGE_NUMBER')) {
           child.nodeValue = child.nodeValue.replace('PAGE_NUMBER', pageNumber);

@@ -13,12 +13,12 @@ import {
   PLATFORM_ID,
   SimpleChanges,
   TemplateRef,
-  effect,
 } from '@angular/core';
-import { NgxExtendedPdfViewerService } from '../../ngx-extended-pdf-viewer.service';
+import { take } from 'rxjs/operators';
 import { IPDFViewerApplication } from '../../options/pdf-viewer-application';
 import { PdfShyButtonService } from '../../toolbar/pdf-shy-button/pdf-shy-button-service';
 import { PDFNotificationService } from './../../pdf-notification-service';
+import { NgxExtendedPdfViewerService } from '../../ngx-extended-pdf-viewer.service';
 
 @Component({
   selector: 'pdf-secondary-toolbar',
@@ -47,8 +47,6 @@ export class PdfSecondaryToolbarComponent implements OnChanges, AfterViewInit, O
 
   private classMutationObserver: MutationObserver | undefined;
 
-  private PDFViewerApplication: IPDFViewerApplication | undefined;
-
   constructor(
     private element: ElementRef,
     public notificationService: PDFNotificationService,
@@ -56,26 +54,25 @@ export class PdfSecondaryToolbarComponent implements OnChanges, AfterViewInit, O
     public pdfShyButtonService: PdfShyButtonService,
     private ngxExtendedPdfViewerService: NgxExtendedPdfViewerService
   ) {
-    effect(() => {
-      this.PDFViewerApplication = notificationService.onPDFJSInitSignal();
-      if (this.PDFViewerApplication) {
-        this.onPdfJsInit();
-      }
+    this.notificationService.onPDFJSInit.pipe(take(1)).subscribe(() => {
+      this.onPdfJsInit();
     });
   }
 
   public onPdfJsInit(): void {
-    this.PDFViewerApplication?.eventBus.on('pagechanging', () => {
+    const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
+    PDFViewerApplication.eventBus.on('pagechanging', () => {
       this.updateUIState();
     });
-    this.PDFViewerApplication?.eventBus.on('pagerendered', () => {
+    PDFViewerApplication.eventBus.on('pagerendered', () => {
       this.updateUIState();
     });
   }
 
   public updateUIState(): void {
     setTimeout(() => {
-      const currentPage = this.PDFViewerApplication?.pdfViewer.currentPageNumber;
+      const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
+      const currentPage = PDFViewerApplication.pdfViewer.currentPageNumber;
       const previousButton = document.getElementById('previousPage') as HTMLButtonElement;
       if (previousButton) {
         this.disablePreviousPage = Number(currentPage) <= 1;
@@ -83,7 +80,7 @@ export class PdfSecondaryToolbarComponent implements OnChanges, AfterViewInit, O
       }
       const nextButton = document.getElementById('nextPage') as HTMLButtonElement;
       if (nextButton) {
-        this.disableNextPage = currentPage === this.PDFViewerApplication?.pagesCount;
+        this.disableNextPage = currentPage === PDFViewerApplication.pagesCount;
         nextButton.disabled = this.disableNextPage;
       }
     });
@@ -188,17 +185,18 @@ export class PdfSecondaryToolbarComponent implements OnChanges, AfterViewInit, O
     eventBusName?: string,
     closeOnClick?: boolean
   ): void {
+    const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
     const origin = htmlevent.target as HTMLElement;
     origin?.classList.add('toggled');
     if (action) {
-      action.call(this, htmlevent, true);
+      action(htmlevent, true);
       htmlevent.preventDefault();
     } else if (eventBusName) {
-      this.PDFViewerApplication?.eventBus.dispatch(eventBusName);
+      PDFViewerApplication.eventBus.dispatch(eventBusName);
       htmlevent.preventDefault();
     }
     if (closeOnClick) {
-      this.PDFViewerApplication?.secondaryToolbar.close();
+      PDFViewerApplication.secondaryToolbar.close();
     }
   }
 }

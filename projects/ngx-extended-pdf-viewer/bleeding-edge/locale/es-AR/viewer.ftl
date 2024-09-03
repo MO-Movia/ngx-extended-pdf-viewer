@@ -51,6 +51,12 @@ pdfjs-download-button-label = Descargar
 pdfjs-bookmark-button =
     .title = Página actual (Ver URL de la página actual)
 pdfjs-bookmark-button-label = Página actual
+# Used in Firefox for Android.
+pdfjs-open-in-app-button =
+    .title = Abrir en la aplicación
+# Used in Firefox for Android.
+# Length of the translation matters since we are in a mobile context, with limited screen estate.
+pdfjs-open-in-app-button-label = Abrir en la aplicación
 
 ##  Secondary toolbar and context menu
 
@@ -298,6 +304,8 @@ pdfjs-editor-stamp-button-label = Agregar o editar imágenes
 pdfjs-editor-highlight-button =
     .title = Resaltar
 pdfjs-editor-highlight-button-label = Resaltar
+pdfjs-highlight-floating-button =
+    .title = Resaltar
 pdfjs-highlight-floating-button1 =
     .title = Resaltar
     .aria-label = Resaltar
@@ -393,89 +401,8 @@ pdfjs-editor-highlight-show-all-button-label = Mostrar todo
 pdfjs-editor-highlight-show-all-button =
     .title = Mostrar todo
 
-## New alt-text dialog
-## Group note for entire feature: Alternative text (alt text) helps when people can't see the image. This feature includes a tool to create alt text automatically using an AI model that works locally on the user's device to preserve privacy.
-
-# Modal header positioned above a text box where users can edit the alt text.
-pdfjs-editor-new-alt-text-dialog-edit-label = Editar texto alternativo (descripción de la imagen)
-# Modal header positioned above a text box where users can add the alt text.
-pdfjs-editor-new-alt-text-dialog-add-label = Agregar texto alternativo (descripción de la imagen)
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = Escribir la descripción aquí…
-# This text refers to the alt text box above this description. It offers a definition of alt text.
-pdfjs-editor-new-alt-text-description = Descripción corta para las personas que no pueden ver la imagen o cuando la imagen no se carga.
-# This is a required legal disclaimer that refers to the automatically created text inside the alt text box above this text. It disappears if the text is edited by a human.
-pdfjs-editor-new-alt-text-disclaimer1 = Este texto alternativo fue creado automáticamente y puede ser incorrecto.
-# This is a required legal disclaimer that refers to the automatically created text inside the alt text box above this text. It disappears if the text is edited by a human.
-pdfjs-editor-new-alt-text-disclaimer = Este texto alternativo se creó automáticamente.
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = Conocer más
-pdfjs-editor-new-alt-text-create-automatically-button-label = Crear texto alternativo automáticamente
-pdfjs-editor-new-alt-text-not-now-button = No ahora
-pdfjs-editor-new-alt-text-error-title = No se pudo crear el texto alternativo automáticamente
-pdfjs-editor-new-alt-text-error-description = Escriba su propio texto alternativo o pruebe nuevamente más tarde.
-pdfjs-editor-new-alt-text-error-close-button = Cerrar
-# Variables:
-#   $totalSize (Number) - the total size (in MB) of the AI model.
-#   $downloadedSize (Number) - the downloaded size (in MB) of the AI model.
-#   $percent (Number) - the percentage of the downloaded size.
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = Descargando modelo de IA de texto alternativo ({ $downloadedSize } de { $totalSize } MB)
-    .aria-valuetext = Descargando modelo de IA de texto alternativo ({ $downloadedSize } de { $totalSize } MB)
-# This is a button that users can click to edit the alt text they have already added.
-pdfjs-editor-new-alt-text-added-button-label = Texto alternativo agregado
-# This is a button that users can click to open the alt text editor and add alt text when it is not present.
-pdfjs-editor-new-alt-text-missing-button-label = Falta el texto alternativo
-# This is a button that opens up the alt text modal where users should review the alt text that was automatically generated.
-pdfjs-editor-new-alt-text-to-review-button-label = Revisar el texto alternativo
-# "Created automatically" is a prefix that will be added to the beginning of any alt text that has been automatically generated. After the colon, the user will see/hear the actual alt text description. If the alt text has been edited by a human, this prefix will not appear.
-# Variables:
-#   $generatedAltText (String) - the generated alt-text.
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = Creado automáticamente: { $generatedAltText }
-
-## Image alt-text settings
-
-pdfjs-image-alt-text-settings-button =
-    .title = Configuración de texto alternativo de la imagen
-pdfjs-image-alt-text-settings-button-label = Configuración de texto alternativo de la imagen
-pdfjs-editor-alt-text-settings-dialog-label = Configuración de texto alternativo de la imagen
-pdfjs-editor-alt-text-settings-automatic-title = Texto alternativo automático
-pdfjs-editor-alt-text-settings-create-model-button-label = Crear texto alternativo automáticamente
-pdfjs-editor-alt-text-settings-create-model-description = Sugiere descripciones para ayudar a las personas que no pueden ver la imagen o cuando la imagen no se carga.
-# Variables:
-#   $totalSize (Number) - the total size (in MB) of the AI model.
-pdfjs-editor-alt-text-settings-download-model-label = Modelo de IA de texto alternativo ({ $totalSize } MB)
-pdfjs-editor-alt-text-settings-ai-model-description = Se ejecuta localmente en el dispositivo para que los datos se mantengan privados. Requerido para texto alternativo automático.
-pdfjs-editor-alt-text-settings-delete-model-button = Borrar
-pdfjs-editor-alt-text-settings-download-model-button = Descargar
-pdfjs-editor-alt-text-settings-downloading-model-button = Descargando…
-pdfjs-editor-alt-text-settings-editor-title = Editor de texto alternativo
-pdfjs-editor-alt-text-settings-show-dialog-button-label = Mostrar el editor de texto alternativo inmediatamente al agregar una imagen
-pdfjs-editor-alt-text-settings-show-dialog-description = Te ayuda a asegurarse de que todas las imágenes tengan texto alternativo.
-pdfjs-editor-alt-text-settings-close-button = Cerrar
-
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression
 
 # Translations for ngx-extended-pdf-viewer additions
 

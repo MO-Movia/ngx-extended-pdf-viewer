@@ -51,6 +51,12 @@ pdfjs-download-button-label = İndir
 pdfjs-bookmark-button =
     .title = Geçerli sayfa (geçerli sayfanın adresini görüntüle)
 pdfjs-bookmark-button-label = Geçerli sayfa
+# Used in Firefox for Android.
+pdfjs-open-in-app-button =
+    .title = Uygulamada aç
+# Used in Firefox for Android.
+# Length of the translation matters since we are in a mobile context, with limited screen estate.
+pdfjs-open-in-app-button-label = Uygulamada aç
 
 ##  Secondary toolbar and context menu
 
@@ -267,7 +273,7 @@ pdfjs-rendering-error = Sayfa yorumlanırken bir hata oluştu.
 # Variables:
 #   $date (Date) - the modification date of the annotation
 #   $time (Time) - the modification time of the annotation
-pdfjs-annotation-date-string = { $date } { $time }
+pdfjs-annotation-date-string = { $date }, { $time }
 # .alt: This is used as a tooltip.
 # Variables:
 #   $type (String) - an annotation type from a list defined in the PDF spec
@@ -345,11 +351,11 @@ pdfjs-ink-canvas =
 pdfjs-editor-alt-text-button-label = Alternatif metin
 pdfjs-editor-alt-text-edit-button-label = Alternatif metni düzenle
 pdfjs-editor-alt-text-dialog-label = Bir seçenek seçin
-pdfjs-editor-alt-text-dialog-description = Alternatif metin, insanlar resmi göremediğinde veya resim yüklenmediğinde işe yarar.
+pdfjs-editor-alt-text-dialog-description = Alternatif metin, insanlar görseli göremediğinde veya görsel yüklenmediğinde işe yarar.
 pdfjs-editor-alt-text-add-description-label = Açıklama ekle
 pdfjs-editor-alt-text-add-description-description = Konuyu, ortamı veya eylemleri tanımlayan bir iki cümle yazmaya çalışın.
 pdfjs-editor-alt-text-mark-decorative-label = Dekoratif olarak işaretle
-pdfjs-editor-alt-text-mark-decorative-description = Kenarlıklar veya filigranlar gibi dekoratif resimler için kullanılır.
+pdfjs-editor-alt-text-mark-decorative-description = Kenarlıklar veya filigranlar gibi dekoratif görüntüler için kullanılır.
 pdfjs-editor-alt-text-cancel-button = Vazgeç
 pdfjs-editor-alt-text-save-button = Kaydet
 pdfjs-editor-alt-text-decorative-tooltip = Dekoratif olarak işaretlendi
@@ -395,61 +401,5 @@ pdfjs-editor-highlight-show-all-button-label = Tümünü göster
 pdfjs-editor-highlight-show-all-button =
     .title = Tümünü göster
 
-pdfjs-editor-new-alt-text-dialog-edit-label = Alt metni düzenle (resim açıklaması)
-pdfjs-editor-new-alt-text-dialog-add-label = Alt metin ekle (resim açıklaması)
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = Açıklamanızı buraya yazın…
-pdfjs-editor-new-alt-text-description = Görme engelli kişilere gösterilecek veya resmin yüklenemediği durumlarda gösterilecek kısa açıklama.
-pdfjs-editor-new-alt-text-disclaimer1 = Bu alt metin otomatik olarak oluşturulmuştur ve hatalı olabilir.
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = Daha fazla bilgi alın
-pdfjs-editor-new-alt-text-create-automatically-button-label = Otomatik olarak alt metin oluştur
-pdfjs-editor-new-alt-text-not-now-button = Şimdi değil
-pdfjs-editor-new-alt-text-error-title = Alt metin otomatik olarak oluşturulamadı
-pdfjs-editor-new-alt-text-error-description = Lütfen kendi alt metninizi yazın veya daha sonra yeniden deneyin.
-pdfjs-editor-new-alt-text-error-close-button = Kapat
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = Alt metin yapay zekâ modeli indiriliyor ({ $downloadedSize } / { $totalSize } MB)
-    .aria-valuetext = Alt metin yapay zekâ modeli indiriliyor ({ $downloadedSize } / { $totalSize } MB)
-pdfjs-editor-new-alt-text-added-button-label = Alt metin eklendi
-pdfjs-editor-new-alt-text-missing-button-label = Alt metin eksik
-pdfjs-editor-new-alt-text-to-review-button-label = Alt metni incele
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = Otomatik olarak oluşturuldu: { $generatedAltText }
-pdfjs-image-alt-text-settings-button =
-    .title = Resim alt metni ayarları
-pdfjs-image-alt-text-settings-button-label = Resim alt metni ayarları
-pdfjs-editor-alt-text-settings-dialog-label = Resim alt metni ayarları
-pdfjs-editor-alt-text-settings-automatic-title = Otomatik alt metin
-pdfjs-editor-alt-text-settings-create-model-button-label = Otomatik olarak alt metin oluştur
-pdfjs-editor-alt-text-settings-create-model-description = Görme engelli kişilere gösterilecek veya resmin yüklenemediği durumlarda gösterilecek açıklamalar önerir.
-pdfjs-editor-alt-text-settings-download-model-label = Alt metin yapay zekâ modeli ({ $totalSize } MB)
-pdfjs-editor-alt-text-settings-ai-model-description = Verilerinizin gizli kalması için cihazınızda yerel olarak çalışır. Otomatik alt metin için gereklidir.
-pdfjs-editor-alt-text-settings-delete-model-button = Sil
-pdfjs-editor-alt-text-settings-download-model-button = İndir
-pdfjs-editor-alt-text-settings-downloading-model-button = İndiriliyor…
-pdfjs-editor-alt-text-settings-editor-title = Alt metin düzenleyicisi
-pdfjs-editor-alt-text-settings-show-dialog-button-label = Resim eklerken alt metin düzenleyicisini hemen göster
-pdfjs-editor-alt-text-settings-show-dialog-description = Tüm resimlerinizin alt metne sahip olduğundan emin olmanızı sağlar.
-pdfjs-editor-alt-text-settings-close-button = Kapat
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression

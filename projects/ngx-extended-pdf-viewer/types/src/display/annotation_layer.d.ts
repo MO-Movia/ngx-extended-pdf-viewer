@@ -3,7 +3,6 @@ export type PageViewport = import("./display_utils").PageViewport;
 export type TextAccessibilityManager = import("../../web/text_accessibility.js").TextAccessibilityManager;
 export type IDownloadManager = import("../../web/interfaces").IDownloadManager;
 export type IPDFLinkService = import("../../web/interfaces").IPDFLinkService;
-export type AnnotationEditorUIManager = any;
 export type AnnotationElementParameters = {
     data: Object;
     layer: HTMLDivElement;
@@ -49,7 +48,6 @@ export type AnnotationLayerParameters = {
     } | null | undefined;
     annotationCanvasMap?: Map<string, HTMLCanvasElement> | undefined;
     accessibilityManager?: import("../../web/text_accessibility.js").TextAccessibilityManager | undefined;
-    annotationEditorUIManager?: AnnotationEditorUIManager;
 };
 /**
  * @typedef {Object} AnnotationLayerParameters
@@ -69,17 +67,15 @@ export type AnnotationLayerParameters = {
  * @property {Object<string, Array<Object>> | null} [fieldObjects]
  * @property {Map<string, HTMLCanvasElement>} [annotationCanvasMap]
  * @property {TextAccessibilityManager} [accessibilityManager]
- * @property {AnnotationEditorUIManager} [annotationEditorUIManager]
  */
 /**
  * Manage the layer containing all the annotations.
  */
 export class AnnotationLayer {
-    constructor({ div, accessibilityManager, annotationCanvasMap, annotationEditorUIManager, page, viewport, }: {
+    constructor({ div, accessibilityManager, annotationCanvasMap, page, viewport, }: {
         div: any;
         accessibilityManager: any;
         annotationCanvasMap: any;
-        annotationEditorUIManager: any;
         page: any;
         viewport: any;
     });
@@ -87,9 +83,7 @@ export class AnnotationLayer {
     page: any;
     viewport: any;
     zIndex: number;
-    _annotationEditorUIManager: any;
     popupShow: any[] | undefined;
-    hasEditableAnnotations(): boolean;
     /**
      * Render a new annotation layer with all annotation elements.
      *
@@ -114,6 +108,7 @@ export class FreeTextAnnotationElement extends AnnotationElement {
     textPosition: any;
     annotationEditorType: number;
     render(): HTMLElement | undefined;
+    get _isEditable(): any;
 }
 export class InkAnnotationElement extends AnnotationElement {
     constructor(parameters: any);
@@ -154,10 +149,7 @@ declare class AnnotationElement {
     _fieldObjects: any;
     parent: any;
     container: HTMLElement | undefined;
-    get _isEditable(): any;
     get hasPopupData(): boolean;
-    updateEdited(params: any): void;
-    resetEdited(): void;
     /**
      * Create an empty container for the annotation's HTML element.
      *
@@ -211,6 +203,7 @@ declare class AnnotationElement {
      */
     public getElementsToTriggerPopup(): Array<HTMLElement> | HTMLElement;
     addHighlightArea(): void;
+    get _isEditable(): boolean;
     _editOnDoubleClick(): void;
     #private;
 }

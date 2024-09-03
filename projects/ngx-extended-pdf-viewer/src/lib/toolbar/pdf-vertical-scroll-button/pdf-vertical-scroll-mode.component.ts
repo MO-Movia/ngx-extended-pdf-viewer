@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, NgZone, OnDestroy, Output, effect } from '@angular/core';
+import { Component, EventEmitter, Input, NgZone, Output } from '@angular/core';
+import { take } from 'rxjs/operators';
 import { ScrollMode } from '../../options/pdf-scroll-mode';
 import { PageViewModeType, ScrollModeType } from '../../options/pdf-viewer';
 import { IPDFViewerApplication } from '../../options/pdf-viewer-application';
@@ -10,7 +11,7 @@ import { ResponsiveVisibility } from '../../responsive-visibility';
   templateUrl: './pdf-vertical-scroll-mode.component.html',
   styleUrls: ['./pdf-vertical-scroll-mode.component.css'],
 })
-export class PdfVerticalScrollModeComponent implements OnDestroy {
+export class PdfVerticalScrollModeComponent {
   @Input()
   public show: ResponsiveVisibility = true;
 
@@ -23,16 +24,11 @@ export class PdfVerticalScrollModeComponent implements OnDestroy {
   @Output()
   public pageViewModeChange = new EventEmitter<PageViewModeType>();
 
-  public onClick?: () => void;
-
-  private PDFViewerApplication: IPDFViewerApplication | undefined;
+  public onClick: () => void;
 
   constructor(private notificationService: PDFNotificationService, private ngZone: NgZone) {
-    effect(() => {
-      this.PDFViewerApplication = notificationService.onPDFJSInitSignal();
-      if (this.PDFViewerApplication) {
-        this.onPdfJsInit();
-      }
+    this.notificationService.onPDFJSInit.pipe(take(1)).subscribe(() => {
+      this.onPdfJsInit();
     });
     const emitter = this.pageViewModeChange;
     this.onClick = () => {
@@ -40,20 +36,18 @@ export class PdfVerticalScrollModeComponent implements OnDestroy {
         if (this.pageViewMode !== 'multiple' && this.pageViewMode !== 'infinite-scroll') {
           emitter.emit('multiple');
         }
-        this.PDFViewerApplication?.eventBus.dispatch('switchscrollmode', { mode: ScrollMode.VERTICAL });
+        const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
+        PDFViewerApplication.eventBus.dispatch('switchscrollmode', { mode: ScrollMode.VERTICAL });
       });
     };
   }
 
   public onPdfJsInit(): void {
-    this.PDFViewerApplication?.eventBus.on('switchscrollmode', (event) => {
+    const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
+    PDFViewerApplication.eventBus.on('switchscrollmode', (event) => {
       this.ngZone.run(() => {
         this.scrollMode = event.mode;
       });
     });
-  }
-
-  public ngOnDestroy(): void {
-    this.onClick = undefined;
   }
 }

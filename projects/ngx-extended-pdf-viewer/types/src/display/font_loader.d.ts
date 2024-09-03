@@ -1,10 +1,14 @@
 export class FontFaceObject {
-    constructor(translatedData: any, { disableFontFace, inspectFont }: {
+    constructor(translatedData: any, { isEvalSupported, disableFontFace, ignoreErrors, inspectFont, }: {
+        isEvalSupported?: boolean | undefined;
         disableFontFace?: boolean | undefined;
+        ignoreErrors?: boolean | undefined;
         inspectFont?: null | undefined;
     });
     compiledGlyphs: any;
+    isEvalSupported: boolean;
     disableFontFace: boolean;
+    ignoreErrors: boolean;
     _inspectFont: any;
     createNativeFontFace(): FontFace | null;
     createFontFaceRule(): string | null;

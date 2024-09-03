@@ -16,8 +16,4 @@ export interface PasswordPrompt {
    * has been provided, so let's try again
    */
   setUpdateCallback(updateCallback: (password: string) => void, reason: 1 | 2);
-
-  close(): void;
-
-  open(): void;
 }

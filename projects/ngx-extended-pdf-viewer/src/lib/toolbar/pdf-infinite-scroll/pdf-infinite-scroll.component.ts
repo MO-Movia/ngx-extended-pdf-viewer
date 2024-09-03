@@ -1,8 +1,7 @@
-import { Component, effect, EventEmitter, Input, NgZone, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, NgZone, Output } from '@angular/core';
 import { ScrollMode } from '../../options/pdf-scroll-mode';
 import { PageViewModeType, ScrollModeType } from '../../options/pdf-viewer';
 import { IPDFViewerApplication } from '../../options/pdf-viewer-application';
-import { PDFNotificationService } from '../../pdf-notification-service';
 import { ResponsiveVisibility } from '../../responsive-visibility';
 
 @Component({
@@ -10,7 +9,7 @@ import { ResponsiveVisibility } from '../../responsive-visibility';
   templateUrl: './pdf-infinite-scroll.component.html',
   styleUrls: ['./pdf-infinite-scroll.component.css'],
 })
-export class PdfInfiniteScrollComponent implements OnDestroy {
+export class PdfInfiniteScrollComponent {
   @Input()
   public show: ResponsiveVisibility = true;
 
@@ -23,30 +22,22 @@ export class PdfInfiniteScrollComponent implements OnDestroy {
   @Output()
   public pageViewModeChange = new EventEmitter<PageViewModeType>();
 
-  public onClick?: () => void;
+  public onClick: () => void;
 
-  private PDFViewerApplication: IPDFViewerApplication | undefined;
-
-  constructor(private ngZone: NgZone, public notificationService: PDFNotificationService) {
-    effect(() => {
-      this.PDFViewerApplication = notificationService.onPDFJSInitSignal();
-    });
+  constructor(private ngZone: NgZone) {
     const emitter = this.pageViewModeChange;
     this.onClick = () => {
       this.ngZone.run(() => {
         if (this.pageViewMode === 'infinite-scroll') {
           emitter.emit('multiple');
         } else {
+          const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
           if (this.scrollMode !== ScrollModeType.wrapped && this.scrollMode !== ScrollModeType.vertical) {
-            this.PDFViewerApplication?.eventBus.dispatch('switchscrollmode', { mode: ScrollMode.VERTICAL });
+            PDFViewerApplication.eventBus.dispatch('switchscrollmode', { mode: ScrollMode.VERTICAL });
           }
           emitter.emit('infinite-scroll');
         }
       });
     };
-  }
-
-  public ngOnDestroy(): void {
-    this.onClick = undefined;
   }
 }

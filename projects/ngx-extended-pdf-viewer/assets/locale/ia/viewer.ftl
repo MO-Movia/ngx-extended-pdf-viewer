@@ -51,6 +51,12 @@ pdfjs-download-button-label = Discargar
 pdfjs-bookmark-button =
     .title = Pagina actual (vide le URL del pagina actual)
 pdfjs-bookmark-button-label = Pagina actual
+# Used in Firefox for Android.
+pdfjs-open-in-app-button =
+    .title = Aperir in app
+# Used in Firefox for Android.
+# Length of the translation matters since we are in a mobile context, with limited screen estate.
+pdfjs-open-in-app-button-label = Aperir in app
 
 ##  Secondary toolbar and context menu
 
@@ -61,8 +67,8 @@ pdfjs-first-page-button =
     .title = Ir al prime pagina
 pdfjs-first-page-button-label = Ir al prime pagina
 pdfjs-last-page-button =
-    .title = Ir al ultime pagina
-pdfjs-last-page-button-label = Ir al ultime pagina
+    .title = Ir al prime pagina
+pdfjs-last-page-button-label = Ir al prime pagina
 pdfjs-page-rotate-cw-button =
     .title = Rotar in senso horari
 pdfjs-page-rotate-cw-button-label = Rotar in senso horari
@@ -298,10 +304,6 @@ pdfjs-editor-stamp-button-label = Adder o rediger imagines
 pdfjs-editor-highlight-button =
     .title = Evidentia
 pdfjs-editor-highlight-button-label = Evidentia
-pdfjs-highlight-floating-button1 =
-    .title = Evidentiar
-    .aria-label = Evidentiar
-pdfjs-highlight-floating-button-label = Evidentiar
 
 ## Remove button for the various kind of editor.
 
@@ -386,68 +388,12 @@ pdfjs-editor-colorpicker-pink =
 pdfjs-editor-colorpicker-red =
     .title = Rubie
 
-## Show all highlights
-## This is a toggle button to show/hide all the highlights.
-
+pdfjs-highlight-floating-button =
+    .title = Evidentiar
+pdfjs-highlight-floating-button1 =
+    .title = Evidentiar
+    .aria-label = Evidentiar
+pdfjs-highlight-floating-button-label = Evidentiar
 pdfjs-editor-highlight-show-all-button-label = Monstrar toto
-pdfjs-editor-highlight-show-all-button =
-    .title = Monstrar toto
-
-pdfjs-editor-new-alt-text-dialog-edit-label = Rediger texto alternative (description del imagine)
-pdfjs-editor-new-alt-text-dialog-add-label = Adder texto alternative (description del imagine)
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = Scribe tu description ci…
-pdfjs-editor-new-alt-text-description = Breve description pro personas qui non pote vider le imagine o quando le imagine non se carga.
-pdfjs-editor-new-alt-text-disclaimer1 = Iste texto alternative ha essite create automaticamente e pote esser inexacte.
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = Pro saper plus
-pdfjs-editor-new-alt-text-create-automatically-button-label = Crear texto alternative automaticamente
-pdfjs-editor-new-alt-text-not-now-button = Non ora
-pdfjs-editor-new-alt-text-error-title = Impossibile crear texto alternative automaticamente
-pdfjs-editor-new-alt-text-error-description = Scribe tu proprie texto alternative o retenta plus tarde.
-pdfjs-editor-new-alt-text-error-close-button = Clauder
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = Discargante modello de intelligentia artificial  del texto alternative ({ $downloadedSize } de { $totalSize } MB)
-    .aria-valuetext = Discargante modello de intelligentia artificial  del texto alternative ({ $downloadedSize } de { $totalSize } MB)
-pdfjs-editor-new-alt-text-added-button-label = Texto alternative addite
-pdfjs-editor-new-alt-text-missing-button-label = Texto alternative mancante
-pdfjs-editor-new-alt-text-to-review-button-label = Revider texto alternative
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = Automaticamente create: { $generatedAltText }
-pdfjs-image-alt-text-settings-button =
-    .title = Parametros del texto alternative del imagine
-pdfjs-image-alt-text-settings-button-label = Parametros del texto alternative del imagine
-pdfjs-editor-alt-text-settings-dialog-label = Parametros del texto alternative del imagine
-pdfjs-editor-alt-text-settings-automatic-title = Texto alternative automatic
-pdfjs-editor-alt-text-settings-create-model-button-label = Crear texto alternative automaticamente
-pdfjs-editor-alt-text-settings-create-model-description = Suggere descriptiones pro adjutar le personas qui non pote vider le imagine o quando le imagine non carga.
-pdfjs-editor-alt-text-settings-download-model-label = Modello de intelligentia artificial del texto alternative ({ $totalSize } MB)
-pdfjs-editor-alt-text-settings-ai-model-description = Flue localmente sur tu apparato assi tu datos remane private. Necessari pro texto alternative automatic.
-pdfjs-editor-alt-text-settings-delete-model-button = Deler
-pdfjs-editor-alt-text-settings-download-model-button = Discargar
-pdfjs-editor-alt-text-settings-downloading-model-button = Discargante…
-pdfjs-editor-alt-text-settings-editor-title = Rediger texto alternative
-pdfjs-editor-alt-text-settings-show-dialog-button-label = Monstrar le redactor de texto alternative a pena on adde un imagine
-pdfjs-editor-alt-text-settings-show-dialog-description = Te adjuta a verifica que tote tu imagines ha un texto alternative.
-pdfjs-editor-alt-text-settings-close-button = Clauder
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression

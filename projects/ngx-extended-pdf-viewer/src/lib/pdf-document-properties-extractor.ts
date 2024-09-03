@@ -33,7 +33,8 @@ export class PdfDocumentPropertiesExtractor {
       "'?" // Trailing apostrophe (optional)
   );
 
-  public async getDocumentProperties(PDFViewerApplication: IPDFViewerApplication): Promise<any> {
+  public async getDocumentProperties(): Promise<any> {
+    const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
     const pdfDocument = PDFViewerApplication.pdfDocument;
 
     const result: any = {};

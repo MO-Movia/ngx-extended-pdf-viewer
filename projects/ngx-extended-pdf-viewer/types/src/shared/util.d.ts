@@ -168,17 +168,6 @@ export class FeatureTest {
     static get isCSSRoundSupported(): any;
 }
 export const FONT_IDENTITY_MATRIX: number[];
-export namespace FontRenderOps {
-    let BEZIER_CURVE_TO: number;
-    let MOVE_TO: number;
-    let LINE_TO: number;
-    let QUADRATIC_CURVE_TO: number;
-    let RESTORE: number;
-    let SAVE: number;
-    let SCALE: number;
-    let TRANSFORM: number;
-    let TRANSLATE: number;
-}
 declare const FormatError_base: any;
 /**
  * Error caused during parsing PDF data.
@@ -304,8 +293,6 @@ export namespace OPS {
     let paintImageMaskXObjectRepeat: number;
     let paintSolidColorImageMask: number;
     let constructPath: number;
-    let setStrokeTransparent: number;
-    let setFillTransparent: number;
 }
 export namespace PageActionEventType {
     export let O: string;
@@ -338,12 +325,10 @@ export namespace RenderingIntentFlag {
     export let DISPLAY: number;
     let PRINT_2: number;
     export { PRINT_2 as PRINT };
-    let SAVE_1: number;
-    export { SAVE_1 as SAVE };
+    export let SAVE: number;
     export let ANNOTATIONS_FORMS: number;
     export let ANNOTATIONS_STORAGE: number;
     export let ANNOTATIONS_DISABLE: number;
-    export let IS_EDITING: number;
     export let OPLIST: number;
 }
 export function setVerbosityLevel(level: any): void;

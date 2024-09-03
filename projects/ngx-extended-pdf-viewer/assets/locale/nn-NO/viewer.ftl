@@ -51,6 +51,12 @@ pdfjs-download-button-label = Last ned
 pdfjs-bookmark-button =
     .title = Gjeldande side (sjå URL frå gjeldande side)
 pdfjs-bookmark-button-label = Gjeldande side
+# Used in Firefox for Android.
+pdfjs-open-in-app-button =
+    .title = Opne i app
+# Used in Firefox for Android.
+# Length of the translation matters since we are in a mobile context, with limited screen estate.
+pdfjs-open-in-app-button-label = Opne i app
 
 ##  Secondary toolbar and context menu
 
@@ -295,24 +301,9 @@ pdfjs-editor-ink-button-label = Teikne
 pdfjs-editor-stamp-button =
     .title = Legg til eller rediger bilde
 pdfjs-editor-stamp-button-label = Legg til eller rediger bilde
-pdfjs-editor-highlight-button =
-    .title = Markere
-pdfjs-editor-highlight-button-label = Markere
-pdfjs-highlight-floating-button1 =
-    .title = Markere
-    .aria-label = Markere
-pdfjs-highlight-floating-button-label = Markere
 
 ## Remove button for the various kind of editor.
 
-pdfjs-editor-remove-ink-button =
-    .title = Fjern teikninga
-pdfjs-editor-remove-freetext-button =
-    .title = Fjern tekst
-pdfjs-editor-remove-stamp-button =
-    .title = Fjern bildet
-pdfjs-editor-remove-highlight-button =
-    .title = Fjern utheving
 
 ##
 
@@ -325,10 +316,6 @@ pdfjs-editor-ink-opacity-input = Ugjennomskinleg
 pdfjs-editor-stamp-add-image-button =
     .title = Legg til bilde
 pdfjs-editor-stamp-add-image-button-label = Legg til bilde
-# This refers to the thickness of the line used for free highlighting (not bound to text)
-pdfjs-editor-free-highlight-thickness-input = Tjukkleik
-pdfjs-editor-free-highlight-thickness-title =
-    .title = Endre tjukn når du markerer andre element enn tekst
 pdfjs-free-text =
     .aria-label = Tekstredigering
 pdfjs-free-text-default-content = Byrje å skrive…
@@ -358,23 +345,9 @@ pdfjs-editor-alt-text-textarea =
 ## Editor resizers
 ## This is used in an aria label to help to understand the role of the resizer.
 
-pdfjs-editor-resizer-label-top-left = Øvste venstre hjørne – endre størrelse
-pdfjs-editor-resizer-label-top-middle = Øvst i midten — endre størrelse
-pdfjs-editor-resizer-label-top-right = Øvste høgre hjørne – endre størrelse
-pdfjs-editor-resizer-label-middle-right = Midt til høgre – endre størrelse
-pdfjs-editor-resizer-label-bottom-right = Nedste høgre hjørne – endre størrelse
-pdfjs-editor-resizer-label-bottom-middle = Nedst i midten — endre størrelse
-pdfjs-editor-resizer-label-bottom-left = Nedste venstre hjørne – endre størrelse
-pdfjs-editor-resizer-label-middle-left = Midt til venstre — endre størrelse
 
 ## Color picker
 
-# This means "Color used to highlight text"
-pdfjs-editor-highlight-colorpicker-label = Uthevingsfarge
-pdfjs-editor-colorpicker-button =
-    .title = Endre farge
-pdfjs-editor-colorpicker-dropdown =
-    .aria-label = Fargeval
 pdfjs-editor-colorpicker-yellow =
     .title = Gul
 pdfjs-editor-colorpicker-green =
@@ -386,68 +359,37 @@ pdfjs-editor-colorpicker-pink =
 pdfjs-editor-colorpicker-red =
     .title = Raud
 
-## Show all highlights
-## This is a toggle button to show/hide all the highlights.
-
-pdfjs-editor-highlight-show-all-button-label = Vis alle
-pdfjs-editor-highlight-show-all-button =
-    .title = Vis alle
-
-pdfjs-editor-new-alt-text-dialog-edit-label = Rediger alternativ tekst (bildeskildring)
-pdfjs-editor-new-alt-text-dialog-add-label = Legg til alternativ tekst (bildeskildring)
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = Skriv skildringa di her…
-pdfjs-editor-new-alt-text-description = Kort skildring for personar som ikkje kan sjå bildet, eller når bildet ikkje lastar inn.
-pdfjs-editor-new-alt-text-disclaimer1 = Denne alternative teksten vart oppretta automatisk, og kan vere unøyaktig.
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = Les meir
-pdfjs-editor-new-alt-text-create-automatically-button-label = Opprett alternativ tekt automatisk
-pdfjs-editor-new-alt-text-not-now-button = Ikkje no
-pdfjs-editor-new-alt-text-error-title = Klarte ikkje å opprette alternativ tekst automatisk
-pdfjs-editor-new-alt-text-error-description = Skriv din eigen alternative tekst eller prøv igjen seinare.
-pdfjs-editor-new-alt-text-error-close-button = Lat att
-pdfjs-editor-new-alt-text-added-button-label = Alternativ tekst lagt til
-pdfjs-editor-new-alt-text-missing-button-label = Manglande alternativ tekst
-pdfjs-editor-new-alt-text-to-review-button-label = Vurder alternativ tekst
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = Oppretta automatisk: { $generatedAltText }
-pdfjs-image-alt-text-settings-button =
-    .title = Alternative tekst-innstillingar for bilde
-pdfjs-image-alt-text-settings-button-label = Alternative tekst-innstillingar for bilde
-pdfjs-editor-alt-text-settings-dialog-label = Alternative tekst-innstillingar for bilde
-pdfjs-editor-alt-text-settings-automatic-title = Automatisk alternativ tekst
-pdfjs-editor-alt-text-settings-create-model-button-label = Opprett alternativ tekt automatisk
-pdfjs-editor-alt-text-settings-download-model-label = AI-modell for alternativ tekst ({ $totalSize } MB)
-pdfjs-editor-alt-text-settings-ai-model-description = Køyrer lokalt på eininga di slik at dataa dine blir verande private. Påkravd for automatisk alternativ tekst.
-pdfjs-editor-alt-text-settings-delete-model-button = Slett
-pdfjs-editor-alt-text-settings-download-model-button = Last ned
-pdfjs-editor-alt-text-settings-downloading-model-button = Lastar ned…
-pdfjs-editor-alt-text-settings-editor-title = Alternativ tekst-redigerar
-pdfjs-editor-alt-text-settings-show-dialog-button-label = Vis alternativ tekst-redigerar direkte når du legg til eit bilde
-pdfjs-editor-alt-text-settings-close-button = Lat att
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = Downloading alt text AI model ({ $downloadedSize } of { $totalSize } MB)
-    .aria-valuetext = Downloading alt text AI model ({ $downloadedSize } of { $totalSize } MB)
-pdfjs-editor-alt-text-settings-create-model-description = Suggests descriptions to help people who can’t see the image or when the image doesn’t load.
-pdfjs-editor-alt-text-settings-show-dialog-description = Helps you make sure all your images have alt text.
+pdfjs-editor-highlight-button =
+    .title = Highlight
+pdfjs-editor-highlight-button-label = Highlight
+pdfjs-highlight-floating-button1 =
+    .title = Highlight
+    .aria-label = Highlight
+pdfjs-highlight-floating-button-label = Highlight
+pdfjs-editor-remove-ink-button =
+    .title = Remove drawing
+pdfjs-editor-remove-freetext-button =
+    .title = Remove text
+pdfjs-editor-remove-stamp-button =
+    .title = Remove image
+pdfjs-editor-remove-highlight-button =
+    .title = Remove highlight
+pdfjs-editor-free-highlight-thickness-input = Thickness
+pdfjs-editor-free-highlight-thickness-title =
+    .title = Change thickness when highlighting items other than text
+pdfjs-editor-resizer-label-top-left = Top left corner — resize
+pdfjs-editor-resizer-label-top-middle = Top middle — resize
+pdfjs-editor-resizer-label-top-right = Top right corner — resize
+pdfjs-editor-resizer-label-middle-right = Middle right — resize
+pdfjs-editor-resizer-label-bottom-right = Bottom right corner — resize
+pdfjs-editor-resizer-label-bottom-middle = Bottom middle — resize
+pdfjs-editor-resizer-label-bottom-left = Bottom left corner — resize
+pdfjs-editor-resizer-label-middle-left = Middle left — resize
+pdfjs-editor-highlight-colorpicker-label = Highlight color
+pdfjs-editor-colorpicker-button =
+    .title = Change color
+pdfjs-editor-colorpicker-dropdown =
+    .aria-label = Color choices
+pdfjs-editor-highlight-show-all-button-label = Show all
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, ViewEncapsulation, effect } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { UpdateUIStateEvent } from '../../events/update-ui-state-event';
 import { IPDFViewerApplication } from '../../options/pdf-viewer-application';
 import { PDFNotificationService } from '../../pdf-notification-service';
@@ -8,7 +8,6 @@ import { ResponsiveVisibility } from '../../responsive-visibility';
   selector: 'pdf-rotate-page-ccw',
   templateUrl: './pdf-rotate-page-ccw.component.html',
   styleUrls: ['./pdf-rotate-page-ccw.component.css'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class PdfRotatePageCcwComponent {
   @Input()
@@ -19,23 +18,21 @@ export class PdfRotatePageCcwComponent {
   @Input()
   public counterClockwise = true;
 
-  private PDFViewerApplication: IPDFViewerApplication | undefined;
-
   constructor(private notificationService: PDFNotificationService, private changeDetectorRef: ChangeDetectorRef) {
-    effect(() => {
-      this.PDFViewerApplication = notificationService.onPDFJSInitSignal();
-      if (this.PDFViewerApplication) {
-        this.onPdfJsInit();
-      }
+    const subscription = this.notificationService.onPDFJSInit.subscribe(() => {
+      this.onPdfJsInit();
+      subscription.unsubscribe();
     });
   }
 
   public rotateCCW(): void {
-    this.PDFViewerApplication?.eventBus.dispatch('rotateccw');
+    const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
+    PDFViewerApplication.eventBus.dispatch('rotateccw');
   }
 
   public onPdfJsInit(): void {
-    this.PDFViewerApplication?.eventBus.on('updateuistate', (event) => this.updateUIState(event));
+    const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
+    PDFViewerApplication.eventBus.on('updateuistate', (event) => this.updateUIState(event));
   }
 
   public updateUIState(event: UpdateUIStateEvent): void {

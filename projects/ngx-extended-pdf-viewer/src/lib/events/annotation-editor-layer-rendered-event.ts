@@ -4,5 +4,4 @@ export interface AnnotationEditorLayerRenderedEvent {
   source: PDFPageView;
   pageNumber: number;
   error?: any;
-  layer: unknown; // AnnotationEditorLayerBuilder
 }

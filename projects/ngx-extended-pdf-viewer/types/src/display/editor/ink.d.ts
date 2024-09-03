@@ -18,9 +18,9 @@ export class InkEditor extends AnnotationEditor {
      * @param {Array<Array<number>>} bezier
      * @returns {Path2D}
      */
-    static "__#25@#buildPath2D"(bezier: Array<Array<number>>): Path2D;
-    static "__#25@#toPDFCoordinates"(points: any, rect: any, rotation: any): any;
-    static "__#25@#fromPDFCoordinates"(points: any, rect: any, rotation: any): any;
+    static "__#24@#buildPath2D"(bezier: Array<Array<number>>): Path2D;
+    static "__#24@#toPDFCoordinates"(points: any, rect: any, rotation: any): any;
+    static "__#24@#fromPDFCoordinates"(points: any, rect: any, rotation: any): any;
     /** @inheritdoc */
     static deserialize(data: any, parent: any, uiManager: any): AnnotationEditor | null;
     constructor(params: any);
@@ -34,10 +34,6 @@ export class InkEditor extends AnnotationEditor {
     scaleFactor: number;
     translationX: number;
     translationY: number;
-    editorPointerType: any;
-    destroy(): void;
-    initializePointerType(): void;
-    resetPointerType(): void;
     /** @inheritdoc */
     updateParams(type: any, value: any): void;
     /** @inheritdoc */
@@ -64,8 +60,7 @@ export class InkEditor extends AnnotationEditor {
      * @param {PointerEvent} event
      */
     canvasPointerleave(event: PointerEvent): void;
-    canvasTouchMove(event: any): void;
-    ctx: CanvasRenderingContext2D | null | undefined;
+    ctx: RenderingContext | null | undefined;
     /**
      * When the dimensions of the div change the inner canvas must
      * renew its dimensions, hence it must redraw its own contents.

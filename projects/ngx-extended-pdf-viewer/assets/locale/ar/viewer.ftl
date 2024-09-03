@@ -51,6 +51,12 @@ pdfjs-download-button-label = نزّل
 pdfjs-bookmark-button =
     .title = الصفحة الحالية (عرض URL من الصفحة الحالية)
 pdfjs-bookmark-button-label = الصفحة الحالية
+# Used in Firefox for Android.
+pdfjs-open-in-app-button =
+    .title = افتح في تطبيق
+# Used in Firefox for Android.
+# Length of the translation matters since we are in a mobile context, with limited screen estate.
+pdfjs-open-in-app-button-label = افتح في تطبيق
 
 ##  Secondary toolbar and context menu
 
@@ -75,9 +81,6 @@ pdfjs-cursor-text-select-tool-button-label = أداة اختيار النص
 pdfjs-cursor-hand-tool-button =
     .title = فعّل أداة اليد
 pdfjs-cursor-hand-tool-button-label = أداة اليد
-pdfjs-scroll-page-button =
-    .title = استخدم تمرير الصفحة
-pdfjs-scroll-page-button-label = تمرير الصفحة
 pdfjs-scroll-vertical-button =
     .title = استخدم التمرير الرأسي
 pdfjs-scroll-vertical-button-label = التمرير الرأسي
@@ -184,9 +187,6 @@ pdfjs-layers-button-label = ‏‏الطبقات
 pdfjs-thumbs-button =
     .title = اعرض مُصغرات
 pdfjs-thumbs-button-label = مُصغّرات
-pdfjs-current-outline-item-button =
-    .title = ابحث عن عنصر المخطّط التفصيلي الحالي
-pdfjs-current-outline-item-button-label = عنصر المخطّط التفصيلي الحالي
 pdfjs-findbar-button =
     .title = ابحث في المستند
 pdfjs-findbar-button-label = ابحث
@@ -220,29 +220,6 @@ pdfjs-find-match-diacritics-checkbox-label = طابِق الحركات
 pdfjs-find-entire-word-checkbox-label = كلمات كاملة
 pdfjs-find-reached-top = تابعت من الأسفل بعدما وصلت إلى بداية المستند
 pdfjs-find-reached-bottom = تابعت من الأعلى بعدما وصلت إلى نهاية المستند
-# Variables:
-#   $current (Number) - the index of the currently active find result
-#   $total (Number) - the total number of matches in the document
-pdfjs-find-match-count =
-    { $total ->
-        [zero] لا  مطابقة
-        [one] { $current } من أصل { $total } مطابقة
-        [two] { $current } من أصل { $total } مطابقة
-        [few] { $current } من أصل { $total } مطابقة
-        [many] { $current } من أصل { $total } مطابقة
-       *[other] { $current } من أصل { $total } مطابقة
-    }
-# Variables:
-#   $limit (Number) - the maximum number of matches
-pdfjs-find-match-count-limit =
-    { $limit ->
-        [zero] { $limit } مطابقة
-        [one] أكثر من { $limit } مطابقة
-        [two] أكثر من { $limit } مطابقة
-        [few] أكثر من { $limit } مطابقة
-        [many] أكثر من { $limit } مطابقة
-       *[other] أكثر من { $limit } مطابقات
-    }
 pdfjs-find-not-found = لا وجود للعبارة
 
 ## Predefined zoom values
@@ -294,6 +271,47 @@ pdfjs-web-fonts-disabled = خطوط الوب مُعطّلة: تعذّر استخ
 
 ## Editing
 
+
+## Remove button for the various kind of editor.
+
+
+##
+
+
+## Alt-text dialog
+
+
+## Editor resizers
+## This is used in an aria label to help to understand the role of the resizer.
+
+
+## Color picker
+
+
+pdfjs-scroll-page-button =
+    .title = استخدم تمرير الصفحة
+pdfjs-scroll-page-button-label = تمرير الصفحة
+pdfjs-current-outline-item-button =
+    .title = ابحث عن عنصر المخطّط التفصيلي الحالي
+pdfjs-current-outline-item-button-label = عنصر المخطّط التفصيلي الحالي
+pdfjs-find-match-count =
+    { $total ->
+        [zero] لا  مطابقة
+        [one] { $current } من أصل { $total } مطابقة
+        [two] { $current } من أصل { $total } مطابقة
+        [few] { $current } من أصل { $total } مطابقة
+        [many] { $current } من أصل { $total } مطابقة
+       *[other] { $current } من أصل { $total } مطابقة
+    }
+pdfjs-find-match-count-limit =
+    { $limit ->
+        [zero] { $limit } مطابقة
+        [one] أكثر من { $limit } مطابقة
+        [two] أكثر من { $limit } مطابقة
+        [few] أكثر من { $limit } مطابقة
+        [many] أكثر من { $limit } مطابقة
+       *[other] أكثر من { $limit } مطابقات
+    }
 pdfjs-editor-free-text-button =
     .title = نص
 pdfjs-editor-free-text-button-label = نص
@@ -312,9 +330,6 @@ pdfjs-highlight-floating-button1 =
     .title = أبرِز
     .aria-label = أبرِز
 pdfjs-highlight-floating-button-label = أبرِز
-
-## Remove button for the various kind of editor.
-
 pdfjs-editor-remove-ink-button =
     .title = أزِل الرسم
 pdfjs-editor-remove-freetext-button =
@@ -323,10 +338,6 @@ pdfjs-editor-remove-stamp-button =
     .title = أزِل الصورة
 pdfjs-editor-remove-highlight-button =
     .title = أزِل الإبراز
-
-##
-
-# Editor Parameters
 pdfjs-editor-free-text-color-input = اللون
 pdfjs-editor-free-text-size-input = الحجم
 pdfjs-editor-ink-color-input = اللون
@@ -335,7 +346,6 @@ pdfjs-editor-ink-opacity-input = العتامة
 pdfjs-editor-stamp-add-image-button =
     .title = أضِف صورة
 pdfjs-editor-stamp-add-image-button-label = أضِف صورة
-# This refers to the thickness of the line used for free highlighting (not bound to text)
 pdfjs-editor-free-highlight-thickness-input = السماكة
 pdfjs-editor-free-highlight-thickness-title =
     .title = غيّر السُمك عند إبراز عناصر أُخرى غير النص
@@ -346,10 +356,6 @@ pdfjs-ink =
     .aria-label = محرِّر الرسم
 pdfjs-ink-canvas =
     .aria-label = صورة أنشأها المستخدم
-
-## Alt-text dialog
-
-# Alternative text (alt text) helps when people can't see the image.
 pdfjs-editor-alt-text-button-label = نص بديل
 pdfjs-editor-alt-text-edit-button-label = تحرير النص البديل
 pdfjs-editor-alt-text-dialog-label = اختر خيار
@@ -361,13 +367,8 @@ pdfjs-editor-alt-text-mark-decorative-description = يُستخدم هذا في �
 pdfjs-editor-alt-text-cancel-button = ألغِ
 pdfjs-editor-alt-text-save-button = احفظ
 pdfjs-editor-alt-text-decorative-tooltip = عُلّمت على أنها زخرفية
-# .placeholder: This is a placeholder for the alt text input area
 pdfjs-editor-alt-text-textarea =
     .placeholder = على سبيل المثال، "يجلس شاب على الطاولة لتناول وجبة"
-
-## Editor resizers
-## This is used in an aria label to help to understand the role of the resizer.
-
 pdfjs-editor-resizer-label-top-left = الزاوية اليُسرى العُليا — غيّر الحجم
 pdfjs-editor-resizer-label-top-middle = أعلى الوسط - غيّر الحجم
 pdfjs-editor-resizer-label-top-right = الزاوية اليُمنى العُليا - غيّر الحجم
@@ -376,10 +377,6 @@ pdfjs-editor-resizer-label-bottom-right = الزاوية اليُمنى السُ
 pdfjs-editor-resizer-label-bottom-middle = أسفل الوسط - غيّر الحجم
 pdfjs-editor-resizer-label-bottom-left = الزاوية اليُسرى السُفلية - غيّر الحجم
 pdfjs-editor-resizer-label-middle-left = مُنتصف اليسار - غيّر الحجم
-
-## Color picker
-
-# This means "Color used to highlight text"
 pdfjs-editor-highlight-colorpicker-label = أبرِز اللون
 pdfjs-editor-colorpicker-button =
     .title = غيّر اللون
@@ -395,69 +392,6 @@ pdfjs-editor-colorpicker-pink =
     .title = وردي
 pdfjs-editor-colorpicker-red =
     .title = أحمر
-
-## Show all highlights
-## This is a toggle button to show/hide all the highlights.
-
 pdfjs-editor-highlight-show-all-button-label = أظهِر الكل
-pdfjs-editor-highlight-show-all-button =
-    .title = أظهِر الكل
-
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
-pdfjs-editor-new-alt-text-dialog-edit-label = Edit alt text (image description)
-pdfjs-editor-new-alt-text-dialog-add-label = Add alt text (image description)
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = Write your description here…
-pdfjs-editor-new-alt-text-description = Short description for people who can’t see the image or when the image doesn’t load.
-pdfjs-editor-new-alt-text-disclaimer1 = This alt text was created automatically and may be inaccurate.
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = Learn more
-pdfjs-editor-new-alt-text-create-automatically-button-label = Create alt text automatically
-pdfjs-editor-new-alt-text-not-now-button = Not now
-pdfjs-editor-new-alt-text-error-title = Couldn’t create alt text automatically
-pdfjs-editor-new-alt-text-error-description = Please write your own alt text or try again later.
-pdfjs-editor-new-alt-text-error-close-button = Close
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = Downloading alt text AI model ({ $downloadedSize } of { $totalSize } MB)
-    .aria-valuetext = Downloading alt text AI model ({ $downloadedSize } of { $totalSize } MB)
-pdfjs-editor-new-alt-text-added-button-label = Alt text added
-pdfjs-editor-new-alt-text-missing-button-label = Missing alt text
-pdfjs-editor-new-alt-text-to-review-button-label = Review alt text
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = Created automatically: { $generatedAltText }
-pdfjs-image-alt-text-settings-button =
-    .title = Image alt text settings
-pdfjs-image-alt-text-settings-button-label = Image alt text settings
-pdfjs-editor-alt-text-settings-dialog-label = Image alt text settings
-pdfjs-editor-alt-text-settings-automatic-title = Automatic alt text
-pdfjs-editor-alt-text-settings-create-model-button-label = Create alt text automatically
-pdfjs-editor-alt-text-settings-create-model-description = Suggests descriptions to help people who can’t see the image or when the image doesn’t load.
-pdfjs-editor-alt-text-settings-download-model-label = Alt text AI model ({ $totalSize } MB)
-pdfjs-editor-alt-text-settings-ai-model-description = Runs locally on your device so your data stays private. Required for automatic alt text.
-pdfjs-editor-alt-text-settings-delete-model-button = Delete
-pdfjs-editor-alt-text-settings-download-model-button = Download
-pdfjs-editor-alt-text-settings-downloading-model-button = Downloading…
-pdfjs-editor-alt-text-settings-editor-title = Alt text editor
-pdfjs-editor-alt-text-settings-show-dialog-button-label = Show alt text editor right away when adding an image
-pdfjs-editor-alt-text-settings-show-dialog-description = Helps you make sure all your images have alt text.
-pdfjs-editor-alt-text-settings-close-button = Close
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression

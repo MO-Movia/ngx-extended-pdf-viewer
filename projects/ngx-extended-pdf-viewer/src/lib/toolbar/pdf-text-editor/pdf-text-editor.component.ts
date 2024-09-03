@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, effect } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { AnnotationEditorEditorModeChangedEvent } from '../../events/annotation-editor-mode-changed-event';
 import { IPDFViewerApplication } from '../../options/pdf-viewer-application';
 import { PDFNotificationService } from '../../pdf-notification-service';
@@ -14,19 +14,17 @@ export class PdfTextEditorComponent {
   public show: ResponsiveVisibility = true;
 
   public isSelected = false;
-  private PDFViewerApplication: IPDFViewerApplication | undefined;
 
   constructor(private notificationService: PDFNotificationService, private cdr: ChangeDetectorRef) {
-    effect(() => {
-      this.PDFViewerApplication = notificationService.onPDFJSInitSignal();
-      if (this.PDFViewerApplication) {
-        this.onPdfJsInit();
-      }
+    const subscription = this.notificationService.onPDFJSInit.subscribe(() => {
+      this.onPdfJsInit();
+      subscription.unsubscribe();
     });
   }
 
   private onPdfJsInit() {
-    this.PDFViewerApplication?.eventBus.on('annotationeditormodechanged', ({ mode }: AnnotationEditorEditorModeChangedEvent) => {
+    const PDFViewerApplication: IPDFViewerApplication = (window as any).PDFViewerApplication;
+    PDFViewerApplication.eventBus.on('annotationeditormodechanged', ({ mode }: AnnotationEditorEditorModeChangedEvent) => {
       setTimeout(() => {
         this.isSelected = mode === 3;
         this.cdr.detectChanges();

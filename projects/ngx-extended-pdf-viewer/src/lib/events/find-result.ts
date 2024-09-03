@@ -15,7 +15,7 @@ export interface FindResultMatchesCount {
   findPrevious: boolean;
   highlightAll: boolean;
   matchDiacritics: boolean;
-  query: string | string[] | RegExp;
+  query: string;
   type: 'findagain' | 'highlightallchange' | 'casesensitivitychange' | 'entirewordchange' | 'diacriticmatchingchange' | 'find';
 }
 

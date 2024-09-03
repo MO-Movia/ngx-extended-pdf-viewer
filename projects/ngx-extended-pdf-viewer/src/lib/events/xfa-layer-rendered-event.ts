@@ -3,5 +3,4 @@ export interface XfaLayerRenderedEvent {
   source: IPDFViewerApplication;
   pageNumber: number;
   error?: any;
-  layer: unknown; // XfaLayerBuilder
 }

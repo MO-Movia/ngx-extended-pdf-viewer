@@ -1,5 +1,4 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { ResponsiveVisibility } from '../../../responsive-visibility';
 
 interface ZoomLevel {
   id: string;
@@ -14,8 +13,6 @@ interface ZoomLevel {
   styleUrls: ['./pdf-zoom-dropdown.component.css'],
 })
 export class PdfZoomDropdownComponent {
-  @Input()
-  public showZoomDropdown: ResponsiveVisibility = true;
   public _zoomLevels: Array<ZoomLevel> = [];
 
   @Input()

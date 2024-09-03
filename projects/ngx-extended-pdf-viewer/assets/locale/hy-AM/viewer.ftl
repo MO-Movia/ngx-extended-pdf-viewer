@@ -29,7 +29,7 @@ pdfjs-zoom-in-button =
     .title = Խոշորացնել
 pdfjs-zoom-in-button-label = Խոշորացնել
 pdfjs-zoom-select =
-    .title = Դիտափոխում
+    .title = Մասշտաբ
 pdfjs-presentation-mode-button =
     .title = Անցնել Ներկայացման եղանակին
 pdfjs-presentation-mode-button-label = Ներկայացման եղանակ
@@ -39,10 +39,6 @@ pdfjs-open-file-button-label = Բացել
 pdfjs-print-button =
     .title = Տպել
 pdfjs-print-button-label = Տպել
-# Used in Firefox for Android as a label for the download button (“download” is a verb).
-# Length of the translation matters since we are in a mobile context, with limited screen estate.
-pdfjs-download-button-label = Ներբեռնել
-pdfjs-bookmark-button-label = Ընթացիկ էջ
 
 ##  Secondary toolbar and context menu
 
@@ -247,13 +243,6 @@ pdfjs-web-fonts-disabled = Վեբ-տառատեսակները անջատված ե
 ## Editing
 
 
-## Remove button for the various kind of editor.
-
-
-##
-
-pdfjs-free-text-default-content = Սկսել մուտքագրումը…
-
 ## Alt-text dialog
 
 
@@ -261,25 +250,18 @@ pdfjs-free-text-default-content = Սկսել մուտքագրումը…
 ## This is used in an aria label to help to understand the role of the resizer.
 
 
-## Color picker
-
-
-## Show all highlights
-## This is a toggle button to show/hide all the highlights.
-
-pdfjs-editor-highlight-show-all-button-label = Ցուցադրել բոլորը
-pdfjs-editor-highlight-show-all-button =
-    .title = Ցուցադրել բոլորը
-
 pdfjs-save-button =
     .title = Save
 pdfjs-save-button-label = Save
+pdfjs-download-button =
+    .title = Download
+pdfjs-download-button-label = Download
+pdfjs-bookmark-button =
+    .title = Current Page (View URL from Current Page)
+pdfjs-bookmark-button-label = Current Page
 pdfjs-scroll-page-button =
     .title = Use Page Scrolling
 pdfjs-scroll-page-button-label = Page Scrolling
-pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)
-pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)
-pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
 pdfjs-toggle-sidebar-notification-button =
     .title = Toggle Sidebar (document contains outline/attachments/layers)
 pdfjs-layers-button =
@@ -302,7 +284,6 @@ pdfjs-find-match-count-limit =
     }
 pdfjs-page-landmark =
     .aria-label = Page { $page }
-pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
 pdfjs-editor-free-text-button =
     .title = Text
 pdfjs-editor-free-text-button-label = Text
@@ -338,6 +319,9 @@ pdfjs-editor-stamp-add-image-button-label = Add image
 pdfjs-editor-free-highlight-thickness-input = Thickness
 pdfjs-editor-free-highlight-thickness-title =
     .title = Change thickness when highlighting items other than text
+pdfjs-free-text =
+    .aria-label = Text Editor
+pdfjs-free-text-default-content = Start typing…
 pdfjs-ink =
     .aria-label = Draw Editor
 pdfjs-ink-canvas =
@@ -355,22 +339,14 @@ pdfjs-editor-alt-text-save-button = Save
 pdfjs-editor-alt-text-decorative-tooltip = Marked as decorative
 pdfjs-editor-alt-text-textarea =
     .placeholder = For example, “A young man sits down at a table to eat a meal”
-pdfjs-editor-resizer-top-left =
-    .aria-label = Top left corner — resize
-pdfjs-editor-resizer-top-middle =
-    .aria-label = Top middle — resize
-pdfjs-editor-resizer-top-right =
-    .aria-label = Top right corner — resize
-pdfjs-editor-resizer-middle-right =
-    .aria-label = Middle right — resize
-pdfjs-editor-resizer-bottom-right =
-    .aria-label = Bottom right corner — resize
-pdfjs-editor-resizer-bottom-middle =
-    .aria-label = Bottom middle — resize
-pdfjs-editor-resizer-bottom-left =
-    .aria-label = Bottom left corner — resize
-pdfjs-editor-resizer-middle-left =
-    .aria-label = Middle left — resize
+pdfjs-editor-resizer-label-top-left = Top left corner — resize
+pdfjs-editor-resizer-label-top-middle = Top middle — resize
+pdfjs-editor-resizer-label-top-right = Top right corner — resize
+pdfjs-editor-resizer-label-middle-right = Middle right — resize
+pdfjs-editor-resizer-label-bottom-right = Bottom right corner — resize
+pdfjs-editor-resizer-label-bottom-middle = Bottom middle — resize
+pdfjs-editor-resizer-label-bottom-left = Bottom left corner — resize
+pdfjs-editor-resizer-label-middle-left = Middle left — resize
 pdfjs-editor-highlight-colorpicker-label = Highlight color
 pdfjs-editor-colorpicker-button =
     .title = Change color
@@ -386,49 +362,6 @@ pdfjs-editor-colorpicker-pink =
     .title = Pink
 pdfjs-editor-colorpicker-red =
     .title = Red
-pdfjs-editor-new-alt-text-dialog-edit-label = Edit alt text (image description)
-pdfjs-editor-new-alt-text-dialog-add-label = Add alt text (image description)
-pdfjs-editor-new-alt-text-textarea =
-    .placeholder = Write your description here…
-pdfjs-editor-new-alt-text-description = Short description for people who can’t see the image or when the image doesn’t load.
-pdfjs-editor-new-alt-text-disclaimer1 = This alt text was created automatically and may be inaccurate.
-pdfjs-editor-new-alt-text-disclaimer-learn-more-url = Learn more
-pdfjs-editor-new-alt-text-create-automatically-button-label = Create alt text automatically
-pdfjs-editor-new-alt-text-not-now-button = Not now
-pdfjs-editor-new-alt-text-error-title = Couldn’t create alt text automatically
-pdfjs-editor-new-alt-text-error-description = Please write your own alt text or try again later.
-pdfjs-editor-new-alt-text-error-close-button = Close
-pdfjs-editor-new-alt-text-ai-model-downloading-progress = Downloading alt text AI model ({ $downloadedSize } of { $totalSize } MB)
-    .aria-valuetext = Downloading alt text AI model ({ $downloadedSize } of { $totalSize } MB)
-pdfjs-editor-new-alt-text-added-button-label = Alt text added
-pdfjs-editor-new-alt-text-missing-button-label = Missing alt text
-pdfjs-editor-new-alt-text-to-review-button-label = Review alt text
-pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = Created automatically: { $generatedAltText }
-pdfjs-image-alt-text-settings-button =
-    .title = Image alt text settings
-pdfjs-image-alt-text-settings-button-label = Image alt text settings
-pdfjs-editor-alt-text-settings-dialog-label = Image alt text settings
-pdfjs-editor-alt-text-settings-automatic-title = Automatic alt text
-pdfjs-editor-alt-text-settings-create-model-button-label = Create alt text automatically
-pdfjs-editor-alt-text-settings-create-model-description = Suggests descriptions to help people who can’t see the image or when the image doesn’t load.
-pdfjs-editor-alt-text-settings-download-model-label = Alt text AI model ({ $totalSize } MB)
-pdfjs-editor-alt-text-settings-ai-model-description = Runs locally on your device so your data stays private. Required for automatic alt text.
-pdfjs-editor-alt-text-settings-delete-model-button = Delete
-pdfjs-editor-alt-text-settings-download-model-button = Download
-pdfjs-editor-alt-text-settings-downloading-model-button = Downloading…
-pdfjs-editor-alt-text-settings-editor-title = Alt text editor
-pdfjs-editor-alt-text-settings-show-dialog-button-label = Show alt text editor right away when adding an image
-pdfjs-editor-alt-text-settings-show-dialog-description = Helps you make sure all your images have alt text.
-pdfjs-editor-alt-text-settings-close-button = Close
+pdfjs-editor-highlight-show-all-button-label = Show all
 unverified-signature-warning = This PDF file contains a digital signature. The PDF viewer can't verify if the signature is valid. Please download the file and open it in Acrobat Reader to verify the signature is valid.
 pdfjs-infinite-scroll-button-label = Infinite scroll
-pdfjs-find-multiple-checkbox-label = multiple queries separated by space"
-pdfjs-find-regexp-checkbox-label = regular expression
-pdfjs-editor-resizer-label-top-left = Top left corner — resize
-pdfjs-editor-resizer-label-top-middle = Top middle — resize
-pdfjs-editor-resizer-label-top-right = Top right corner — resize
-pdfjs-editor-resizer-label-middle-right = Middle right — resize
-pdfjs-editor-resizer-label-bottom-right = Bottom right corner — resize
-pdfjs-editor-resizer-label-bottom-middle = Bottom middle — resize
-pdfjs-editor-resizer-label-bottom-left = Bottom left corner — resize
-pdfjs-editor-resizer-label-middle-left = Middle left — resize

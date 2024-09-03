@@ -4,7 +4,6 @@ export type AnnotationStorage = import("../src/display/annotation_storage").Anno
 export type IDownloadManager = import("./interfaces").IDownloadManager;
 export type IPDFLinkService = import("./interfaces").IPDFLinkService;
 export type TextAccessibilityManager = import("./text_accessibility.js").TextAccessibilityManager;
-export type AnnotationEditorUIManager = import("../src/display/editor/tools.js").AnnotationEditorUIManager;
 export type AnnotationLayerBuilderOptions = {
     pdfPage: PDFPageProxy;
     annotationStorage?: import("../src/display/annotation_storage").AnnotationStorage | undefined;
@@ -23,7 +22,6 @@ export type AnnotationLayerBuilderOptions = {
     } | null> | undefined;
     annotationCanvasMap?: Map<string, HTMLCanvasElement> | undefined;
     accessibilityManager?: import("./text_accessibility.js").TextAccessibilityManager | undefined;
-    annotationEditorUIManager?: import("../src/pdf").AnnotationEditorUIManager | undefined;
     onAppend?: Function | undefined;
 };
 /**
@@ -41,14 +39,13 @@ export type AnnotationLayerBuilderOptions = {
  *   [fieldObjectsPromise]
  * @property {Map<string, HTMLCanvasElement>} [annotationCanvasMap]
  * @property {TextAccessibilityManager} [accessibilityManager]
- * @property {AnnotationEditorUIManager} [annotationEditorUIManager]
  * @property {function} [onAppend]
  */
 export class AnnotationLayerBuilder {
     /**
      * @param {AnnotationLayerBuilderOptions} options
      */
-    constructor({ pdfPage, linkService, downloadManager, annotationStorage, imageResourcesPath, renderForms, enableScripting, hasJSActionsPromise, fieldObjectsPromise, annotationCanvasMap, accessibilityManager, annotationEditorUIManager, onAppend, }: AnnotationLayerBuilderOptions);
+    constructor({ pdfPage, linkService, downloadManager, annotationStorage, imageResourcesPath, renderForms, enableScripting, hasJSActionsPromise, fieldObjectsPromise, annotationCanvasMap, accessibilityManager, onAppend, }: AnnotationLayerBuilderOptions);
     pdfPage: import("../src/display/api").PDFPageProxy;
     linkService: import("./interfaces").IPDFLinkService;
     downloadManager: import("./interfaces").IDownloadManager | undefined;
@@ -62,7 +59,6 @@ export class AnnotationLayerBuilder {
     } | null>;
     _annotationCanvasMap: Map<string, HTMLCanvasElement>;
     _accessibilityManager: import("./text_accessibility.js").TextAccessibilityManager;
-    _annotationEditorUIManager: import("../src/pdf").AnnotationEditorUIManager;
     annotationLayer: AnnotationLayer | null;
     div: HTMLDivElement | null;
     _cancelled: boolean;
@@ -76,7 +72,6 @@ export class AnnotationLayerBuilder {
     render(viewport: PageViewport, intent?: string): Promise<void>;
     cancel(): void;
     hide(): void;
-    hasEditableAnnotations(): boolean;
     #private;
 }
 import { AnnotationLayer } from "../src/pdf";

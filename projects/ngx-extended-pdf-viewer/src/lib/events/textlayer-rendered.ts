@@ -1,5 +1,4 @@
 import { PDFPageView } from '../options/pdf_page_view';
-import { TextLayerBuilder } from '../options/text-layer-builder';
 
 export type PageViewportParameters = {
   /**
@@ -35,6 +34,5 @@ export type PageViewportParameters = {
 export interface TextLayerRenderedEvent {
   source: PDFPageView;
   pageNumber: number;
-  layer: TextLayerBuilder;
-  error?: unknown;
+  numTextDivs: number;
 }
