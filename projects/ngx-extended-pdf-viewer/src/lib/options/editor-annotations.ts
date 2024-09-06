@@ -1,3 +1,6 @@
+import { HighlightEditor } from "../../../types/src/display/editor/highlight";
+
+
 export enum AnnotationMode {
   DISABLE = 0,
   ENABLE = 1,
@@ -74,6 +77,9 @@ export type HighlightEditorAnnotation = {
   rotation: 0 | 90 | 180 | 270; // in degrees
 };
 //[FS] - 28-08-2024
+
+export type highlightEditor = HighlightEditor;
+
 export interface AnnotationItem {
   pageNumber: number;
   anchorSpanIndex: number;
@@ -84,7 +90,7 @@ export interface AnnotationItem {
   type: AnnotationActionType;
   text: string;
   comment?: string;
-  Tags: [];
+  Tags: number[];
 }
 
 export interface ShowCommentTagPopoverDetails {
