@@ -1845,18 +1845,21 @@ function setLayerDimensions(div, viewport, mustFlip = false, mustRotate = true) 
   keyboardAnnotations() {
     document.addEventListener("keydown", (event) => {
       const editToolbar = this.#toolbar;
-        if (editToolbar && editToolbar.className === "editToolbar") {
-        
-          if (event.key === "h") {
-            this.editor.unselect();
-          } else if (event.key === "t") {
-            this.editor.eventBus.dispatch('showCommentTagPopover', { id: this.editor.id, type: "Tag" });
-          }else if (event.key === "n") {
-            event.stopPropagation();
-            this.editor.eventBus.dispatch('showCommentTagPopover', { id: this.editor.id, type: "Comment" });
-          }
-          
-        
+      if (editToolbar && editToolbar.className === "editToolbar") {
+
+        if (event.ctrlKey && (event.key === "h" || event.key === "H")) {
+          event.preventDefault()
+          this.editor.unselect();
+        } else if (event.ctrlKey && (event.key === "t" || event.key === "T")) {
+          event.preventDefault()
+          this.editor.eventBus.dispatch('showCommentTagPopover', { id: this.editor.id, type: "Tag" });
+        } else if (event.ctrlKey && (event.key === "n" || event.key === "N")) {
+          event.preventDefault()
+          event.stopPropagation();
+          this.editor.eventBus.dispatch('showCommentTagPopover', { id: this.editor.id, type: "Comment" });
+        }
+
+
       }
     });
   }
