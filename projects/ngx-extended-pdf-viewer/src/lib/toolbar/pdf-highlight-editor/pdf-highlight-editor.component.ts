@@ -38,12 +38,11 @@ export class PdfHighlightEditorComponent {
   public onClick(): void {
     document.getElementById('editorHighlight')?.click();
   }
-  //[FS] - 28-08-2024
-  @HostListener('document:keydown', ['$event'])
+
+  // Listen to the keydown event specifically for 'e' or 'E'
+  @HostListener('document:keydown.control.e', ['$event'])
   public handleOnClick(event: KeyboardEvent): void {
-    if (event.key === 'E' || event.key === 'e') {
-      event.preventDefault();
-      document.getElementById('editorHighlight')?.click();
-    }
+    event.preventDefault();
+    this.onClick();
   }
 }

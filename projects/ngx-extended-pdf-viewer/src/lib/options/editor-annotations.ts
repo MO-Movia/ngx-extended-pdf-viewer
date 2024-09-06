@@ -84,7 +84,7 @@ export interface AnnotationItem {
   type: AnnotationActionType;
   text: string;
   comment?: string;
-  Tags: [];
+  Tags: number[];
 }
 
 export interface ShowCommentTagPopoverDetails {
