@@ -76,7 +76,6 @@ export type HighlightEditorAnnotation = {
   pageIndex: number;
   rotation: 0 | 90 | 180 | 270; // in degrees
 };
-//[FS] - 28-08-2024
 
 export type highlightEditor = HighlightEditor;
 

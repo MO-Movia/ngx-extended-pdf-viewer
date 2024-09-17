@@ -1,5 +1,5 @@
 import { effect, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
-import { AnnotationEditorParamsType, AnnotationMode, EditorAnnotation, StampEditorAnnotation, AnnotationItem } from './options/editor-annotations';
+import { AnnotationEditorParamsType, AnnotationItem, AnnotationMode, EditorAnnotation, StampEditorAnnotation } from './options/editor-annotations';
 import { PdfLayer } from './options/optional_content_config';
 import { PDFPrintRange } from './options/pdf-print-range';
 import { IPDFViewerApplication, PDFDocumentProxy, PDFFindParameters, PDFPageProxy, TextItem, TextMarkedContent } from './options/pdf-viewer-application';
@@ -725,7 +725,6 @@ export class NgxExtendedPdfViewerService {
     this.PDFViewerApplication?.eventBus.dispatch('switchannotationeditorparams', { type: editorPropertyType, value });
     this.PDFViewerApplication?.eventBus.dispatch('annotationeditorparamschanged', { details: [[editorPropertyType, value]] });
   }
-  //[FS] - 28-08-2024
   public setAnnotation(anottationConfigs: AnnotationItem[]): void {
     this.PDFViewerApplication?.eventBus.dispatch('loadAnnotation', { anottationConfigs });
   }

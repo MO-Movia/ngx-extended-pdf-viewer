@@ -1804,7 +1804,6 @@
   }
 
   ;// CONCATENATED MODULE: ./src/display/editor/toolbar.js
-  //[FS] - 28-08-2024
   class EditorToolbar {
     #toolbar = null;
     #colorPicker = null;
@@ -1837,7 +1836,6 @@
         style.insetInlineEnd = `${100 * x}%`;
         style.top = `calc(${100 * position[1]}% + var(--editor-toolbar-vert-offset))`;
       }
-      //[FS] - 28-08-2024
       const tagButtonClassName = this.editor.annotationConfig.type === 'Tag' ? 'tag editPencil' : 'tag';
       const noteButtonClassName = this.editor.annotationConfig.type === 'Comment' ? 'comment editPencil' : 'comment';
 
@@ -1846,7 +1844,6 @@
       this.#addDeleteButton();
       return editToolbar;
     }
-    //[FS] - 28-08-2024
     keyboardAnnotations() {
       document.addEventListener("keydown", (event) => {
         const editToolbar = this.#toolbar;
@@ -1905,7 +1902,6 @@
     show() {
       this.#toolbar.classList.remove("hidden");
     }
-    //[FS] - 28-08-2024
     addTagButton(tagClassName = "tag") {
       let button = this.#buttons.querySelector('.tag');
 
@@ -1930,7 +1926,6 @@
       button.title = tagClassName === 'tag editPencil' ? 'Edit Tag' : 'Add Tag';
 
     }
-    //[FS] - 28-08-2024
     addCommentButton(noteClassName = "comment") {
       let button = this.#buttons.querySelector('.comment');
 
@@ -1960,7 +1955,6 @@
       const button = document.createElement("button");
       button.className = "delete";
       button.tabIndex = 0;
-      //[FS] - 28-08-2024
       button.title = "Remove";
       this.#addListenersToElement(button);
       button.addEventListener("click", e => {
@@ -1979,7 +1973,6 @@
       this.#addListenersToElement(button);
       this.#buttons.prepend(button, this.#divider);
     }
-    //[FS] - 28-08-2024
     // addColorPicker(colorPicker) {
     //   this.#colorPicker = colorPicker;
     //   const button = colorPicker.renderButton();
@@ -2471,7 +2464,6 @@
       const textInputChecker = (_self, {
         target: el
       }) => {
-        //[FS] - 28-08-2024
         // allowing only if from pdf viewer
         if (!el.parentElement.classList.contains('annotationEditorLayer')) {
           return false;
@@ -2534,7 +2526,6 @@
       this.#container = container;
       this.#viewer = viewer;
       this.#altTextManager = altTextManager;
-      //[FS] - 28-08-2024
       this.annottationConfigs = [];
       this.renderedConfigs = [];
       this._eventBus = eventBus;
@@ -2542,7 +2533,6 @@
       this._eventBus._on("pagechanging", this.#boundOnPageChanging);
       this._eventBus._on("scalechanging", this.#boundOnScaleChanging);
       this._eventBus._on("rotationchanging", this.#boundOnRotationChanging);
-      //[FS] - 28-08-2024
       // custom event to load annotation
       this._eventBus._on("loadAnnotation", function (e) {
         this.annottationConfigs = e.anottationConfigs.filter(d => !this.renderedConfigs.some(({ anchorSpanIndex, pageNumber, text }) => anchorSpanIndex === d.anchorSpanIndex && pageNumber === d.pageNumber && text === d.text));
@@ -2620,7 +2610,6 @@
     get highlightColorNames() {
       return shadow(this, "highlightColorNames", this.highlightColors ? new Map(Array.from(this.highlightColors, e => e.reverse())) : null);
     }
-    //[FS] - 28-08-2024
     setAnnotationSelection(anottationConfig) {
       if (anottationConfig) {
         const allSpans = this.removeDuplicateElement(Array.from(this.#container.querySelectorAll(`.page[data-page-number="${anottationConfig.pageNumber}"] .textLayer span`)));
@@ -2729,7 +2718,6 @@
     }) {
       return anchorNode.nodeType === Node.TEXT_NODE ? anchorNode.parentElement : anchorNode;
     }
-    //[FS] - 28-08-2024
     #getFocusElementForSelection({
       focusNode
     }) {
@@ -2764,11 +2752,9 @@
       } = selection;
       const text = selection.toString();
       const anchorElement = this.#getAnchorElementForSelection(selection);
-      //[FS] - 28-08-2024
       const focusElement = this.#getFocusElementForSelection(selection);
       const textLayer = anchorElement.closest(".textLayer");
       const boxes = this.getSelectionBoxes(textLayer);
-      //[FS] - 28-08-2024
       const pageNumber = this.#currentPageIndex + 1;
 
       const allSpans = this.removeDuplicateElement(Array.from(this.#container.querySelectorAll(`.page[data-page-number="${pageNumber}"] .textLayer span`)));
@@ -2794,7 +2780,6 @@
       if (!boxes) {
         return;
       }
-      //[FS] - 28-08-2024
       //selection.empty();
       const layer = this.#getLayerForTextLayer(textLayer);
       const isNoneMode = this.#mode === AnnotationEditorType.NONE;
@@ -2823,7 +2808,6 @@
       }
       callback();
     }
-    //[FS] - 28-08-2024
     removeStyleTransform(element) {
       element.style.removeProperty('transform');
       return element;
@@ -4117,7 +4101,6 @@
       this.pageIndex = parameters.parent.pageIndex;
       this.name = parameters.name;
       this.div = null;
-      //[FS] - 28-08-2024
       this.annotationConfig = parameters.annotationLocation;
       this._uiManager = parameters.uiManager;
       this.annotationElementId = null;
@@ -4795,7 +4778,6 @@
         this.parent.toggleSelected(this);
       } else {
         this.parent.setSelected(this);
-        //[FS] - 28-08-2024
         const tagClassName = this.#editToolbar.editor.annotationConfig.type === 'Tag' ? 'tag editPencil' : 'tag';
         this.#editToolbar.addTagButton(tagClassName);
         const noteClassName = this.#editToolbar.editor.annotationConfig.type === 'Comment' ? 'comment editPencil' : 'comment';
@@ -19786,7 +19768,6 @@
     }
     #textLayerPointerDown(event) {
       this.#uiManager.unselectAll();
-      //[FS] - 28-08-2024
       if (event.target === this.#textLayer.div && false) // Disabled the free select 
       {
         const {
@@ -19861,7 +19842,6 @@
       if (!this.#isCleaningUp) {
         this.addInkEditorIfNeeded(false);
       }
-      //[FS] - 28-08-2024
       this.eventBus.dispatch("annotation-removed", { id: editor.id });
     }
     changeParent(editor) {
@@ -19999,7 +19979,6 @@
       if (editor) {
         this.add(editor);
       }
-      //[FS] - 28-08-2024
       this.eventBus.dispatch("showhighlightedArray", editor);
       // clear the selection
       document.getSelection()?.empty();

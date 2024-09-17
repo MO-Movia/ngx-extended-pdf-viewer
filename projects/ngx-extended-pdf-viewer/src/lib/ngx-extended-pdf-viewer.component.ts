@@ -61,7 +61,6 @@ import { XfaLayerRenderedEvent } from './events/xfa-layer-rendered-event';
 import { NgxFormSupport } from './ngx-form-support';
 import { NgxHasHeight } from './ngx-has-height';
 import { NgxKeyboardManagerService } from './ngx-keyboard-manager.service';
-//[FS] - 28-08-2024
 import { AnnotationDeleteEvent, ShowCommentTagPopoverDetails } from './options/editor-annotations';
 import { PdfSidebarView } from './options/pdf-sidebar-views';
 import { SpreadType } from './options/spread-type';
@@ -106,13 +105,10 @@ export class NgxExtendedPdfViewerComponent implements OnInit, OnChanges, OnDestr
 
   @Output()
   public annotationEditorEvent = new EventEmitter<AnnotationEditorEvent>();
-  //[FS] - 28-08-2024
   @Output()
   public commentTagEvent = new EventEmitter<ShowCommentTagPopoverDetails>();
-  //[FS] - 28-08-2024
   @Output()
   public highlightArrayEvent = new EventEmitter<any>();
-  //[FS] - 28-08-2024
   @Output()
   public annotationRemovedEvent = new EventEmitter<AnnotationDeleteEvent>();
 
@@ -1517,7 +1513,6 @@ export class NgxExtendedPdfViewerComponent implements OnInit, OnChanges, OnDestr
         this.annotationEditorEvent.emit(x);
       });
     });
-    //[FS] - 28-08-2024
     PDFViewerApplication.eventBus.on('showCommentTagPopover', (event: ShowCommentTagPopoverDetails) => {
       this.ngZone.run(() => {
         this.commentTagEvent.emit(event);

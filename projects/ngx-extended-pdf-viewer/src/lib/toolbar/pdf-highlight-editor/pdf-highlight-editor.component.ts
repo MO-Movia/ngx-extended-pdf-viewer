@@ -38,7 +38,6 @@ export class PdfHighlightEditorComponent {
   public onClick(): void {
     document.getElementById('editorHighlight')?.click();
   }
-  //[FS] - 28-08-2024
   @HostListener('document:keydown.alt.e', ['$event'])
   public handleOnClick(event: KeyboardEvent): void {
     event.preventDefault();
