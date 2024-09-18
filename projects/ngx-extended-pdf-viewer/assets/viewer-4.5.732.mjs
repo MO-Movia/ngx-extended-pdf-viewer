@@ -1807,17 +1807,17 @@
   class EditorToolbar {
     #toolbar = null;
     #colorPicker = null;
-    editor;
+    #editor;
     #buttons = null;
     constructor(editor) {
-      this.editor = editor;
+      this.#editor = editor;
       this.keyboardAnnotations();
     }
     render() {
       const editToolbar = this.#toolbar = document.createElement("div");
       editToolbar.className = "editToolbar";
       editToolbar.setAttribute("role", "toolbar");
-      const signal = this.editor._uiManager._signal;
+      const signal = this.#editor._uiManager._signal;
       editToolbar.addEventListener("contextmenu", noContextMenu, {
         signal
       });
@@ -1827,17 +1827,17 @@
       const buttons = this.#buttons = document.createElement("div");
       buttons.className = "buttons";
       editToolbar.append(buttons);
-      const position = this.editor.toolbarPosition;
+      const position = this.#editor.toolbarPosition;
       if (position) {
         const {
           style
         } = editToolbar;
-        const x = this.editor._uiManager.direction === "ltr" ? 1 - position[0] : position[0];
+        const x = this.#editor._uiManager.direction === "ltr" ? 1 - position[0] : position[0];
         style.insetInlineEnd = `${100 * x}%`;
         style.top = `calc(${100 * position[1]}% + var(--editor-toolbar-vert-offset))`;
       }
-      const tagButtonClassName = this.editor.annotationConfig.type === 'Tag' ? 'tag editPencil' : 'tag';
-      const noteButtonClassName = this.editor.annotationConfig.type === 'Comment' ? 'comment editPencil' : 'comment';
+      const tagButtonClassName = this.#editor.annotationConfig.type === 'Tag' ? 'tag editPencil' : 'tag';
+      const noteButtonClassName = this.#editor.annotationConfig.type === 'Comment' ? 'comment editPencil' : 'comment';
 
       this.addTagButton(tagButtonClassName);
       this.addCommentButton(noteButtonClassName);
@@ -1852,15 +1852,15 @@
           if (event.altKey && (event.key === "h" || event.key === "H")) {
             event.preventDefault();
             event.stopPropagation();
-            this.editor.unselect();
+            this.#editor.unselect();
           } else if (event.altKey && (event.key === "t" || event.key === "T")) {
             event.preventDefault();
             event.stopPropagation();
-            this.editor.eventBus.dispatch('showCommentTagPopover', { id: this.editor.id, type: "Tag" });
+            this.#editor.eventBus.dispatch('showCommentTagPopover', { id: this.#editor.id, type: "Tag" });
           } else if (event.altKey && (event.key === "n" || event.key === "N")) {
             event.preventDefault();
             event.stopPropagation();
-            this.editor.eventBus.dispatch('showCommentTagPopover', { id: this.editor.id, type: "Comment" });
+            this.#editor.eventBus.dispatch('showCommentTagPopover', { id: this.#editor.id, type: "Comment" });
           }
 
 
@@ -1872,17 +1872,17 @@
       e.stopPropagation();
     }
     #focusIn(e) {
-      this.editor._focusEventsAllowed = false;
+      this.#editor._focusEventsAllowed = false;
       e.preventDefault();
       e.stopPropagation();
     }
     #focusOut(e) {
-      this.editor._focusEventsAllowed = true;
+      this.#editor._focusEventsAllowed = true;
       e.preventDefault();
       e.stopPropagation();
     }
     #addListenersToElement(element) {
-      const signal = this.editor._uiManager._signal;
+      const signal = this.#editor._uiManager._signal;
       element.addEventListener("focusin", this.#focusIn.bind(this), {
         capture: true,
         signal
@@ -1917,7 +1917,7 @@
         });
 
         button.addEventListener("click", () => {
-          this.editor.eventBus.dispatch('showCommentTagPopover', { id: this.editor.id, type: "Tag" });
+          this.#editor.eventBus.dispatch('showCommentTagPopover', { id: this.#editor.id, type: "Tag" });
         });
 
         this.#buttons.append(button);
@@ -1941,7 +1941,7 @@
         });
 
         button.addEventListener("click", () => {
-          this.editor.eventBus.dispatch('showCommentTagPopover', { id: this.editor.id, type: "Comment" });
+          this.#editor.eventBus.dispatch('showCommentTagPopover', { id: this.#editor.id, type: "Comment" });
         });
 
         this.#buttons.append(button);
@@ -1958,9 +1958,9 @@
       button.title = "Remove";
       this.#addListenersToElement(button);
       button.addEventListener("click", e => {
-        this.editor._uiManager.delete();
+        this.#editor._uiManager.delete();
       }, {
-        signal: this.editor._uiManager._signal
+        signal: this.#editor._uiManager._signal
       });
       this.#buttons.append(button);
     }
@@ -2403,7 +2403,7 @@
   class AnnotationEditorUIManager {
     #abortController = new AbortController();
     #activeEditor = null;
-    allEditors = new Map();
+    #allEditors = new Map();
     #allLayers = new Map();
     #altTextManager = null;
     #annotationStorage = null;
@@ -2572,7 +2572,7 @@
         layer.destroy();
       }
       this.#allLayers.clear();
-      this.allEditors.clear();
+      this.#allEditors.clear();
       this.#editorsToRescale.clear();
       this.#activeEditor = null;
       this.#selectedEditors.clear();
@@ -3261,7 +3261,7 @@
       if (!editId) {
         return;
       }
-      for (const editor of this.allEditors.values()) {
+      for (const editor of this.#allEditors.values()) {
         if (editor.annotationElementId === editId) {
           this.setSelected(editor);
           editor.enterInEditMode();
@@ -3317,7 +3317,7 @@
       }
     }
     showAllEditors(type, visible, updateButton = false) {
-      for (const editor of this.allEditors.values()) {
+      for (const editor of this.#allEditors.values()) {
         if (editor.editorType === type) {
           editor.show(visible);
         }
@@ -3347,7 +3347,7 @@
         for (const layer of this.#allLayers.values()) {
           layer.enable();
         }
-        for (const editor of this.allEditors.values()) {
+        for (const editor of this.#allEditors.values()) {
           editor.enable();
         }
       }
@@ -3359,14 +3359,14 @@
         for (const layer of this.#allLayers.values()) {
           layer.disable();
         }
-        for (const editor of this.allEditors.values()) {
+        for (const editor of this.#allEditors.values()) {
           editor.disable();
         }
       }
     }
     getEditors(pageIndex) {
       const editors = [];
-      for (const editor of this.allEditors.values()) {
+      for (const editor of this.#allEditors.values()) {
         if (editor.pageIndex === pageIndex) {
           editors.push(editor);
         }
@@ -3374,10 +3374,10 @@
       return editors;
     }
     getEditor(id) {
-      return this.allEditors.get(id);
+      return this.#allEditors.get(id);
     }
     addEditor(editor) {
-      this.allEditors.set(editor.id, editor);
+      this.#allEditors.set(editor.id, editor);
     }
     removeEditor(editor) {
       if (editor.div.contains(document.activeElement)) {
@@ -3389,7 +3389,7 @@
           this.#focusMainContainerTimeoutId = null;
         }, 0);
       }
-      this.allEditors.delete(editor.id);
+      this.#allEditors.delete(editor.id);
       this.unselect(editor);
       if (!editor.annotationElementId || !this.#deletedAnnotationsElementIds.has(editor.annotationElementId)) {
         this.#annotationStorage?.remove(editor.id);
@@ -3510,11 +3510,11 @@
       });
     }
     #isEmpty() {
-      if (this.allEditors.size === 0) {
+      if (this.#allEditors.size === 0) {
         return true;
       }
-      if (this.allEditors.size === 1) {
-        for (const editor of this.allEditors.values()) {
+      if (this.#allEditors.size === 1) {
+        for (const editor of this.#allEditors.values()) {
           return editor.isEmpty();
         }
       }
@@ -3568,7 +3568,7 @@
       for (const editor of this.#selectedEditors) {
         editor.commit();
       }
-      this.#selectEditors(this.allEditors.values());
+      this.#selectEditors(this.#allEditors.values());
     }
     unselectAll() {
       if (this.#activeEditor) {
@@ -3609,14 +3609,14 @@
         this.addCommands({
           cmd: () => {
             for (const editor of editors) {
-              if (this.allEditors.has(editor.id)) {
+              if (this.#allEditors.has(editor.id)) {
                 editor.translateInPage(totalX, totalY);
               }
             }
           },
           undo: () => {
             for (const editor of editors) {
-              if (this.allEditors.has(editor.id)) {
+              if (this.#allEditors.has(editor.id)) {
                 editor.translateInPage(-totalX, -totalY);
               }
             }
@@ -3667,7 +3667,7 @@
         return false;
       }
       const move = (editor, x, y, pageIndex) => {
-        if (this.allEditors.has(editor.id)) {
+        if (this.#allEditors.has(editor.id)) {
           const parent = this.#allLayers.get(pageIndex);
           if (parent) {
             editor._setParentAndPosition(parent, x, y);
@@ -3761,7 +3761,7 @@
     removeEditors(filterFunction = () => true) {
       let hasChanged = false;
       this.#allLayers.forEach(layer => layer.setCleaningUp(true));
-      this.allEditors.forEach(editor => {
+      this.#allEditors.forEach(editor => {
         if (editor?.serialize()) {
           if (filterFunction(editor.serialize())) {
             editor.remove();
@@ -19529,7 +19529,7 @@
     #boundPointerdown = null;
     #boundTextLayerPointerDown = null;
     #editorFocusTimeoutId = null;
-    editors = new Map();
+    #editors = new Map();
     #hadPointerDown = false;
     #isCleaningUp = false;
     #isDisabling = false;
@@ -19569,7 +19569,7 @@
       this.eventBus = eventBus;
     }
     get isEmpty() {
-      return this.editors.size === 0;
+      return this.#editors.size === 0;
     }
     get isInvisible() {
       return this.isEmpty && this.#uiManager.getMode() === AnnotationEditorType.NONE;
@@ -19619,7 +19619,7 @@
         return;
       }
       if (!isCommitting) {
-        for (const editor of this.editors.values()) {
+        for (const editor of this.#editors.values()) {
           if (editor.isEmpty()) {
             editor.setInBackground();
             return;
@@ -19651,7 +19651,7 @@
       this.div.tabIndex = 0;
       this.togglePointerEvents(true);
       const annotationElementIds = new Set();
-      for (const editor of this.editors.values()) {
+      for (const editor of this.#editors.values()) {
         editor.enableEditing();
         editor.show(true);
         if (editor.annotationElementId) {
@@ -19685,7 +19685,7 @@
       this.togglePointerEvents(false);
       const changedAnnotations = new Map();
       const resetAnnotations = new Map();
-      for (const editor of this.editors.values()) {
+      for (const editor of this.#editors.values()) {
         editor.disableEditing();
         if (!editor.annotationElementId) {
           continue;
@@ -19819,7 +19819,7 @@
       this.#boundPointerup = null;
     }
     attach(editor) {
-      this.editors.set(editor.id, editor);
+      this.#editors.set(editor.id, editor);
       const {
         annotationElementId
       } = editor;
@@ -19828,7 +19828,7 @@
       }
     }
     detach(editor) {
-      this.editors.delete(editor.id);
+      this.#editors.delete(editor.id);
       this.#accessibilityManager?.removePointerInTextLayer(editor.contentDiv);
       if (!this.#isDisabling && editor.annotationElementId) {
         this.#uiManager.addDeletedAnnotationElement(editor);
@@ -20087,12 +20087,12 @@
         editor.div.remove();
       }
       this.div = null;
-      this.editors.clear();
+      this.#editors.clear();
       this.#uiManager.removeLayer(this);
     }
     #cleanup() {
       this.#isCleaningUp = true;
-      for (const editor of this.editors.values()) {
+      for (const editor of this.#editors.values()) {
         if (editor.isEmpty()) {
           editor.remove();
         }
@@ -20122,7 +20122,7 @@
         rotation
       });
       if (oldRotation !== rotation) {
-        for (const editor of this.editors.values()) {
+        for (const editor of this.#editors.values()) {
           editor.rotate(rotation);
         }
       }
