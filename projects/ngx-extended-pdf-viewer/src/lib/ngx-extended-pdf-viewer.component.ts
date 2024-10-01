@@ -48,6 +48,10 @@ import { PDFNotificationService } from './pdf-notification-service';
 import { PdfSecondaryToolbarComponent } from './secondary-toolbar/pdf-secondary-toolbar/pdf-secondary-toolbar.component';
 import { PdfSidebarComponent } from './sidebar/pdf-sidebar/pdf-sidebar.component';
 
+import { FreeTextEditor } from '../../types/src/display/editor/freetext';
+import { HighlightEditor } from '../../types/src/display/editor/highlight';
+import { InkEditor } from '../../types/src/display/editor/ink';
+import { StampEditor } from '../../types/src/display/editor/stamp';
 import { DynamicCssComponent } from './dynamic-css/dynamic-css.component';
 import { AnnotationEditorEvent } from './events/annotation-editor-layer-event';
 import { AnnotationEditorLayerRenderedEvent } from './events/annotation-editor-layer-rendered-event';
@@ -108,7 +112,7 @@ export class NgxExtendedPdfViewerComponent implements OnInit, OnChanges, OnDestr
   @Output()
   public commentTagEvent = new EventEmitter<ShowCommentTagPopoverDetails>();
   @Output()
-  public highlightArrayEvent = new EventEmitter<any>();
+  public highlightArrayEvent = new EventEmitter<typeof FreeTextEditor | typeof HighlightEditor | typeof InkEditor | typeof StampEditor>();
   @Output()
   public annotationRemovedEvent = new EventEmitter<AnnotationDeleteEvent>();
 
@@ -1525,11 +1529,14 @@ export class NgxExtendedPdfViewerComponent implements OnInit, OnChanges, OnDestr
       });
     });
 
-    PDFViewerApplication.eventBus.on('showhighlightedArray', (editor: any) => {
-      this.ngZone.run(() => {
-        this.highlightArrayEvent.emit(editor);
-      });
-    });
+    PDFViewerApplication.eventBus.on(
+      'showhighlightedArray',
+      (editor: typeof FreeTextEditor | typeof HighlightEditor | typeof InkEditor | typeof StampEditor) => {
+        this.ngZone.run(() => {
+          this.highlightArrayEvent.emit(editor);
+        });
+      }
+    );
 
     PDFViewerApplication.eventBus.on('toggleSidebar', (x: ToggleSidebarEvent) => {
       this.ngZone.run(() => {
