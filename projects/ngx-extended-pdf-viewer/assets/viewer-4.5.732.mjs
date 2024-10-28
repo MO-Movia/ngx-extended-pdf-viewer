@@ -4778,9 +4778,9 @@
         this.parent.toggleSelected(this);
       } else {
         this.parent.setSelected(this);
-        const tagClassName = this.#editToolbar.editor.annotationConfig.type === 'Tag' ? 'tag editPencil' : 'tag';
+        const tagClassName = this.annotationConfig.type === 'Tag' ? 'tag editPencil' : 'tag';
         this.#editToolbar.addTagButton(tagClassName);
-        const noteClassName = this.#editToolbar.editor.annotationConfig.type === 'Comment' ? 'comment editPencil' : 'comment';
+        const noteClassName = this.annotationConfig.type === 'Comment' ? 'comment editPencil' : 'comment';
         this.#editToolbar.addCommentButton(noteClassName);
       }
     }
