@@ -20080,7 +20080,7 @@
         clearTimeout(this.#editorFocusTimeoutId);
         this.#editorFocusTimeoutId = null;
       }
-      for (const editor of this.editors.values()) {
+      for (const editor of this.#editors.values()) {
         this.#accessibilityManager?.removePointerInTextLayer(editor.contentDiv);
         editor.setParent(null);
         editor.isAttachedToDOM = false;
