@@ -48,6 +48,10 @@ import { PDFNotificationService } from './pdf-notification-service';
 import { PdfSecondaryToolbarComponent } from './secondary-toolbar/pdf-secondary-toolbar/pdf-secondary-toolbar.component';
 import { PdfSidebarComponent } from './sidebar/pdf-sidebar/pdf-sidebar.component';
 
+import { FreeTextEditor } from '../../types/src/display/editor/freetext';
+import { HighlightEditor } from '../../types/src/display/editor/highlight';
+import { InkEditor } from '../../types/src/display/editor/ink';
+import { StampEditor } from '../../types/src/display/editor/stamp';
 import { DynamicCssComponent } from './dynamic-css/dynamic-css.component';
 import { AnnotationEditorEvent } from './events/annotation-editor-layer-event';
 import { AnnotationEditorLayerRenderedEvent } from './events/annotation-editor-layer-rendered-event';
@@ -61,6 +65,7 @@ import { XfaLayerRenderedEvent } from './events/xfa-layer-rendered-event';
 import { NgxFormSupport } from './ngx-form-support';
 import { NgxHasHeight } from './ngx-has-height';
 import { NgxKeyboardManagerService } from './ngx-keyboard-manager.service';
+import { AnnotationDeleteEvent, ShowCommentTagPopoverDetails } from './options/editor-annotations';
 import { PdfSidebarView } from './options/pdf-sidebar-views';
 import { SpreadType } from './options/spread-type';
 import { PDFScriptLoaderService } from './pdf-script-loader.service';
@@ -104,6 +109,13 @@ export class NgxExtendedPdfViewerComponent implements OnInit, OnChanges, OnDestr
 
   @Output()
   public annotationEditorEvent = new EventEmitter<AnnotationEditorEvent>();
+  @Output()
+  public commentTagEvent = new EventEmitter<ShowCommentTagPopoverDetails>();
+  @Output()
+  public highlightArrayEvent = new EventEmitter<typeof FreeTextEditor | typeof HighlightEditor | typeof InkEditor | typeof StampEditor>();
+  @Output()
+  public annotationRemovedEvent = new EventEmitter<AnnotationDeleteEvent>();
+
   /* UI templates */
   @Input()
   public customFindbarInputArea: TemplateRef<any> | undefined;
@@ -1505,6 +1517,26 @@ export class NgxExtendedPdfViewerComponent implements OnInit, OnChanges, OnDestr
         this.annotationEditorEvent.emit(x);
       });
     });
+    PDFViewerApplication.eventBus.on('showCommentTagPopover', (event: ShowCommentTagPopoverDetails) => {
+      this.ngZone.run(() => {
+        this.commentTagEvent.emit(event);
+      });
+    });
+
+    PDFViewerApplication.eventBus.on('annotation-removed', (event: AnnotationDeleteEvent) => {
+      this.ngZone.run(() => {
+        this.annotationRemovedEvent.emit(event);
+      });
+    });
+
+    PDFViewerApplication.eventBus.on(
+      'showhighlightedArray',
+      (editor: typeof FreeTextEditor | typeof HighlightEditor | typeof InkEditor | typeof StampEditor) => {
+        this.ngZone.run(() => {
+          this.highlightArrayEvent.emit(editor);
+        });
+      }
+    );
 
     PDFViewerApplication.eventBus.on('toggleSidebar', (x: ToggleSidebarEvent) => {
       this.ngZone.run(() => {

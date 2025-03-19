@@ -1,3 +1,6 @@
+import { HighlightEditor } from "../../../types/src/display/editor/highlight";
+
+
 export enum AnnotationMode {
   DISABLE = 0,
   ENABLE = 1,
@@ -73,5 +76,35 @@ export type HighlightEditorAnnotation = {
   pageIndex: number;
   rotation: 0 | 90 | 180 | 270; // in degrees
 };
+
+export type highlightEditor = HighlightEditor;
+
+export interface AnnotationItem {
+  pageNumber: number;
+  anchorSpanIndex: number;
+  focusSpanIndex: number;
+  anchorOffset: number;
+  focusOffset: number;
+  color: string;
+  type: AnnotationActionType;
+  text: string;
+  comment?: string;
+  Tags: number[];
+}
+
+export interface ShowCommentTagPopoverDetails {
+  id: string;
+  type: AnnotationActionType;
+}
+
+export enum AnnotationActionType {
+  highlight = 'Highlight',
+  tag = 'Tag',
+  comment = 'Comment',
+}
+
+export interface AnnotationDeleteEvent {
+  id: string;
+}
 
 export type EditorAnnotation = InkEditorAnnotation | FreeTextEditorAnnotation | StampEditorAnnotation | HighlightEditorAnnotation;

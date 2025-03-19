@@ -47,7 +47,7 @@ export class AnnotationEditorLayer {
     /**
      * @param {AnnotationEditorLayerOptions} options
      */
-    constructor({ uiManager, pageIndex, div, accessibilityManager, annotationLayer, drawLayer, textLayer, viewport, l10n, eventBus, }: AnnotationEditorLayerOptions);
+    constructor({ uiManager, pageIndex, div, accessibilityManager, annotationLayer, drawLayer, textLayer, viewport, l10n }: AnnotationEditorLayerOptions);
     pageIndex: number;
     div: HTMLDivElement;
     viewport: import("../display_utils.js").PageViewport;
@@ -225,3 +225,4 @@ import { FreeTextEditor } from "./freetext.js";
 import { HighlightEditor } from "./highlight.js";
 import { InkEditor } from "./ink.js";
 import { StampEditor } from "./stamp.js";
+
